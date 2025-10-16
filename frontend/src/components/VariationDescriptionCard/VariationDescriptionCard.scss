@@ -1,0 +1,36 @@
+.variation-description-container {
+  flex: 1;
+  border: none;
+  padding-top: 1rem;
+  background-color: #f3f2ee33;
+  margin: 16px;
+}
+
+.description-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.description-header {
+  flex: 1;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 10px;
+}
+
+.description-row {
+  display: flex;
+  gap: 15px;
+}
+
+.description-cell {
+  flex: 1;
+  padding: 16px;
+}

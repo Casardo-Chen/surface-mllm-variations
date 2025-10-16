@@ -1,0 +1,144 @@
+.toggle-button{
+    border: 1px solid #9f9f9f ;
+    border-radius: 8px;
+    background-color: white;
+    text-transform: none !important;
+}
+
+.app-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+    margin: 12px;
+    padding: 12px;
+    background-color: #ffffff;
+    border: 2px solid #ccc;
+    border-radius: 16px;
+    gap: 16px;
+}
+
+.app-bar-left {
+    flex-shrink: 0;
+}
+
+.app-bar-center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+    justify-content: center;
+}
+
+.app-bar-right {
+    flex-shrink: 0;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.control-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+    white-space: nowrap;
+}
+
+.confidence-control {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.confidence-slider {
+    width: 120px;
+    height: 6px;
+    border-radius: 3px;
+    background: #e5e7eb;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.confidence-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #000000;
+    cursor: pointer;
+    border: 2px solid #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.confidence-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #000000;
+    cursor: pointer;
+    border: 2px solid #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.confidence-value {
+    font-size: 12px;
+    font-weight: 600;
+    color: #000000;
+    min-width: 35px;
+    text-align: center;
+}
+
+.dropdown-trigger {
+    padding: 6px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: #374151;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 100px;
+    text-align: left;
+}
+
+.dropdown-trigger:hover {
+    background-color: #f9fafb;
+    border-color: #9ca3af;
+}
+
+.dropdown-trigger:focus {
+    outline: none;
+    border-color: #000000;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.app-bar-right button {
+    padding: 8px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: #374151;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.app-bar-right button:hover {
+    background-color: #f9fafb;
+    border-color: #9ca3af;
+}
+
+.app-bar-right button:focus {
+    outline: none;
+    border-color: #000000;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}

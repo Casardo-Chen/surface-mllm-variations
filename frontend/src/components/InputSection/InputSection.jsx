@@ -4,7 +4,6 @@ import './InputSection.scss';
 import ImageUpload from '../ImageUpload/ImageUpload';
 import { Button } from '@/components/ui/button';
 import useSystemStore from '../../store/use-system-store';
-import useResponsesStore from '../../store/use-responses-store';
 import useUserStudyStore from '../../store/use-user-study-store';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/base-tabs';
@@ -14,6 +13,7 @@ import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 
 
 import { imageInfo } from '../../utils/data';
+import MenuIcon from '@mui/icons-material/Menu';
 
 
 function InputSection() {
@@ -158,11 +158,7 @@ function InputSection() {
         onClick={() => setSidebarOpen(!sidebarOpen)}
         aria-label="Toggle sidebar"
       >
-        <div className="hamburger-lines">
-          <div className="line"></div>
-          <div className="line"></div>
-          <div className="line"></div>
-        </div>
+        <MenuIcon />
       </button>
 
       {/* Overlay */}
@@ -226,31 +222,7 @@ function InputSection() {
           <TableRow className="*:border-border hover:bg-transparent [&>:not(:last-child)]:border-r">
             <TableCell className="bg-muted/50 py-2 font-medium">Models</TableCell>
             <TableCell className="py-2">
-
-            </TableCell>
-          </TableRow>
-          <TableRow className="*:border-border hover:bg-transparent [&>:not(:last-child)]:border-r">
-            <TableCell className="bg-muted/50 py-2 font-medium">Trials</TableCell>
-            <TableCell className="py-2">
-              <input 
-                type="text" 
-                alt='target trial number'
-                placeholder="Enter number of trials..."
-                className="prompt-input"
-                onChange={(e) => setNumTrials(e.target.value)}
-                value={numTrials}
-              />
-            </TableCell>
-          </TableRow>
-          <TableRow className="*:border-border hover:bg-transparent [&>:not(:last-child)]:border-r">
-            <TableCell className="bg-muted/50 py-2 font-medium">Prompts</TableCell>
-            <TableCell className="py-2">New York, USA</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </div>
             <div className="checkbox-group">
-              <p>Models:</p>
               <div className="checkbox-options" style= {{display: 'flex', flexDirection: 'column'}}>
                 <label>
                   <input 
@@ -281,8 +253,30 @@ function InputSection() {
                 </label>
               </div>
             </div>
+            </TableCell>
+          </TableRow>
+          <TableRow className="*:border-border hover:bg-transparent [&>:not(:last-child)]:border-r">
+            <TableCell className="bg-muted/50 py-2 font-medium">Trials</TableCell>
+            <TableCell 
+              className="py-2"
+              style={{ 
+                width: '100%',
+               }}
+            >
+              <input 
+                type="text" 
+                alt='target trial number'
+                placeholder="Enter number of trials..."
+                width="100%"
+                onChange={(e) => setNumTrials(e.target.value)}
+                value={numTrials}
+              />
+            </TableCell>
+          </TableRow>
+          <TableRow className="*:border-border hover:bg-transparent [&>:not(:last-child)]:border-r">
+            <TableCell className="bg-muted/50 py-2 font-medium">Prompts</TableCell>
+            <TableCell className="py-2">
             <div className="radio-group">
-              <p>Prompt Variation:</p>
               <div className="radio-options" style= {{display: 'flex', flexDirection: 'column'}}>
                 <label>
                   <input 
@@ -304,7 +298,7 @@ function InputSection() {
                   />
                   Paraphrased prompts
                 </label>
-                {/* <label>
+                <label>
                   <input 
                     type="radio"
                     name="promptVariation"
@@ -312,10 +306,15 @@ function InputSection() {
                     checked={promptVariation === 'various'}
                     onChange={() => setPromptVariation('various')}
                   />
-                  Various prompts
-                </label> */}
+                  Persona
+                </label>
               </div>
             </div>
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </div>
         </div>
       </TabsContent>
       <TabsContent value="example">

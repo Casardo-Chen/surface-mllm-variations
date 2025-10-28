@@ -1,0 +1,14 @@
+{
+    "image": "https://vizwiz.cs.colorado.edu/VizWiz_visualization_img/VizWiz_val_00000943.jpg",
+    "prompt": "Describe the information shown in the chart. What is the peak value of the line?",
+    "scenario": "You need to read a chart on the screen to do data analysis for your work.",
+    "numTrials": 3,
+    "selectedModels": [
+        "gpt",
+        "claude",
+        "gemini"
+    ],
+    "promptVariation": "original",
+    "source": "url",
+    "userId": "test_ngrok"
+}

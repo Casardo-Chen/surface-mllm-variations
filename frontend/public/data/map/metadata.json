@@ -1,0 +1,14 @@
+{
+    "image": "https://preview.redd.it/number-of-us-americans-with-ancestry-from-every-european-v0-5yccuyfvwrhc1.png?width=640&crop=smart&auto=webp&s=fdd0fbcc2e714e5f5e8ca1bc06ed4cfc959a454f",
+    "prompt": "Describe 10 numbers shown in this map. Which country has the highest number of US Americans with ancestry?",
+    "scenario": "You’re browsing reddit and in the r/europe thread. There is a post about Number of US Americans with Ancestry from Every European Country in which people are heatedly discussing discussing the numbers shows on the graph and you want to know what they are talking about.",
+    "numTrials": 3,
+    "selectedModels": [
+        "gpt",
+        "claude",
+        "gemini"
+    ],
+    "promptVariation": "original",
+    "source": "url",
+    "userId": "test_akhil"
+}

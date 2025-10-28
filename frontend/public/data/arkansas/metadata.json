@@ -1,0 +1,13 @@
+{
+    "image": "https://wehco.media.clients.ellingtoncms.com/imports/adg/photos/206740038_206738260_severe-wx-thrusday-graphic_t800_t1684.jpg",
+    "prompt": "Describe the map. List the cities in each risk level",
+    "numTrials": 3,
+    "selectedModels": [
+        "gpt",
+        "claude",
+        "gemini"
+    ],
+    "promptVariation": "original",
+    "source": "url",
+    "userId": "P1"
+}

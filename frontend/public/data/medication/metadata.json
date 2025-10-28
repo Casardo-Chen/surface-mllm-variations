@@ -1,0 +1,14 @@
+{
+    "image": "https://vizwiz.cs.colorado.edu/VizWiz_visualization_img/VizWiz_train_00001926.jpg",
+    "prompt": "Describe all of the information on the bottle. What kind of medicine is this?",
+    "scenario": "You need to take some medication, but you are not sure which medicine you have with you.",
+    "numTrials": 3,
+    "selectedModels": [
+        "gpt",
+        "claude",
+        "gemini"
+    ],
+    "promptVariation": "original",
+    "source": "url",
+    "userId": "test_ngrok"
+}

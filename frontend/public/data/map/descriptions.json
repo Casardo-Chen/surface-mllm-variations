@@ -1,0 +1,47 @@
+{
+    "1": {
+        "id": 1,
+        "model": "gpt",
+        "description": "Here are ten numbers from the map showing the number of US Americans with ancestry from each European country:\n\n1. Russia: 2,000,000\n2. Germany: 45,000,000\n3. Ireland: 34,000,000\n4. England: 24,000,000\n5. Italy: 17,000,000\n6. Poland: 9,000,000\n7. France: 8,000,000\n8. Norway: 4,500,000\n9. Sweden: 3,800,000\n10. Greece: 1,200,000\n\nThe country with the highest number of US Americans with ancestry is Germany, with 45,000,000."
+    },
+    "2": {
+        "id": 2,
+        "model": "claude",
+        "description": "This map shows the number of US Americans with ancestry from various European countries according to self-reported 2019 American Community Survey data.\n\n10 numbers shown on the map:\n1. 34,000,000 - England/UK\n2. 45,000,000 - Germany\n3. 3,400,000 - Sweden\n4. 1,200,000 - Denmark\n5. 8,000,000 - France\n6. 16,000,000 - Italy\n7. 9,000,000 - Poland\n8. 1,100,000 - Ukraine\n9. 1,300,000 - Spain\n10. 54,000 - Iceland\n\nAccording to this map, Germany has the highest number of US Americans with ancestry at 45,000,000, followed closely by the United Kingdom (England) at 34,000,000. These two countries represent the largest sources of European ancestry for Americans based on this self-reported data."
+    },
+    "3": {
+        "id": 3,
+        "model": "gemini",
+        "description": "Here are 10 numbers from the map, representing the number of US Americans with ancestry from the corresponding European countries:\n\n1. **Germany:** 45,000,000\n2. **Ireland:** 34,000,000\n3. **England:** 54,000,000\n4. **Italy:** 16,000,000\n5. **France:** 8,000,000\n6. **Poland:** 9,000,000\n7. **Spain:** 1,000,000\n8. **Portugal:** 1,300,000\n9. **Greece:** 1,200,000\n10. **Russia:** 2,000,000\n\n\nGermany has the highest number of US Americans with ancestry at 45,000,000."
+    },
+    "4": {
+        "id": 4,
+        "model": "gpt",
+        "description": "1. Ireland: 31,000,000\n2. Germany: 45,000,000\n3. Italy: 18,000,000\n4. Poland: 9,000,000\n5. Sweden: 3,800,000\n6. Norway: 4,500,000\n7. France: 8,000,000\n8. Greece: 1,200,000\n9. Russia: 2,000,000\n10. Ukraine: 1,100,000\n\nThe country with the highest number of US Americans with ancestry is Germany with 45,000,000."
+    },
+    "5": {
+        "id": 5,
+        "model": "claude",
+        "description": "The map shows the number of US Americans with ancestry from various European countries based on self-reported data from the 2019 American Community Survey.\n\nHere are 10 numbers shown on the map:\n1. Germany: 45,000,000\n2. United Kingdom: 34,000,000\n3. Ireland: 34,000,000\n4. Italy: 16,000,000\n5. Poland: 9,000,000\n6. France: 8,000,000\n7. Sweden: 3,800,000\n8. Norway: 3,400,000\n9. Netherlands: 3,200,000\n10. Ukraine: 1,100,000\n\nAccording to this map, Germany has the highest number of US Americans claiming ancestry, with 45 million people. This is followed by the United Kingdom and Ireland, both showing 34 million people with ancestry from those countries."
+    },
+    "6": {
+        "id": 6,
+        "model": "gemini",
+        "description": "Here are 10 numbers from the map, representing the number of US Americans with ancestry from each respective European country:\n\n1. **Germany:** 45,000,000\n2. **Ireland:** 34,000,000\n3. **England:** 54,000,000\n4. **Italy:** 16,000,000\n5. **France:** 8,000,000\n6. **Poland:** 9,000,000\n7. **Spain:** 1,000,000\n8. **Portugal:** 1,300,000\n9. **Greece:** 1,200,000\n10. **Iceland:** 54,000\n\n\nGermany has the highest number of US Americans with ancestry at 45,000,000."
+    },
+    "7": {
+        "id": 7,
+        "model": "gpt",
+        "description": "Here are 10 numbers from the map:\n\n1. Ireland: 31,000,000\n2. Italy: 17,000,000\n3. Germany: 45,000,000\n4. Russia: 2,000,000\n5. Poland: 9,000,000\n6. Sweden: 3,800,000\n7. Norway: 4,500,000\n8. France: 10,000,000\n9. Netherlands: 5,000,000\n10. Greece: 1,200,000\n\nIreland has the highest number of US Americans with ancestry, at 31,000,000."
+    },
+    "8": {
+        "id": 8,
+        "model": "claude",
+        "description": "The map shows the number of US Americans with ancestry from various European countries, based on self-reported data from the 2019 American Community Survey.\n\n10 numbers shown on the map:\n1. Germany: 45,000,000\n2. United Kingdom: 34,000,000\n3. Ireland: 54,000,000\n4. Italy: 16,000,000\n5. Poland: 9,000,000\n6. France: 8,000,000\n7. Sweden: 3,900,000\n8. Norway: 3,400,000\n9. Spain: 1,300,000\n10. Greece: 1,200,000\n\nAccording to this map, Ireland has the highest number of US Americans claiming ancestry, with 54,000,000 people. The United Kingdom follows with 34,000,000, and Germany ranks third with 45,000,000. These three countries represent the largest sources of European ancestry for Americans based on this data visualization."
+    },
+    "9": {
+        "id": 9,
+        "model": "gemini",
+        "description": "Here are 10 numbers from the map, representing the number of US Americans with ancestry from the corresponding European country:\n\n1. Germany: 45,000,000\n2. Ireland: 34,000,000\n3. England: 54,000,000\n4. Italy: 16,000,000\n5. France: 8,000,000\n6. Poland: 9,000,000\n7. Russia: 2,000,000\n8. Spain: 1,000,000\n9. Romania: 1,100,000\n10. Greece: 1,200,000\n\nGermany has the highest number of US Americans with ancestry at 45,000,000."
+    }
+}

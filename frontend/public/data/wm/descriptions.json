@@ -1,0 +1,47 @@
+{
+    "1": {
+        "id": 1,
+        "model": "gpt",
+        "description": "The washing machine panel has a dial with various settings labeled around it. It appears there are sections for different washing cycles.\n\nTo set the machine to \"Heavy,\" which is under the \"Normal\" cycle category, follow these steps:\n\n1. **Identify the Current Position:** Locate the current position of the dial.\n2. **Twisting the Dial:** \n   - If you are currently at \"Off,\" turn the dial clockwise.\n   - The \"Heavy\" setting within the \"Normal\" category is to the right.\n3. **Distance to Twist:** You need to move the dial two clicks from \"Off\" clockwise to reach \"Normal Heavy.\"\n\nEnsure the indicator lines up with \"Heavy\" under \"Normal\" to activate that setting."
+    },
+    "2": {
+        "id": 2,
+        "model": "claude",
+        "description": "The image shows part of a washing machine control panel with a circular dial. The dial appears to be set to the \"Normal\" position, which is indicated with blue markings around the dial. You can see the word \"Normal\" at the top of the dial's settings and \"Casual\" at the bottom portion that's visible.\n\nBased on what's visible in the image, I can't clearly see a \"Heavy\" setting on this particular washing machine dial. The visible settings include \"Normal\" and \"Casual\" (which mentions \"Permanent Press\" beneath it), but the complete dial isn't fully visible in the image, so the Heavy setting might be on another part of the dial that isn't shown.\n\nTypically, on most washing machines, you would turn the dial clockwise to cycle through the different wash options. If there is a Heavy duty or Heavy soil setting, it would likely be past the Normal setting, requiring you to turn the dial clockwise from its current position. However, without seeing the complete dial, I can't give you the exact direction or how far to turn it to reach the Heavy setting on this specific machine."
+    },
+    "3": {
+        "id": 3,
+        "model": "gemini",
+        "description": "The washing machine panel has a single dial to select the wash cycle.  The settings, from the off position at the top (12 o'clock) and going clockwise, are:\n\n* Off\n* Heavy\n* Regular\n* Light\n* Casual/Permanent Press\n\nTo select the heavy setting, turn the dial clockwise about one-eighth of a full rotation or 45 degrees."
+    },
+    "4": {
+        "id": 4,
+        "model": "gpt",
+        "description": "To set the washing machine to the \"Heavy\" setting:\n\n1. Locate the \"Normal\" category on the panel.\n2. The \"Heavy\" setting is marked as \"14\" in this section.\n3. Turn the dial counterclockwise from its current position until you reach the \"Heavy\" mark.\n\nMake sure to align the dial with the \"14\" under \"Normal\" for the Heavy cycle."
+    },
+    "5": {
+        "id": 5,
+        "model": "claude",
+        "description": "The image shows a white washing machine with a control dial. The dial appears to be set to the \"Normal\" position, which is marked with blue text. Around the dial, there are various cycle settings indicated.\n\nBased on what's visible, I can see \"Normal\" and \"Casual\" settings clearly marked with blue text. The dial has a white center knob with a blue circular indicator track around it showing the different washing options.\n\nI can't clearly see a \"Heavy\" setting in this specific image, as not all settings are visible or labeled in the portion of the control panel shown. To find the heavy setting, you would typically need to turn the dial counterclockwise from the current \"Normal\" position, as heavy-duty cycles are often positioned before normal cycles on most washing machines. However, without seeing the full dial, I can't specify exactly how far to turn it to reach the heavy setting on your particular model.\n\nYou might want to check the full dial for settings like \"Heavy Duty,\" \"Bulky,\" or \"Heavy Soil\" which would be appropriate for heavily soiled items."
+    },
+    "6": {
+        "id": 6,
+        "model": "gemini",
+        "description": "The washing machine has a single dial to control the wash settings.  Clockwise from the \"Off\" position at the top, the settings are:\n\n* Heavy (at the 15 mark)\n* Regular (at the 12 mark)\n* Light (at the 9 mark)\n* Casual/Permanent Press (at the 3 mark)\n\nTo select the \"Heavy\" setting, turn the dial clockwise from \"Off\" about one-quarter of a full rotation, to the \"15\" marking."
+    },
+    "7": {
+        "id": 7,
+        "model": "gpt",
+        "description": "The washing machine panel has various settings, including the \"Normal\" and \"Casual\" cycles. The dial is a circular knob with labeled options around it.\n\nTo set it to \"Heavy\" under the \"Normal\" cycle:\n\n1. Locate the \"Normal\" section on the panel.\n2. The \"Heavy\" setting is part of this section.\n3. Turn the dial clockwise to the first option in the \"Normal\" cycle.\n\nThis will set the machine to the \"Heavy\" setting."
+    },
+    "8": {
+        "id": 8,
+        "model": "claude",
+        "description": "The image shows a washing machine control panel with a white dial. The dial has a circular design with blue markings indicating different wash settings. The current setting appears to be pointing to \"Normal.\" \n\nBased on what's visible, I can see \"Normal\" and \"Casual\" settings marked in blue. The dial seems to have several positions marked around it. While I can see part of the control panel, I don't clearly see a \"Heavy\" setting in the visible portion of the dial.\n\nTo find the Heavy setting, you would likely need to turn the dial counterclockwise from the current \"Normal\" position, but I cannot definitively say how far you would need to turn it since the complete dial isn't fully visible in the image. Many washing machines place the more intensive wash cycles (like Heavy) before Normal in the sequence.\n\nIf you're looking for the most intensive cycle for heavily soiled items, you might want to check the complete dial by looking at all the settings around the circumference."
+    },
+    "9": {
+        "id": 9,
+        "model": "gemini",
+        "description": "The washing machine panel has a single dial for selecting wash cycles.  Clockwise from the \"Off\" position at the top are:\n\n* **Normal:** High & Low Agitation\n* **Heavy:**  \n* **Regular:**\n* **Light:**\n* **Casual/Permanent Press:** High & Low Agitation\n\nTo get to the \"Heavy\" setting, turn the dial clockwise about 1/8 of a full rotation, just past the \"Normal\" setting."
+    }
+}

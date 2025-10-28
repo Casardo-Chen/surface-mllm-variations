@@ -38,7 +38,6 @@ const AppBar = ({gridView, setGridView}) => {
     return (
         <div className="app-bar">
 
-            
             <div className="app-bar-center">
                 {/* Main toggle: All descriptions vs Variations */}
                 <div className="control-group">

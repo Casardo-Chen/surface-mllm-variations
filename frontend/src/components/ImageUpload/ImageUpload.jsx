@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { Button } from '@/components/ui/button';
 import './ImageUpload.scss';
 
 const ImageUpload = ({ onImageChange, currentImage }) => {
@@ -193,9 +194,9 @@ const ImageUpload = ({ onImageChange, currentImage }) => {
                 <div className="camera-start">
                   <div className="camera-icon">📷</div>
                   <p className="camera-text">Take a photo with your camera</p>
-                  <button onClick={startCamera} className="camera-start-btn">
+                  <Button onClick={startCamera} variant="mono">
                     Open Camera
-                  </button>
+                  </Button>
                 </div>
               ) : (
                 <div className="camera-capture">

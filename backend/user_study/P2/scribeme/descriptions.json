@@ -1,0 +1,14 @@
+{
+    "1": {
+        "id": 1,
+        "model": "claude",
+        "description": "The image is an announcement graphic for an app called \"ScribeMe\" with a light blue border. The main text in the center states \"ScribeMe is now available on App Store\" in a typewriter-style font. \n\nThe illustration shows a smartphone being held by a hand, and on the phone's screen is a document or note icon with a pen, along with the Apple App Store download badge. In the upper left corner of the graphic, there's a document icon with the letter \"S\" and a pen. The \"ScribeMe\" logo appears at the bottom of the graphic.\n\nThe overall design has a clean, minimalist aesthetic with a light blue color scheme, suggesting it's a writing or note-taking application that has just launched on iOS devices.",
+        "prompt": "Describe the image in detail"
+    },
+    "2": {
+        "id": 2,
+        "model": "claude",
+        "description": "The image is an announcement graphic for an app called \"ScribeMe\" with a light blue border. The main text states \"ScribeMe is now available on App Store\" in a typewriter-style font. In the center is an illustration of a smartphone being held by a hand, displaying a document/notepad icon with a pen and the official Apple App Store download badge below it. The ScribeMe logo appears at the top left corner of the graphic (showing what appears to be a document icon with the letter \"S\") and the name \"ScribeMe\" is displayed at the bottom of the image. The overall design uses a clean, minimalist style with a blue and white color scheme to announce the app's availability on iOS devices.",
+        "prompt": "Describe the image in detail"
+    }
+}

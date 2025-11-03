@@ -1,0 +1,14 @@
+{
+    "image": "https://preview.redd.it/mghmxkg2uar01.png?width=640&crop=smart&auto=webp&s=61bfd8d11b91770e899c7141ef39004a8fa7105a",
+    "prompt": "Describe all of the information in the graph. Which word appears across the most Taylor Swift albums?",
+    "scenario": "You are a Swiftie and you found a post about alcohol references in Taylor Swift's lyrics in a reddit thread interesting. You want to know what the graph is about and what it says.",
+    "numTrials": 3,
+    "selectedModels": [
+        "gpt",
+        "claude",
+        "gemini"
+    ],
+    "promptVariation": "original",
+    "source": "url",
+    "userId": "test_akhil"
+}

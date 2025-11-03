@@ -1,0 +1,13 @@
+{
+    "image": "https://shopgoodwillimages.azureedge.net/production/5/Items/03-27-2025/b9619f3c-2ddd-4073-9571-ab9dbf974f4bdmin_03271.jpg",
+    "prompt": "Who signed on these balls?",
+    "numTrials": 3,
+    "selectedModels": [
+        "gpt",
+        "claude",
+        "gemini"
+    ],
+    "promptVariation": "original",
+    "source": "url",
+    "userId": "P12"
+}

@@ -1,0 +1,3 @@
+on_http_request: 
+  - expressions: "req.method == 'OPTIONS'"
+        actions: skip_auth

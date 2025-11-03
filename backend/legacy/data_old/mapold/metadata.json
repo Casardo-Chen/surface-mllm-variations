@@ -1,0 +1,12 @@
+{
+    "image": "https://preview.redd.it/number-of-us-americans-with-ancestry-from-every-european-v0-5yccuyfvwrhc1.png?width=640&crop=smart&auto=webp&s=fdd0fbcc2e714e5f5e8ca1bc06ed4cfc959a454f",
+    "prompt": "Describe the information shown in this map. Which country has the largest number.",
+    "numTrials": 3,
+    "selectedModels": [
+        "gpt",
+        "claude",
+        "gemini"
+    ],
+    "promptVariation": "original",
+    "source": "url"
+}

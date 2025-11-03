@@ -1,0 +1,13 @@
+{
+    "image": "https://media.flixfacts.com/inpage/amazon/Echo-Dot-4th-generation/img/feature-9.jpg",
+    "prompt": "Tell me more about the echo 4th generation.",
+    "numTrials": "2",
+    "selectedModels": [
+        "claude",
+        "gemini",
+        "gpt"
+    ],
+    "promptVariation": "original",
+    "source": "url",
+    "userId": "wesley_exploration"
+}

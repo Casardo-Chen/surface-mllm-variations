@@ -57,10 +57,20 @@ function DescriptionTable({ data }) {
         </label>
       </div>
       <table style={{ width: "100%", borderCollapse: "collapse", overflow: "hidden" }}>
-        <thead>
+        <thead
+          style={{ backgroundColor: "#f4f4f4" }}
+        >
           <tr>
-            <th style={{ border: "2px solid #ccc", padding: "8px" }}>ID</th>
-            <th style={{ border: "2px solid #ccc", padding: "8px" }}>Model</th>
+            <th style={{ 
+              border: "2px solid #ccc", 
+              padding: "8px",
+              width: "5%"
+            }}>ID</th>
+            <th style={{ 
+              border: "2px solid #ccc", 
+              padding: "8px",
+              width: "10%"
+            }}>Model</th>
             <th style={{ border: "2px solid #ccc", padding: "8px" }}>
               Description
             </th>
@@ -68,7 +78,7 @@ function DescriptionTable({ data }) {
             {/* <th style={{ border: "2px solid #ccc", padding: "8px" }}>Prompt</th> */}
           </tr>
         </thead>
-        <tbody>
+        <tbody style={{ fontFamily: "monospace" }}>
           {filteredData.map(([id, item]) => (
             <tr key={id}>
               
@@ -76,7 +86,14 @@ function DescriptionTable({ data }) {
               <td style={{ border: "2px solid #ccc", padding: "8px" }}>
                 {getModelName(item.model)} 
               </td>
-              <td style={{ border: "2px solid #ccc", padding: "8px" }}>
+              <td style={{ 
+                border: "2px solid #ccc", 
+                padding: "8px",
+                maxHeight: "500px",
+                overflowY: "auto",
+                overflowX: "hidden",
+                wordWrap: "break-word"
+              }}>
                 <div className="react-markdown">
                   <ReactMarkdown>{item.description}</ReactMarkdown>
                 </div>
@@ -90,139 +107,178 @@ function DescriptionTable({ data }) {
   );
 }
 
-function VariationDescriptionCard({data}) {  
-  const {
-      currentImage,
-      currentId,
-      representationType,
-      setRepresentationType,
-      showVariations,
-      setShowVariations,
-      showModelDifferences,
-      setShowModelDifferences,
-    } = usePerceptionStore();
-
-  
+function VariationSummary({data}) {
   return (
-      <div className="variation-description-container">
-          <table style={{ 
-            width: "100%", 
-            borderCollapse: "collapse", 
-            overflow: "hidden",
-            marginBottom: "16px"
-          }}>
-              <thead
-              style={{ backgroundColor: "#f4f4f4" }}
-              >
-                  <tr>
-                      <th style={{ border: "2px solid #ccc", padding: "8px" }}>Focus</th>
-                      <th style={{ border: "2px solid #ccc", padding: "8px" }}>Variation Summary</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                      <td style={{ border: "2px solid #ccc", padding: "8px" }}>Agreements</td>
-                      <td style={{ border: "2px solid #ccc", padding: "8px" , textAlign: "left" }}>
-                          <div className="react-markdown">
-                              <ReactMarkdown>
-                                  {data?.similarity}
-                              </ReactMarkdown>
-                          </div>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td style={{ border: "2px solid #ccc", padding: "8px" }}>Disagreements</td>
-                      <td style={{ border: "2px solid #ccc", padding: "8px", textAlign: "left" }}>
-                          <div className="react-markdown">
-                              <ReactMarkdown>
-                                  {data?.disagreement}
-                              </ReactMarkdown>
-                          </div>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td style={{ border: "2px solid #ccc", padding: "8px" }}>Unique Points</td>
-                      <td style={{ border: "2px solid #ccc", padding: "8px", textAlign: "left" }} aria-label='model-specific'>
-                          <div className="react-markdown">
-                              <ReactMarkdown>
-                                  {data?.uniqueness}
-                              </ReactMarkdown>
-                          </div>
-                      </td>
-                  </tr>
-              </tbody>
-          </table>
-          <table style={{ width: "100%", borderCollapse: "collapse", overflow: "hidden" }}>
-              <thead
-              style={{ backgroundColor: "#f4f4f4" }}
-              >
-                  <tr>
-                      <th style={{ border: "2px solid #ccc", padding: "8px" }}>Supoort Indicator</th>
-                      <th style={{ border: "2px solid #ccc", padding: "8px" }}>Variation-aware Description</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  {/* Detail Summary */}
-                  <tr>
-                      <td style={{ border: "2px solid #ccc", padding: "8px" }}>
-                        <div className="detail-summary-header">
-                          <div className="representation-type-buttons">
-                            <button 
-                              className={`representation-btn ${representationType === "none" ? "active" : ""}`}
-                              onClick={() => {setRepresentationType("none");}}
-                            >
-                              Variation Only
-                            </button>
-                            <button 
-                              className={`representation-btn ${representationType === "model" ? "active" : ""}`}
-                              onClick={() => {setRepresentationType("model");}}
-                            >
-                              Model Source 
-                            </button>
-                            <button 
-                              className={`representation-btn ${representationType === "percentage" ? "active" : ""}`}
-                              onClick={() => {setRepresentationType("percentage");}}
-                            >
-                              Percentage
-                            </button>
-                            <button 
-                              className={`representation-btn ${representationType === "natural" ? "active" : ""}`}
-                              onClick={() => {setRepresentationType("natural");}}
-                            >
-                              Language
-                            </button>
-                          </div>
-                        </div>
-                      </td>
-                      <td style={{ border: "2px solid #ccc", padding: "8px", textAlign: "left" }} aria-label='variation'>
-                          <div className="react-markdown">
-                              <ReactMarkdown>
-                                  { representationType === "model" ? data?.model_diff :
-                                    representationType === "none" ? data?.var_only :
-                                    representationType === "percentage" ? data?.percentage :
-                                    representationType === "natural" && data?.nl
-                                  }             
-                              </ReactMarkdown>
-                          </div>
-                      </td>
-                  </tr>
-              </tbody>
-          </table>
-      </div>
+    <div className="variation-description-container">
+      <table style={{ 
+        width: "100%", 
+        borderCollapse: "collapse", 
+        overflow: "hidden",
+        marginBottom: "16px"
+      }}>
+        <thead style={{ backgroundColor: "#f4f4f4" }}>
+          <tr>
+            <th style={{ 
+              border: "2px solid #ccc", 
+              padding: "8px",
+              width: "15%"
+            }}>Focus</th>
+            <th style={{ border: "2px solid #ccc", padding: "8px" }}>Variation Summary</th>
+          </tr>
+        </thead>
+        <tbody style={{ fontFamily: "monospace" }}>
+          <tr>
+            <td style={{ border: "2px solid #ccc", padding: "8px" }}>Agreements</td>
+            <td style={{ 
+              border: "2px solid #ccc", 
+              padding: "8px", 
+              textAlign: "left",
+              maxHeight: "300px",
+              overflowY: "auto",
+              overflowX: "hidden",
+              wordWrap: "break-word"
+            }}>
+              <div className="react-markdown">
+                <ReactMarkdown>
+                  {data?.similarity}
+                </ReactMarkdown>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style={{ border: "2px solid #ccc", padding: "8px" }}>Disagreements</td>
+            <td style={{ 
+              border: "2px solid #ccc", 
+              padding: "8px", 
+              textAlign: "left",
+              maxHeight: "500px",
+              overflowY: "auto",
+              overflowX: "hidden",
+              wordWrap: "break-word"
+            }}>
+              <div className="react-markdown">
+                <ReactMarkdown>
+                  {data?.disagreement}
+                </ReactMarkdown>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style={{ border: "2px solid #ccc", padding: "8px" }}>Unique Points</td>
+            <td style={{ 
+              border: "2px solid #ccc", 
+              padding: "8px", 
+              textAlign: "left",
+              maxHeight: "500px",
+              overflowY: "auto",
+              overflowX: "hidden",
+              wordWrap: "break-word"
+            }} aria-label='model-specific'>
+              <div className="react-markdown">
+                <ReactMarkdown>
+                  {data?.uniqueness}
+                </ReactMarkdown>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function VariationAwareDescription({data}) {
+  const {
+    representationType,
+    setRepresentationType,
+  } = usePerceptionStore();
+
+  return (
+    <div className="variation-description-container">
+      <table style={{ width: "100%", borderCollapse: "collapse", overflow: "hidden" }}>
+        <thead style={{ backgroundColor: "#f4f4f4" }}>
+          <tr>
+            <th style={{ border: "2px solid #ccc", padding: "8px" }}>Support Indicator</th>
+            <th style={{ border: "2px solid #ccc", padding: "8px" }}>Variation-aware Description</th>
+          </tr>
+        </thead>
+        <tbody style={{ fontFamily: "monospace" }}>
+          <tr>
+            <td style={{ 
+              border: "2px solid #ccc", 
+              padding: "8px",
+              width: "15%"
+            }}>
+              <div className="detail-summary-header">
+                <div className="representation-type-buttons">
+                  <button 
+                    className={`representation-btn ${representationType === "none" ? "active" : ""}`}
+                    onClick={() => {setRepresentationType("none");}}
+                  >
+                    Variation Only
+                  </button>
+                  <button 
+                    className={`representation-btn ${representationType === "model" ? "active" : ""}`}
+                    onClick={() => {setRepresentationType("model");}}
+                  >
+                    Model Source 
+                  </button>
+                  <button 
+                    className={`representation-btn ${representationType === "percentage" ? "active" : ""}`}
+                    onClick={() => {setRepresentationType("percentage");}}
+                  >
+                    Percentage
+                  </button>
+                  <button 
+                    className={`representation-btn ${representationType === "natural" ? "active" : ""}`}
+                    onClick={() => {setRepresentationType("natural");}}
+                  >
+                    Language
+                  </button>
+                </div>
+              </div>
+            </td>
+            <td style={{ 
+              border: "2px solid #ccc", 
+              padding: "8px", 
+              textAlign: "left",
+              maxHeight: "500px",
+              overflowY: "auto",
+              overflowX: "hidden",
+              wordWrap: "break-word"
+            }} aria-label='variation'>
+              <div className="react-markdown">
+                <ReactMarkdown>
+                  { representationType === "model" ? data?.model_diff :
+                    representationType === "none" ? data?.var_only :
+                    representationType === "percentage" ? data?.percentage :
+                    representationType === "natural" && data?.nl
+                  }             
+                </ReactMarkdown>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   );
 }
 
 function PerceptionTask() {
   const [rawDescriptions, setRawDescriptions] = useState({});
   const [variationDescription, setVariationDescription] = useState({});
-
+  
+  const {
+    showVariationSummary,
+    showVariationAwareDescription,
+    showDescriptionList
+  } = useSystemStore();
 
   useEffect( () => {
     async function fetchData() {
 
       await fetch(`/data/home/descriptions.json`).then(res => res.json()).then(res => setRawDescriptions(res))
       await fetch(`/data/home/summary.json`).then(res => res.json()).then(res => setVariationDescription(res))
-      await fetch(`/data/home/metadata.json`).then(res => res.json()).then(res => setCurrentMetaData(res))
     }
     fetchData();
   }, []);
@@ -243,8 +299,9 @@ function PerceptionTask() {
         }}
       >
           <div aria-label='description' style={{ textAlign: "left" }}>
-              <VariationDescriptionCard data={variationDescription} />
-              <DescriptionTable data={rawDescriptions} /> 
+              {showVariationSummary && <VariationSummary data={variationDescription} />}
+              {showVariationAwareDescription && <VariationAwareDescription data={variationDescription} />}
+              {showDescriptionList && <DescriptionTable data={rawDescriptions} />}
           </div>
       </Box>
 

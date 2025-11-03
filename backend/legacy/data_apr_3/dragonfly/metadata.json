@@ -1,0 +1,12 @@
+{
+    "image": "https://preview.redd.it/noob-photographer-here-thoughts-v0-9coj3ghv8dse1.jpeg?width=640&crop=smart&auto=webp&s=e27551b57c0264b1f1f3adf6d4d24363b1f633a9",
+    "prompt": "Describe the scene. Give me your honest thoughts: is this a pretty image?",
+    "numTrials": 3,
+    "selectedModels": [
+        "gpt",
+        "claude",
+        "gemini"
+    ],
+    "promptVariation": "original",
+    "source": "url"
+}

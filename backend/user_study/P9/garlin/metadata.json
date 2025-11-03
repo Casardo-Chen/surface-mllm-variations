@@ -1,0 +1,13 @@
+{
+    "image": "https://i5.walmartimages.com/seo/Easter-Multi-Color-Tinsel-Egg-Garland-8-ft-by-Way-To-Celebrate_570bc9b2-c1c6-4a48-87cb-f6e0ec3af7ee.a6804ea83d1ed41a061ead6177e6d97b.jpeg?odnHeight=640&odnWidth=640&odnBg=FFFFFF",
+    "prompt": "what color is the garlin  what design is on the garlin  what decorations is it being used for",
+    "numTrials": 3,
+    "selectedModels": [
+        "gpt",
+        "claude",
+        "gemini"
+    ],
+    "promptVariation": "original",
+    "source": "url",
+    "userId": "P9"
+}

@@ -43,6 +43,14 @@ interface SystemState {
   confidenceThreshold: number;
   setConfidenceThreshold: (threshold: number) => void;
 
+  // Display mode states
+  showVariationSummary: boolean;
+  setShowVariationSummary: (show: boolean) => void;
+  showVariationAwareDescription: boolean;
+  setShowVariationAwareDescription: (show: boolean) => void;
+  showDescriptionList: boolean;
+  setShowDescriptionList: (show: boolean) => void;
+
 }
 
 const useSystemStore = create<SystemState>((set) => ({
@@ -87,6 +95,14 @@ const useSystemStore = create<SystemState>((set) => ({
   setSelectedModels: (models) => set({ selectedModels: models }),
   confidenceThreshold: 0,
   setConfidenceThreshold: (threshold) => set({ confidenceThreshold: threshold }),
+
+  // Display mode states
+  showVariationSummary: true,
+  setShowVariationSummary: (show) => set({ showVariationSummary: show }),
+  showVariationAwareDescription: true,
+  setShowVariationAwareDescription: (show) => set({ showVariationAwareDescription: show }),
+  showDescriptionList: true,
+  setShowDescriptionList: (show) => set({ showDescriptionList: show }),
 }));
 
 export default useSystemStore;

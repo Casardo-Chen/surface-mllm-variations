@@ -1,0 +1,12 @@
+{
+    "image": "https://preview.redd.it/mghmxkg2uar01.png?width=640&crop=smart&auto=webp&s=61bfd8d11b91770e899c7141ef39004a8fa7105a",
+    "prompt": " Describe all of the information in the graph. Which word appears in three of Taylor Swift's albums?",
+    "numTrials": 3,
+    "selectedModels": [
+        "gpt",
+        "claude",
+        "gemini"
+    ],
+    "promptVariation": "original",
+    "source": "url"
+}

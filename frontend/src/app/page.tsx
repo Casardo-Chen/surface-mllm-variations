@@ -35,7 +35,7 @@ export default function Home() {
         boxSizing: "border-box",
         }}>
         {/* Top Bar */}
-        {/* <AppBar gridView={gridView} setGridView={setGridView} /> */}
+        <AppBar gridView={gridView} setGridView={setGridView} />
         {/* Main Content */}
             <PerceptionTask />
       </Box>

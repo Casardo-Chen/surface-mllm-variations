@@ -1,0 +1,56 @@
+{
+    "1": {
+        "id": 1,
+        "model": "gpt",
+        "description": "The image shows a prescription medication bottle. Key details include:\n\n- It\u2019s from a drugstore.\n- The medication is \"Venlafaxine XR.\"\n- The prescribed date is 02-Feb-25.\n- Instructions state to \"take by mouth daily.\"\n- Refills available: 0.\n\nAlways consult a healthcare professional for more information about prescriptions.",
+        "prompt": "what is this? read the image."
+    },
+    "2": {
+        "id": 2,
+        "model": "claude",
+        "description": "The image shows a prescription medication bottle or container. It has a white cap and a dark blue/navy body with a prescription label wrapped around it. The label appears to include a pharmacy name (partially visible as \"...store\"), a phone number (1-800-461-0974), and what seems to be prescription information. There's a barcode on the label and what appears to be refill information (\"Refills: 0\"). The label also has some pink coloring or highlighting on one section. The bottle is sitting on what looks like a light-colored surface.",
+        "prompt": "what is this? read the image."
+    },
+    "3": {
+        "id": 3,
+        "model": "gemini",
+        "description": "This is a prescription bottle from a pharmacy called \"agstore\". It contains Venlafaxine XR (extended-release), likely prescribed to someone named Verrier Michel.  The label instructs the patient to take one capsule by mouth daily and not to break or crush the capsule.  The prescription was filled on February 2nd, 2025, and has no refills remaining. The phone number for the pharmacy is also listed on the label.  It's important to note that sharing prescription medication is illegal and dangerous. This information should not be used to obtain or use this medication without a valid prescription from a doctor.",
+        "prompt": "what is this? read the image."
+    },
+    "4": {
+        "id": 4,
+        "model": "gpt",
+        "description": "This is an image of a prescription medicine bottle. The label includes:\n\n- **Patient Name:** Partially visible, appears to be \"Verrier, Michel\".\n- **Expiration Date:** 02-Feb-25\n- **Medication:** It looks like something similar to \"Alprazolam XR\" is mentioned.\n- **Refills:** 0\n- **Instructions:** The instructions for use are partially obscured.\n\nPlease refer to the prescription label for complete instructions and follow your healthcare provider\u2019s guidance.",
+        "prompt": "what is this? read the image."
+    },
+    "5": {
+        "id": 5,
+        "model": "claude",
+        "description": "The image shows a prescription medication bottle with a white cap and a dark blue/navy body. The bottle has a pharmacy label wrapped around it with what appears to be prescription information. There's a pink section on the label that likely contains warning information. The label includes a barcode and some text that indicates it's from a pharmacy (with what appears to be a phone number). There's also text that shows \"Refills: 0\" visible on the label. The bottle is placed on what looks like a light-colored surface.\n\nFor privacy and safety reasons, I should note that prescription medications are personal medical items and contain private health information. It's generally best to keep prescription information confidential.",
+        "prompt": "what is this? read the image."
+    },
+    "6": {
+        "id": 6,
+        "model": "gemini",
+        "description": "This is a prescription bottle from a drugstore.  It contains Venlafaxine XR (extended-release), an antidepressant of the SNRI class.  The prescription is for Verrier Michel and is to be taken once daily.  The label instructs the patient to swallow the capsules whole and not to break or crush them.",
+        "prompt": "what is this? read the image."
+    },
+    "7": {
+        "id": 7,
+        "model": "gpt",
+        "description": "The image shows a prescription medication bottle with the following details:\n\n- Pharmacy name: Partially visible as \"Drugstore\"\n- Contact number: 1-800-461-0974\n- Prescription for: Michel Verrier\n- Medication: Guanfacine XR 1 mg\n- Instructions: Take by mouth daily\n- Refills: 0\n- Expiry date: 02-Feb-25\n\nThere are additional standard instructions about the medication, not fully visible. Ensure to follow the prescription guidelines for proper usage.",
+        "prompt": "what is this? read the image."
+    },
+    "8": {
+        "id": 8,
+        "model": "claude",
+        "description": "The image shows a prescription medication bottle. It's a blue pharmacy pill container with a white cap. There appears to be a prescription label on it with some partially visible information including what seems to be a pharmacy phone number starting with 1-800 and some prescription details. The label includes a barcode and has \"Refills: 0\" visible on it. There's also some pink coloring on part of the label which likely contains warning information or pharmacy details. The bottle appears to be sitting on a white or light-colored surface.",
+        "prompt": "what is this? read the image."
+    },
+    "9": {
+        "id": 9,
+        "model": "gemini",
+        "description": "This is a prescription bottle from a drugstore.  The label indicates it contains **Venlafaxine XR** (an extended-release antidepressant and anti-anxiety medication), prescribed for **Verrier Michel**, and should be taken **once daily**. It is important to note this medication should be **swallowed whole** and **not broken or crushed**. The prescription was filled on **February 2nd, 2025**, and has **no refills**.  The drugstore's phone number is also provided.\n\n\nIt's crucial to remember that **identifying medication from a picture is not reliable**.  **Do not take any medication based on this identification.** If you have questions about a medication you've been prescribed, always consult with a pharmacist or doctor.",
+        "prompt": "what is this? read the image."
+    }
+}

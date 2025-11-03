@@ -1,6 +1,5 @@
 # Vision-Language Model Variation Analysis - Gradio Frontend
 
-This is a Gradio-based frontend interface for the Vision-Language Model Variation Analysis project. It provides an intuitive web interface for analyzing variations in image descriptions across different vision-language models.
 
 ## Features
 

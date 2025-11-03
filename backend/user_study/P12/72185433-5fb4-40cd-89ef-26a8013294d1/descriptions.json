@@ -1,0 +1,56 @@
+{
+    "1": {
+        "id": 1,
+        "model": "gpt",
+        "description": "I'm unable to identify the signatures on the baseballs. You might try comparing them with known examples or contacting an expert in sports memorabilia to identify the autographs.",
+        "prompt": "Who signed on these balls?"
+    },
+    "2": {
+        "id": 2,
+        "model": "claude",
+        "description": "The image shows four baseballs with signatures on them, but I cannot identify the specific people who signed them. The baseballs appear to be autographed memorabilia, with three of them having blue signatures and one having what looks like a black signature. Without being able to clearly read the signatures or having additional context about which players or personalities signed these baseballs, I cannot tell you exactly who signed them. \n\nThe baseballs appear to be displayed for sale on what seems to be an online shopping platform called \"ShopGoodwill.com\" based on the watermark at the bottom of the image.",
+        "prompt": "Who signed on these balls?"
+    },
+    "3": {
+        "id": 3,
+        "model": "gemini",
+        "description": "Unfortunately, the signatures are difficult to fully decipher.  Many of them appear to be done in light blue ink, which makes them difficult to see clearly.  Without clearer images or additional information, it's impossible to definitively say who signed these balls.  A baseball enthusiast or autograph authenticator might be able to identify some of them with better images.",
+        "prompt": "Who signed on these balls?"
+    },
+    "4": {
+        "id": 4,
+        "model": "gpt",
+        "description": "I can't identify the signatures on the baseballs. The signatures might belong to baseball players, but to determine authenticity and details, you might want to consult a sports memorabilia expert.",
+        "prompt": "Who signed on these balls?"
+    },
+    "5": {
+        "id": 5,
+        "model": "claude",
+        "description": "The image shows four signed baseballs on a white surface. The baseballs have various signatures on them - some in blue ink and at least one in black ink. However, I cannot identify the specific individuals who signed these baseballs as the signatures are not clear enough in the image for me to recognize particular names or players. \n\nThe image appears to be from ShopGoodwill.com (as indicated by the watermark at the bottom), which suggests these are likely collectible or memorabilia items being sold through Goodwill's online auction platform. If you're looking to identify the specific signatures, you might need documentation of authenticity that would typically accompany such collectibles.",
+        "prompt": "Who signed on these balls?"
+    },
+    "6": {
+        "id": 6,
+        "model": "gemini",
+        "description": "Unfortunately, the signatures are difficult to decipher from this image.  They appear to be signed in light blue ink, which makes them difficult to see against the white background, and the angle and resolution aren't ideal for clear reading.\n\nTo identify the signatures, you would need a higher-resolution image, possibly with better lighting, or ideally the balls themselves to examine in person.  You might also try comparing the signatures to known autographs of baseball players online. There are many resources available for authenticating sports memorabilia, and these could be helpful in determining who signed the balls.",
+        "prompt": "Who signed on these balls?"
+    },
+    "7": {
+        "id": 7,
+        "model": "gpt",
+        "description": "I'm unable to identify the signatures on the baseballs. It would be best to consult a specialist or use autograph authentication services to determine who signed them.",
+        "prompt": "Who signed on these balls?"
+    },
+    "8": {
+        "id": 8,
+        "model": "claude",
+        "description": "The image shows four autographed baseballs arranged together on a white surface. The baseballs have various signatures on them - three of the balls appear to have blue ink signatures while one ball (on the right) has a black signature. The signatures aren't clear enough in this image for me to identify specifically which players or individuals signed these balls. \n\nThe image has a \"shopgoodwill.com\" watermark at the bottom, suggesting these are collectible autographed baseballs being sold through Goodwill's online auction platform. Without clearer views of the signatures or accompanying authentication information, I cannot tell you which specific individuals signed these baseballs.",
+        "prompt": "Who signed on these balls?"
+    },
+    "9": {
+        "id": 9,
+        "model": "gemini",
+        "description": "Unfortunately, the signatures are not clear enough in this image to definitively identify who signed these baseballs.  The autographs would need to be compared with known examples of player signatures for authentication.  There are companies that specialize in this type of authentication.",
+        "prompt": "Who signed on these balls?"
+    }
+}

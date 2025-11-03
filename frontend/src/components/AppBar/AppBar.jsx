@@ -16,7 +16,13 @@ const AppBar = ({gridView, setGridView}) => {
         confidenceThreshold,
         setConfidenceThreshold,
         representationType,
-        setRepresentationType
+        setRepresentationType,
+        showVariationSummary,
+        setShowVariationSummary,
+        showVariationAwareDescription,
+        setShowVariationAwareDescription,
+        showDescriptionList,
+        setShowDescriptionList
     } = useSystemStore();
 
     const availableModels = ['GPT-4', 'Claude', 'Gemini', 'LLaVA'];
@@ -37,21 +43,7 @@ const AppBar = ({gridView, setGridView}) => {
 
     return (
         <div className="app-bar">
-
             <div className="app-bar-center">
-                {/* Main toggle: All descriptions vs Variations */}
-                <div className="control-group">
-                    <label className="control-label">View Mode:</label>
-                    <SwitchWrapper>
-                        <Switch 
-                            checked={showVariations} 
-                            onCheckedChange={setShowVariations}
-                        />
-                        <SwitchIndicator state={showVariations ? "on" : "off"}>
-                            {showVariations ? "Variations" : "All Descriptions"}
-                        </SwitchIndicator>
-                    </SwitchWrapper>
-                </div>
 
                 {/* Controls for All Descriptions mode */}
                 {!showVariations && (
@@ -102,26 +94,61 @@ const AppBar = ({gridView, setGridView}) => {
 
                 {/* Controls for Variations mode */}
                 {showVariations && (
-                    <div className="control-group">
-                        <label className="control-label">Display:</label>
-                        <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                <button className="dropdown-trigger">
-                                    {representationTypes.find(rt => rt.value === representationType)?.label || 'Models'}
-                                </button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent>
-                                {representationTypes.map((type) => (
-                                    <DropdownMenuItem
-                                        key={type.value}
-                                        onClick={() => setRepresentationType(type.value)}
-                                    >
-                                        {type.label}
-                                    </DropdownMenuItem>
-                                ))}
-                            </DropdownMenuContent>
-                        </DropdownMenu>
-                    </div>
+                    <>
+                        <div className="control-group">
+                            <label className="control-label">Display:</label>
+                            <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                    <button className="dropdown-trigger">
+                                        {representationTypes.find(rt => rt.value === representationType)?.label || 'Models'}
+                                    </button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent>
+                                    {representationTypes.map((type) => (
+                                        <DropdownMenuItem
+                                            key={type.value}
+                                            onClick={() => setRepresentationType(type.value)}
+                                        >
+                                            {type.label}
+                                        </DropdownMenuItem>
+                                    ))}
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                        </div>
+                        {/* Display Options Checkboxes */}
+                        <div className="control-group">
+                            <label className="control-label">Show:</label>
+                            <div className="display-options">
+                                <label className="checkbox-label">
+                                    <input
+                                        type="checkbox"
+                                        checked={showVariationSummary}
+                                        onChange={(e) => setShowVariationSummary(e.target.checked)}
+                                        style={{ marginRight: "6px" }}
+                                    />
+                                    Variation Summary
+                                </label>
+                                <label className="checkbox-label">
+                                    <input
+                                        type="checkbox"
+                                        checked={showVariationAwareDescription}
+                                        onChange={(e) => setShowVariationAwareDescription(e.target.checked)}
+                                        style={{ marginRight: "6px" }}
+                                    />
+                                    Variation-aware Description
+                                </label>
+                                <label className="checkbox-label">
+                                    <input
+                                        type="checkbox"
+                                        checked={showDescriptionList}
+                                        onChange={(e) => setShowDescriptionList(e.target.checked)}
+                                        style={{ marginRight: "6px" }}
+                                    />
+                                    List of Descriptions
+                                </label>
+                            </div>
+                        </div>
+                    </>
                 )}
             </div>
         </div>

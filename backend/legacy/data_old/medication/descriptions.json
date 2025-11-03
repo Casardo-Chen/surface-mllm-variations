@@ -1,0 +1,47 @@
+{
+    "1": {
+        "id": 1,
+        "model": "gpt",
+        "description": "I can't fully read all of the text on the bottle, but it appears to be a dietary supplement related to cranberry, possibly for urinary tract health. The label mentions \"SUPER STRENGTH,\" \"Cranberry,\" and \"12000,\" indicating a high potency formula with liquid softgels. The brand isn't clear from the image."
+    },
+    "2": {
+        "id": 2,
+        "model": "claude",
+        "description": "The image shows a vitamin or supplement bottle with a green cap next to what appears to be a dark leather case or bag with some furry or fuzzy material visible. The bottle has a pink label that says \"Berry\" prominently on it, and appears to be a vitamin or supplement product. I can see part of what looks like \"Strength\" on the label, and there's a yellow and red color scheme on parts of the label.\n\nThe image is somewhat blurry and at an angle, making it difficult to read all the text clearly. I can see there's a section of text on the side panel that likely contains ingredients and warnings, but the specific details aren't legible. From what's visible, this appears to be some kind of berry-flavored nutritional supplement, but I cannot make out the complete brand name from this image."
+    },
+    "3": {
+        "id": 3,
+        "model": "gemini",
+        "description": "The bottle is for a product called \"Cranberry\" in liquid softgel form. It's triple strength and contains a daily dose of 1,500 mg (equivalent to two bunches of cranberries). The brand is Spring Valley. Additional information on the bottle includes usage instructions, supplement facts, and warnings."
+    },
+    "4": {
+        "id": 4,
+        "model": "gpt",
+        "description": "The bottle label includes the following information:\n\n- The product is a dietary supplement containing cranberry which supports urinary tract health.\n- It states \"Extra Strength\".\n- The words \"Liquid Softgels\" are present on the label.\n- There is a visible mention of the benefits related to cranberries.\n\nThe brand name is not fully visible, so I can't determine what it is."
+    },
+    "5": {
+        "id": 5,
+        "model": "claude",
+        "description": "The image shows a vitamin or supplement bottle with a green cap, placed on what appears to be a light-colored surface. There's also what looks like a dark case or bag with some furry or fuzzy material partially visible on the left side.\n\nThe bottle has a pink label that says \"Berry\" prominently, and appears to be a vitamin or supplement product. I can see \"Strength\" written above the \"Berry\" text. There seems to be a yellow and red logo or banner near the top of the label. The right side of the bottle has some text in a pink box that likely contains ingredient information or usage instructions.\n\nThe image is somewhat blurry and at an angle, making it difficult to read all the details clearly, including the full brand name, though it appears there might be \"Vitamin A\" written at the top of the label. Without being able to see the complete label clearly, I can't definitively state the exact brand name or all product details."
+    },
+    "6": {
+        "id": 6,
+        "model": "gemini",
+        "description": "The bottle appears to be a supplement of some kind, possibly cranberry.\n\nThe visible text reads:\n\n* **(Remain in a) Healthy Tract\u2122**\n* **Triple Strength Cranberry Concentrate** *(smaller text, difficult to read fully)*\n* **Cranberry** (large text)\n* **(Sterling)** (in a gold seal)\n* **Liquid Softgels**\n\nThe brand appears to be **Sterling**. It's possible that \"Healthy Tract\" is the product's specific name, but it's not clear if that's part of the branding or a more generic slogan."
+    },
+    "7": {
+        "id": 7,
+        "model": "gpt",
+        "description": "I can't determine the brand or read all the specific details from the image. However, the bottle appears to be a dietary supplement with \"Cranberry\" in large text, referring to a product that may support urinary tract health. If you need more detailed information, a clearer image or description might help."
+    },
+    "8": {
+        "id": 8,
+        "model": "claude",
+        "description": "The image shows a vitamin or supplement bottle with a green cap and a pink/red label. From what's visible, it appears to be a product from \"Nature's Bounty\" (visible on the yellow portion of the label), and the product seems to be something related to \"Berry\" (visible on the pink portion of the label). \n\nThe bottle has a green cap and appears to be sitting on what looks like a white surface or counter. Next to it is what appears to be a dark leather case or bag with some fuzzy or furry material visible at the edge. \n\nThe image quality is somewhat blurry and the bottle is partially cut off, so I cannot see all the detailed information on the label such as dosage, specific type of berry supplement, or complete product information. There appears to be some text on the right side of the label that likely contains ingredient information and warnings, but it's not clearly legible in this image."
+    },
+    "9": {
+        "id": 9,
+        "model": "gemini",
+        "description": "The bottle appears to be a bottle of cranberry supplement. The brand is \"Nature's Bounty\".  The label indicates that it's \"Triple Strength Cranberry\" and mentions \"Urinary Tract\". It is in liquid softgel form. The bottle has a green lid.  Beyond that, the rest of the information on the label is too blurry to confidently read."
+    }
+}

@@ -39,8 +39,7 @@ class VisionLanguageVariationApp:
             if not selected_models:
                 return ("Error: Please select at least one model",) * 8
             
-            if not user_id.strip():
-                user_id = "gradio_user"
+            user_id = "gradio_user"
             
             logger.info(f"Generating descriptions for user: {user_id}")
             
@@ -234,11 +233,11 @@ def create_interface():
                         label="Prompt Variation"
                     )
                     
-                    user_id = gr.Textbox(
-                        label="User ID",
-                        value=DEFAULT_USER_ID,
-                        placeholder="Enter your user ID"
-                    )
+                    # user_id = gr.Textbox(
+                    #     label="User ID",
+                    #     value=DEFAULT_USER_ID,
+                    #     placeholder="Enter your user ID"
+                    # )
                     
                     generate_btn = gr.Button("Generate Descriptions", variant="primary")
                     clear_btn = gr.Button("Clear", variant="secondary")
@@ -314,7 +313,7 @@ def create_interface():
         # Event handlers
         generate_btn.click(
             fn=app.generate_descriptions,
-            inputs=[image_input, prompt_input, num_trials, selected_models, prompt_variation, user_id],
+            inputs=[image_input, prompt_input, num_trials, selected_models, prompt_variation],
             outputs=[model_diff_output, var_only_output, percentage_output, nl_output, 
                     similarity_output, uniqueness_output, disagreement_output, descriptions_output]
         )
@@ -329,7 +328,7 @@ def create_interface():
         clear_btn.click(
             fn=lambda: (None, DEFAULT_PROMPT, DEFAULT_NUM_TRIALS, DEFAULT_MODELS, DEFAULT_PROMPT_VARIATION, DEFAULT_USER_ID,
                        "", "", "", "", "", "", "", ""),
-            outputs=[image_input, prompt_input, num_trials, selected_models, prompt_variation, user_id,
+            outputs=[image_input, prompt_input, num_trials, selected_models, prompt_variation,
                     model_diff_output, var_only_output, percentage_output, nl_output,
                     similarity_output, uniqueness_output, disagreement_output, descriptions_output]
         )

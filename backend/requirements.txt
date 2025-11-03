@@ -1,0 +1,12 @@
+anthropic
+Deprecated
+google-genai
+flask
+flask_cors
+nltk
+numpy
+openai
+requests
+scikit-learn
+torch
+transformers

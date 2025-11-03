@@ -1,0 +1,12 @@
+{
+    "image": "https://vizwiz.cs.colorado.edu/VizWiz_visualization_img/VizWiz_val_00003767.jpg",
+    "prompt": "Describe the card. What is this card?",
+    "numTrials": 3,
+    "selectedModels": [
+        "gpt",
+        "claude",
+        "gemini"
+    ],
+    "promptVariation": "original",
+    "source": "url"
+}

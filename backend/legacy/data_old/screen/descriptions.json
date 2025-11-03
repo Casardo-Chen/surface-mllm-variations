@@ -1,0 +1,47 @@
+{
+    "1": {
+        "id": 1,
+        "model": "gpt",
+        "description": "The chart appears to display data over time, with key events marked, such as Hurricane Katrina and the 2008 Global Financial Crisis. The y-axis seems to represent some form of pricing or monetary value, given in dollars, possibly related to an economic or financial statistic.\n\nThe maximum value on the y-axis is $28.00."
+    },
+    "2": {
+        "id": 2,
+        "model": "claude",
+        "description": "The image shows a line graph displaying economic or price data, with a notable spike labeled \"Hurricane Katrina\" and another peak labeled as something related to 2008 (possibly referring to the financial crisis, though the text is partially blurred).\n\nThe y-axis appears to be measured in dollars, starting at $0.00 at the bottom and reaching a maximum value of approximately $28.00 at the top. The specific increments visible are:\n- $0.00\n- $2.00\n- $4.00\n- $6.00\n- $8.00\n- $20.00\n- $22.00\n- $24.00\n- $28.00\n\nThe graph shows dramatic price volatility, with the Hurricane Katrina spike reaching nearly the $24.00 mark, followed by fluctuations and an eventual decline to lower levels. The x-axis appears to show dates/time periods, though they're not clearly legible in this image. This graph likely represents price changes for a commodity or service that was significantly impacted by these major events."
+    },
+    "3": {
+        "id": 3,
+        "model": "gemini",
+        "description": "The chart displays a time series of what appears to be a stock price or other financial instrument, plotted against time, likely in US Dollars.\n\n* **Time:** The x-axis represents time, with markers appearing to be monthly, spanning from approximately January 2005 to somewhere in 2008 or possibly early 2009.\n* **Value:** The y-axis represents the value of the financial instrument.\n* **Events:** Two events are marked on the chart: \"Hurricane Katrina\" around August/September 2005, coinciding with a sharp spike in the value, and \"2008 Global Financial Crisis\" towards the right side of the graph, corresponding with a significant drop.\n\nThe maximum value on the y-axis is $56.00."
+    },
+    "4": {
+        "id": 4,
+        "model": "gpt",
+        "description": "The chart shows a line graph tracking some data over time, with important events like \"Hurricane Katrina\" and \"2008 Global Financial Crisis\" marked on it. The x-axis represents time, with labels for specific dates from 2000 to 2015. The y-axis likely represents a monetary value, with labels such as $0, $4, $8, and so on.\n\nThe maximum value on the y-axis is $24.00."
+    },
+    "5": {
+        "id": 5,
+        "model": "claude",
+        "description": "The image shows a line graph displaying economic or price data with a notable spike labeled \"Hurricane Katrina\" in red. There appears to be another labeled event to the right, though it's partially visible and harder to read clearly.\n\nThe y-axis shows dollar values ranging from $0.00 at the bottom to approximately $14.00 at the maximum. The specific values visible on the y-axis include $0.00, $2.00, $4.00, $6.00, $8.00, $10.00, $12.00, and $14.00.\n\nThe graph shows dramatic price fluctuations, with a major spike during Hurricane Katrina that reaches close to the $14.00 mark, followed by a drop and then another significant rise before descending to lower levels toward the right side of the graph.\n\nThe x-axis appears to show dates over a period of time, though the specific dates are difficult to read clearly in this image.\n\nThis graph likely represents fuel prices or some other commodity that was significantly affected by Hurricane Katrina and subsequent events."
+    },
+    "6": {
+        "id": 6,
+        "model": "gemini",
+        "description": "The chart appears to show the price of crude oil over time.  There are two annotations: one indicating a price spike around the time of Hurricane Katrina, and another marking the 2008 Global Financial Crisis.  The x-axis shows dates, presumably monthly, from approx. January 2005 to approximately December 2009. The y-axis represents the price, likely in US dollars per barrel.\n\nThe maximum value of the y-axis is $36.00."
+    },
+    "7": {
+        "id": 7,
+        "model": "gpt",
+        "description": "The chart appears to show the trend of a financial metric over a period of time, likely related to market prices or value. Key events highlighted include Hurricane Katrina and the 2008 Global Financial Crisis, indicating their impact on the data. The x-axis represents time, possibly in months and years, ranging from around 2005 to 2015.\n\nThe y-axis shows a range of values, likely in dollars. The maximum value on the y-axis is $28.00."
+    },
+    "8": {
+        "id": 8,
+        "model": "claude",
+        "description": "The image shows a line graph displaying price fluctuations over time, with specific annotations for \"Hurricane Katrina\" visible near one of the significant peaks. The graph shows dramatic price volatility, with a major spike that reaches approximately $14.00 at its highest point (during the Katrina event), followed by a second notable spike.\n\nThe y-axis appears to measure prices in dollars, with values ranging from $0.00 at the bottom to $16.00 at the top of the visible scale. The maximum value shown on the y-axis is $16.00, though the main price action stays below that level. The price line shows significant volatility throughout the charted period, with several ups and downs before settling at lower levels toward the right side of the chart.\n\nThis graph likely depicts energy or fuel prices, given the correlation with Hurricane Katrina which caused major disruptions to oil and gas infrastructure in the Gulf of Mexico when it hit in 2005."
+    },
+    "9": {
+        "id": 9,
+        "model": "gemini",
+        "description": "The chart appears to show the price of crude oil over time, with the x-axis representing dates (likely monthly, from around April 2006 to April 2008) and the y-axis representing the price in US dollars.  \n\nTwo events are marked on the chart: \"Hurricane Katrina\" which coincides with a sharp price increase and \"2006 Global Financial Crisis\" which roughly coincides with a period of price volatility before a subsequent drop.\n\nThe maximum value of the y-axis is $36.00."
+    }
+}

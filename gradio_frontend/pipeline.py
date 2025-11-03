@@ -7,7 +7,6 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 logging.getLogger("httpx").setLevel(logging.WARNING)
 
-import requests
 import re
 import argparse
 import os
@@ -16,9 +15,6 @@ from datetime import datetime
 import helper
 import prompts
 from generation import get_all_descriptions
-from breakdown import break_down_all_descriptions, break_down_all_atomic_facts
-from extraction import extract_atomic_facts, generate_summary, generate_majority, generate_natural_language, hide_variation
-import extraction
 from concurrent.futures import ThreadPoolExecutor
 
 def variation_generation(image, num_trials, models, variation_type, prompt=None, output_path=None, source=None):

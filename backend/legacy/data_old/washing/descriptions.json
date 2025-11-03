@@ -1,0 +1,47 @@
+{
+    "1": {
+        "id": 1,
+        "model": "gpt",
+        "description": "To set the washing machine for a \"Heavy\" load, turn the dial to the left (counter-clockwise) until you reach the \"Heavy\" setting under the \"Normal\" cycle option. It's just a short turn to the left from the current position."
+    },
+    "2": {
+        "id": 2,
+        "model": "claude",
+        "description": "The image shows a washing machine control dial and water hookup. The control dial is currently set to what appears to be in the \"Normal\" cycle position. There's blue marking around the dial showing different cycle options, with \"Normal\" and \"Casual\" visible among the settings.\n\nBased on just this image, I can't determine which direction you would need to turn the dial to reach a \"heavy load\" setting, as the full range of cycle options isn't visible. Typically, washing machine dials rotate clockwise through increasingly intensive wash cycles, but this varies by model.\n\nIf you're trying to find a heavy-duty or heavy load cycle, you might need to turn the dial and look for settings labeled \"Heavy Duty,\" \"Bulky Items,\" or something similar. Without seeing the complete dial, I can't estimate how far you would need to turn it to reach that setting."
+    },
+    "3": {
+        "id": 3,
+        "model": "gemini",
+        "description": "The heavy load end appears to be to your **left**.  The black hose coming out of the wall is probably attached to the drain pump, and drain pumps are generally located towards the rear left of most washing machines (though not all).  As for distance, it's hard to tell from the photo alone, but the hose itself looks no more than a foot or so long, so the drain pump likely isn't too far from the connections in the wall."
+    },
+    "4": {
+        "id": 4,
+        "model": "gpt",
+        "description": "To set the washing machine to the \"Heavy\" load option, turn the dial to the left. It's about one or two settings over from the current selection."
+    },
+    "5": {
+        "id": 5,
+        "model": "claude",
+        "description": "The image shows a washing machine control panel with a dial that appears to be set to \"Normal\" cycle. The dial has various settings around it, with blue markings indicating different wash cycles. The machine is connected to a water supply through blue valves visible in a wall box to the right of the machine.\n\nBased on what's visible in the image, I can't determine which direction would lead to a \"heavy load\" setting. The dial shows \"Normal\" at the current position, and there appears to be a \"Casual\" setting visible, but the complete range of settings isn't clearly visible in the image. Without seeing the full dial and all its settings, I can't tell you whether you need to turn right or left to reach a heavy load option, nor how far you would need to turn the dial.\n\nIf you're looking for a heavy-duty cycle, you might need to check the entire dial by looking at all the available settings, or consult the machine's user manual for guidance on cycle options."
+    },
+    "6": {
+        "id": 6,
+        "model": "gemini",
+        "description": "The heavy load end of the washing machine is to the **left**.  It's less than a foot away from the current dial position. You just need to rotate the dial a little bit counter-clockwise."
+    },
+    "7": {
+        "id": 7,
+        "model": "gpt",
+        "description": "To get to the \"heavy\" load setting, turn the dial to the right. It's just a short distance from the \"normal\" setting, on the same arc of the dial."
+    },
+    "8": {
+        "id": 8,
+        "model": "claude",
+        "description": "The image shows a washing machine with a control dial on the left side of the panel. The dial appears to be set to \"Normal\" mode, with various other cycle options arranged around it, including what seems to be a \"Casual\" setting visible in the blue markings.\n\nBased on what's visible in the image, I can't determine where the \"heavy load\" setting would be located on this particular machine. The visible portion of the dial shows \"Normal\" and \"Casual\" settings, but the complete range of settings isn't fully visible to determine which direction would lead to a heavy load option.\n\nTypically, on washing machines, more intensive wash cycles (like heavy duty/heavy load settings) are often positioned after the normal cycle, but this varies by model. You might need to rotate the dial to see all available options or check the machine's user manual for the specific cycle arrangement."
+    },
+    "9": {
+        "id": 9,
+        "model": "gemini",
+        "description": "The heavy load end is located to the **right** of the washing machine.  It appears to be about **one to two feet** away, though it's hard to be exact from the picture. The black hose seems to lead directly to it."
+    }
+}

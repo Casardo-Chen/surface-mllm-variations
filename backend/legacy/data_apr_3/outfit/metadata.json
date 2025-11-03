@@ -1,0 +1,12 @@
+{
+    "image": "https://vizwiz.cs.colorado.edu/VizWiz_visualization_img/VizWiz_train_00004165.jpg",
+    "prompt": "Describe the pants and the shirt. Do they match?",
+    "numTrials": 3,
+    "selectedModels": [
+        "gpt",
+        "claude",
+        "gemini"
+    ],
+    "promptVariation": "original",
+    "source": "url"
+}

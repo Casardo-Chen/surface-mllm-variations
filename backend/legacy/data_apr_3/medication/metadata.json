@@ -1,0 +1,12 @@
+{
+    "image": "https://vizwiz.cs.colorado.edu/VizWiz_visualization_img/VizWiz_train_00001926.jpg",
+    "prompt": "Describe all of the information on the bottle. What is the brand?",
+    "numTrials": 3,
+    "selectedModels": [
+        "gpt",
+        "claude",
+        "gemini"
+    ],
+    "promptVariation": "original",
+    "source": "url"
+}

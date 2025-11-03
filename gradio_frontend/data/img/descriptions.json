@@ -1,0 +1,56 @@
+{
+    "1": {
+        "id": 1,
+        "model": "gpt",
+        "description": "The photo is blurry and appears to show an abstract or out-of-focus scene, dominated by an orange background. There is some white text that is not clearly legible due to the blurriness. There are also some hints of other colors, like light blue or teal, mixed in a somewhat indistinct manner. The overall impression is that the image is very out of focus and lacks clear details.",
+        "prompt": "Describe this photo."
+    },
+    "2": {
+        "id": 2,
+        "model": "claude",
+        "description": "The image shows a blurry, out-of-focus photograph of what appears to be a cut crystal glass or decorative container. The object has a geometric pattern with facets that catch and reflect light. It sits on what might be a table surface with an orange/reddish background. The crystal's pattern creates a grid-like appearance with light refracting through it, creating various color shifts including orange, white, and some bluish-green tones at the bottom of the frame. The overall image is quite unfocused, making it difficult to discern precise details, but the crystalline structure of what seems to be a drinking glass or decorative vessel is the main subject.",
+        "prompt": "Describe this photo."
+    },
+    "3": {
+        "id": 3,
+        "model": "gemini",
+        "description": "This is a blurry, abstract image. The most prominent feature seems to be a stylized, light-colored (possibly white or light gray) design resembling a spine or segmented creature against a burnt orange background.  The design is out of focus, and there are blurred streaks of teal, gray, and white across the lower portion of the image, suggesting movement or a smeared foreground. A small patch of red is visible in the bottom right corner, also out of focus.  The overall impression is one of motion and indistinctness.",
+        "prompt": "Describe this photo."
+    },
+    "4": {
+        "id": 4,
+        "model": "gpt",
+        "description": "The photo is blurry and appears to show an orange background with white, outlined text that is difficult to read due to the blurriness. The text seems to have a blocky, uppercase style. There are also some colorful, indistinct shapes towards the bottom right of the image. The overall impression is abstract due to the motion blur.",
+        "prompt": "Describe this photo."
+    },
+    "5": {
+        "id": 5,
+        "model": "claude",
+        "description": "The image appears to be a very blurry, out-of-focus photo of what looks like a crystal or glass object, possibly a cut glass or crystal bowl or container. It has a geometric pattern with facets that catch and reflect light. The background has orange/reddish tones, and there are some lighter blue/green hues visible at the bottom of the image. The overall quality of the photo is quite low with significant motion blur or focus issues, making specific details difficult to discern clearly.",
+        "prompt": "Describe this photo."
+    },
+    "6": {
+        "id": 6,
+        "model": "gemini",
+        "description": "This is a blurry, abstract image. It appears to be a photograph taken in motion or out of focus.\n\nA burnt orange background takes up most of the frame. A blurred, roughly vertical shape resembling a spinal column or stacked, uneven blocks in pale greyish-white appears against this background, slightly off-center. The \"blocks\" seem outlined or highlighted with darker lines.\n\nIn the lower left corner and across the bottom, blurred streaks of light green, grey, and dark colors are visible, suggesting movement during the photo's capture. A small, indistinct area of red is present in the very bottom right corner.\n\nThe overall impression is one of rapid movement and blurred imagery, making it difficult to discern specific details. It could be an abstract representation of something or simply an accidental blurred photo.",
+        "prompt": "Describe this photo."
+    },
+    "7": {
+        "id": 7,
+        "model": "gpt",
+        "description": "The photo is quite blurry and abstract, featuring the center of an orange background with some white or light-colored shapes that resemble letters or text. The image appears to have motion blur, creating a sense of movement and blending of colors. The text is not fully legible due to the blurriness. There are hints of other colors like blue and pinkish hues towards the edges.",
+        "prompt": "Describe this photo."
+    },
+    "8": {
+        "id": 8,
+        "model": "claude",
+        "description": "The image appears to be a very blurry photo of what looks like a cut crystal or glass item, possibly a glass or bowl. The object has a clear geometric pattern with facets that catch the light. The background has an orange/reddish tone, and there are some lighter areas in the lower portion of the image that transition to bluish-green hues. The overall image is quite out of focus, making specific details difficult to discern clearly, but the object seems to have the characteristic look of cut glass with its reflective surfaces and angular design.",
+        "prompt": "Describe this photo."
+    },
+    "9": {
+        "id": 9,
+        "model": "gemini",
+        "description": "This is a blurry, abstract image. The background appears to be a solid orange color, possibly a wall.  Overlaid on this is a blurred, slightly diagonal shape in pale gray/white, resembling a spine or a segmented ladder.  In the lower left corner, blurred streaks of teal and white suggest movement, possibly a blurred object or fabric. A hint of red is visible in the bottom right corner. The overall impression is one of motion and indistinctness, making it difficult to identify any objects with certainty.",
+        "prompt": "Describe this photo."
+    }
+}

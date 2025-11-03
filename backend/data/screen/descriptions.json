@@ -1,0 +1,56 @@
+{
+    "1": {
+        "id": 1,
+        "model": "gpt",
+        "description": "The chart appears to show a line graph representing price fluctuations over time, likely in a financial context. Notable events like \"Hurricane Katrina\" and the \"2008 Global Financial Crisis\" are marked on the timeline, suggesting they may have influenced the peaks and valleys.\n\nThe peak value on the line graph seems to reach just above $24.00.",
+        "prompt": "Describe the information shown in the chart. What is the peak value of the line?"
+    },
+    "2": {
+        "id": 2,
+        "model": "claude",
+        "description": "The image shows a financial or economic chart displayed on a computer monitor. The graph depicts price fluctuations over time, with dollar values marked on the y-axis ranging from approximately $0 to $24. \n\nThe most prominent feature is a sharp spike labeled \"Hurricane Katrina\" where the value appears to peak at around $34-36. There's also a second, smaller peak that follows it. After these major spikes, the line shows a significant decline, eventually settling at much lower values around the $2 mark.\n\nThis chart likely illustrates the price impact of Hurricane Katrina (which struck in August 2005) on some commodity or market indicator. The graph demonstrates how the disaster caused a dramatic price surge followed by a gradual return to lower levels. The time scale appears to run across several months, showing both the immediate impact and longer-term aftermath of the hurricane on whatever market or price indicator is being tracked.",
+        "prompt": "Describe the information shown in the chart. What is the peak value of the line?"
+    },
+    "3": {
+        "id": 3,
+        "model": "gemini",
+        "description": "The chart appears to show the price of crude oil over time, possibly monthly, from approximately March 2006 to December 2008.  Two events are marked on the chart: Hurricane Katrina and the 2008 Global Financial Crisis.\n\nThe peak value of the line appears to be just under $64.00.  It's difficult to be more precise due to the image quality. This peak occurs shortly after Hurricane Katrina.",
+        "prompt": "Describe the information shown in the chart. What is the peak value of the line?"
+    },
+    "4": {
+        "id": 4,
+        "model": "gpt",
+        "description": "The chart shows a line graph tracking price values over time. Notable events like \"Hurricane Katrina\" and the \"2008 Global Financial Crisis\" are marked, indicating their potential impact on the prices. The peak value of the line is approximately $26.00.",
+        "prompt": "Describe the information shown in the chart. What is the peak value of the line?"
+    },
+    "5": {
+        "id": 5,
+        "model": "claude",
+        "description": "The image shows a financial or economic chart displaying price fluctuations over time. The graph features a blue line that shows dramatic spikes and drops. There are two notable events marked on the chart: \"Hurricane Katrina\" appears to be labeled near the first major spike, and there appears to be another label for a 2008 event (possibly related to the financial crisis) near the second spike.\n\nThe peak value of the line appears to reach approximately $24.00, based on the y-axis scale shown on the left side of the chart. The first major spike coinciding with Hurricane Katrina seems to reach this highest point on the graph. After each spike, there's a significant drop in values, with the line eventually trending downward to values around $2.00 toward the right side of the chart.\n\nThe timeline on the x-axis seems to span several years, likely from the mid-2000s (when Hurricane Katrina occurred in 2005) through subsequent years into the late 2000s.\n\nThis appears to be tracking some commodity or market value that was significantly impacted by these major events.",
+        "prompt": "Describe the information shown in the chart. What is the peak value of the line?"
+    },
+    "6": {
+        "id": 6,
+        "model": "gemini",
+        "description": "The chart appears to show the price of crude oil over time, likely in US dollars per barrel. The x-axis represents time, spanning from approximately April 2006 to at least September 2008, with monthly increments.  The y-axis represents the price, ranging from roughly $59 to $66.\n\nTwo events are marked on the chart: \"Hurricane Katrina\" and \"2006 Global Financial Crisis.\"  The price seems to fluctuate considerably, with a notable spike around the time of Hurricane Katrina and another peak during the period labeled \"2006 Global Financial Crisis\" (though the crisis technically began in late 2007 and peaked in 2008).  Afterwards, the price shows a general decline.\n\n\nThe peak value appears to be a little above $63. It's difficult to be more precise due to the image quality.",
+        "prompt": "Describe the information shown in the chart. What is the peak value of the line?"
+    },
+    "7": {
+        "id": 7,
+        "model": "gpt",
+        "description": "The chart appears to depict a line graph of prices over time, with specific events labeled such as Hurricane Katrina and the 2008 Global Financial Crisis. The x-axis represents dates ranging from 2005 to around 2011, while the y-axis likely shows prices in dollars.\n\nThe peak value of the line seems to be just above $24.00, which occurred around the time labeled with Hurricane Katrina.",
+        "prompt": "Describe the information shown in the chart. What is the peak value of the line?"
+    },
+    "8": {
+        "id": 8,
+        "model": "claude",
+        "description": "The image shows a financial or economic chart with a price line graph. The chart displays price values on the y-axis ranging from approximately $0 to $34, with horizontal gridlines marking different price levels.\n\nThere are two notable spikes in the chart. The first and highest spike is labeled \"Hurricane Katrina\" in red text, where the line reaches its peak value of around $32-34. After this spike, the price drops significantly and then shows a second smaller spike, before eventually declining to much lower levels (around $2) toward the right side of the chart.\n\nThe x-axis appears to show dates, though they're not clearly legible in the image. This chart likely represents price fluctuations of a commodity (possibly fuel, natural gas, or another resource) that was significantly impacted by Hurricane Katrina in 2005, which caused major disruptions to energy infrastructure in the Gulf Coast region.\n\nThe interface appears to be from an older Windows operating system, with browser icons visible at the bottom of the screen.",
+        "prompt": "Describe the information shown in the chart. What is the peak value of the line?"
+    },
+    "9": {
+        "id": 9,
+        "model": "gemini",
+        "description": "The chart appears to show the price of crude oil over time. The x-axis represents time, marked in increments of one month, starting from January 2006.  The y-axis represents the price of crude oil, likely in US dollars per barrel, ranging from roughly $6.00 to $16.00.\n\nTwo events are marked on the chart: \"Hurricane Katrina\" and \"2008 Global Financial Crisis\". The Hurricane Katrina marker coincides with a sharp spike in the price of oil.  The 2008 Global Financial Crisis marker coincides with a period of extreme volatility, where the price initially peaked and then drastically declined.\n\n\nThe peak value of the line appears to be slightly above $14.00, likely around $14.20-$14.40, occurring sometime around July 2008. It's difficult to pinpoint the exact value due to the image quality.",
+        "prompt": "Describe the information shown in the chart. What is the peak value of the line?"
+    }
+}

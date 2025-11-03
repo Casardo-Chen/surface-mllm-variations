@@ -1,0 +1,56 @@
+{
+    "1": {
+        "id": 1,
+        "model": "gpt",
+        "description": "The stocks shown are:\n\n1. General Dynamics (GD) - $254.44\n2. Lockheed (LMT) - $441.58\n3. Rheinmetall AG (RNMBY) - $286.46\n4. SPDR Portfolio (SPLG) - $58.60\n5. DBX ETF Trust X (XAIX) - $27.99\n6. RTX Corporation (RTX) - $120.69",
+        "prompt": "What stocks are shown?"
+    },
+    "2": {
+        "id": 2,
+        "model": "claude",
+        "description": "E",
+        "prompt": "r"
+    },
+    "3": {
+        "id": 3,
+        "model": "gemini",
+        "description": "The stocks shown in the image are:\n\n* **GD:** General Dynamics\n* **LMT:** Lockheed Martin\n* **RNMBY:** Rheinmetall AG\n* **SPLG:** SPDR Portfolio S&P 500 Growth ETF\n* **XAIX:**  Invesco DB Agriculture Fund\n* **RTX:** RTX Corporation",
+        "prompt": "What stocks are shown?"
+    },
+    "4": {
+        "id": 4,
+        "model": "gpt",
+        "description": "The stocks shown in the image are:\n\n1. GD - General Dynamics\n2. LMT - Lockheed\n3. RNMBY - Rheinmetall AG\n4. SPLG - SPDR Portfolio\n5. XAIX - DBX ETF Trust X\n6. RTX - RTX Corporation",
+        "prompt": "What stocks are shown?"
+    },
+    "5": {
+        "id": 5,
+        "model": "claude",
+        "description": "E",
+        "prompt": "r"
+    },
+    "6": {
+        "id": 6,
+        "model": "gemini",
+        "description": "The stocks shown in the \"My First List\" are:\n\n* **GD:** General Dynamics\n* **LMT:** Lockheed Martin\n* **RNMBY:** Rheinmetall AG\n* **SPLG:** SPDR Portfolio S&P 500 High Dividend ETF\n* **XAIX:**  Invesco DB Agriculture Fund\n* **RTX:** RTX Corporation",
+        "prompt": "What stocks are shown?"
+    },
+    "7": {
+        "id": 7,
+        "model": "gpt",
+        "description": "The stocks shown in the image are:\n\n1. GD - General Dynamics\n2. LMT - Lockheed\n3. RNMBY - Rheinmetall AG\n4. SPLG - SPDR Portfolio\n5. XAIX - DBX ETF Trust X\n6. RTX - RTX Corporation",
+        "prompt": "What stocks are shown?"
+    },
+    "8": {
+        "id": 8,
+        "model": "claude",
+        "description": "E",
+        "prompt": "r"
+    },
+    "9": {
+        "id": 9,
+        "model": "gemini",
+        "description": "The stocks shown in the image, along with their ticker symbols and prices, are:\n\n* **GD (General Dynamics):** $254.44\n* **LMT (Lockheed Martin):** $441.58\n* **RNMBY (Rheinmetall AG):** $286.46\n* **SPLG (SPDR Portfolio S&P 500 Growth ETF):** $58.60\n* **XAIX (DBX ETF Trust Xtrackers MSCI All World ex US High Dividend Yield Equity ETF):** $27.99\n* **RTX (RTX Corporation):** $120.69",
+        "prompt": "What stocks are shown?"
+    }
+}

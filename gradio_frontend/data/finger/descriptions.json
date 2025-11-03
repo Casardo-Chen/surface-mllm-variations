@@ -1,0 +1,56 @@
+{
+    "1": {
+        "id": 1,
+        "model": "gpt",
+        "description": "The wound on your finger appears to have formed a scab, which is a sign of healing. The formation of a scab indicates that the wound is in the healing process, as the body works to protect and repair the area. \n\nEnsure the wound stays clean and protected. Avoid picking at the scab to prevent infection and potential scarring. If you notice increased redness, swelling, or pus, or if the wound does not continue to improve, consider consulting a healthcare professional.",
+        "prompt": "Provide short description and explanation. is my wound on my finger healing? "
+    },
+    "2": {
+        "id": 2,
+        "model": "claude",
+        "description": "The image shows a thumb or finger with what appears to be a healing wound. There's a dark reddish-brown area under the nail and on part of the fingertip. It does appear to be in the healing process, as there's no active bleeding, and the wound appears to be forming what looks like a scab or healing tissue.\n\nHowever, I'm not a medical professional and cannot provide a definitive assessment about whether it's healing properly or if it needs medical attention. If you're concerned about the wound, especially if it's painful, warm to the touch, showing signs of infection (increasing redness, swelling, pus, red streaks), or not improving over time, it would be best to consult with a healthcare provider for proper evaluation and treatment.",
+        "prompt": "Provide short description and explanation. is my wound on my finger healing? "
+    },
+    "3": {
+        "id": 3,
+        "model": "gemini",
+        "description": "**Description:** The image shows a fingertip with a small, dried, reddish-brown scab. The skin around the scab appears normal in color and texture.  There's a light line extending upward from the scab, which may be a superficial scratch.\n\n**Explanation:** Yes, the wound appears to be healing.  The presence of a dry scab indicates that the body has begun the process of repairing the damaged tissue. The absence of redness, swelling, or pus suggests there's no active infection. The light line is likely also healing. Keep the area clean and dry to minimize the risk of infection and allow the wound to continue healing naturally.  If you notice any signs of infection, such as increased pain, swelling, redness, pus, or fever, consult a medical professional.",
+        "prompt": "Provide short description and explanation. is my wound on my finger healing? "
+    },
+    "4": {
+        "id": 4,
+        "model": "gpt",
+        "description": "I'm unable to provide a medical assessment. However, generally, if a wound is clean, not excessively red, swollen, or leaking unusual fluid, it might be healing. It's important to keep it clean and monitor for signs of infection. If you're concerned, consulting a healthcare professional is recommended.",
+        "prompt": "Provide short description and explanation. is my wound on my finger healing? "
+    },
+    "5": {
+        "id": 5,
+        "model": "claude",
+        "description": "The image shows a thumb with what appears to be a healing wound or bruise under the nail. There's a dark reddish-brown discoloration visible under the thumbnail. \n\nThis appears to be a subungual hematoma (blood under the nail) or possibly a healing injury to the nail bed. It does appear to be in the healing process, as it's not actively bleeding and seems contained.\n\nHowever, I'm not a medical professional and cannot provide a definitive medical assessment. If you're concerned about the healing process, experiencing pain, signs of infection (increasing redness, warmth, swelling, pus), or if the injury is recent and severe, it would be best to consult with a healthcare provider for proper evaluation and treatment.",
+        "prompt": "Provide short description and explanation. is my wound on my finger healing? "
+    },
+    "6": {
+        "id": 6,
+        "model": "gemini",
+        "description": "**Description:** The image shows a close-up of a finger with a small, reddish-brown scabbed area.  The surrounding skin appears normal.\n\n**Explanation:** The wound appears to be healing. The presence of a scab indicates the body's natural clotting process is working and new skin is forming underneath. The reddish-brown color is also typical of a healing scab.  As long as there are no signs of infection (increased redness, swelling, pus, or pain), the healing process seems to be progressing normally.  Continue to keep the area clean and dry to minimize the risk of infection. If you have concerns, it is best to consult a healthcare professional.",
+        "prompt": "Provide short description and explanation. is my wound on my finger healing? "
+    },
+    "7": {
+        "id": 7,
+        "model": "gpt",
+        "description": "I'm unable to give medical opinions on images. However, if your wound has a scab forming and the skin around it looks normal (not red, swollen, or oozing), it might be healing. Keep it clean and covered, and consider seeking medical advice if you notice signs of infection or if it doesn't improve.",
+        "prompt": "Provide short description and explanation. is my wound on my finger healing? "
+    },
+    "8": {
+        "id": 8,
+        "model": "claude",
+        "description": "The image shows a finger with what appears to be a healing wound on the nail bed or under the nail. The wound has a reddish-brown discoloration, which is typical of a healing subungual hematoma (blood under the nail) or nail bed injury. \n\nWhile I can see that healing seems to be in progress, I cannot provide medical advice or diagnose whether it's healing properly. Some signs of proper healing generally include:\n- Decreasing pain\n- Reduction in swelling\n- Scab formation followed by gradual scab shrinking\n- New skin formation\n\nIf you're concerned about the healing process, experiencing increased pain, seeing signs of infection (increasing redness, warmth, swelling, pus, or red streaks), or if the injury isn't improving, I'd recommend consulting with a healthcare professional for proper evaluation and treatment recommendations.",
+        "prompt": "Provide short description and explanation. is my wound on my finger healing? "
+    },
+    "9": {
+        "id": 9,
+        "model": "gemini",
+        "description": "**Description:** The image shows a finger with a small, dried, reddish-brown scab in the center.  The surrounding skin is a normal color.\n\n**Explanation:** Yes, your wound appears to be healing normally. The scab formation indicates the body's natural healing process is working. The absence of redness, swelling, or pus suggests the wound is not infected. Keep the area clean and dry and avoid picking at the scab to allow it to fall off naturally. If you notice any signs of infection, such as increased pain, swelling, redness, pus, or fever, consult a doctor.",
+        "prompt": "Provide short description and explanation. is my wound on my finger healing? "
+    }
+}

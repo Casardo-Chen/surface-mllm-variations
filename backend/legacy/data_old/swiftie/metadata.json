@@ -1,0 +1,12 @@
+{
+    "image": "https://preview.redd.it/mghmxkg2uar01.png?auto=webp&s=658f903049b18ad96e99d783fdbffe1d9db56507",
+    "prompt": " State all of the information in the graph? Which word appears in three of Taylor Swift's albums? How many times in total does that word appear?",
+    "numTrials": 3,
+    "selectedModels": [
+        "gpt",
+        "claude",
+        "gemini"
+    ],
+    "promptVariation": "original",
+    "source": "url"
+}

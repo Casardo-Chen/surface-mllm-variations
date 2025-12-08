@@ -39,18 +39,7 @@ def variation_generation(image, num_trials, models, variation_type, prompt=None,
 
     # Generate and process descriptions
     output = get_all_descriptions(image, prompt, num_trials, models, variation_type, source)
-    # logger.info(f"Descriptions generated")
-    # intermediate_results = break_down_all_descriptions(res)
-    # # combine the descriptive and inference into one list
-    # for item in intermediate_results:
-    #     item["descriptive"] = item["descriptive"] + item["inference"]
-    # logger.info(f"Descriptions broken down")
-    # output = {}
-    # for item in intermediate_results:
-    #     output[item["id"]] = item
-    #     output[item["id"]]["atomic_facts"] = break_down_all_atomic_facts(item["descriptive"])
-    # logger.info(f"Atomic facts broken down")    
-    
+
     # Save the result to a json file
     if output_path is None:
         folder_name = helper.uuid_gen()
@@ -61,10 +50,6 @@ def variation_generation(image, num_trials, models, variation_type, prompt=None,
     
     with open(f"{output_path}/descriptions.json", "w") as f:
         json.dump(output, f, indent=4)
-    # extracted_atomic_facts = extract_atomic_facts(output)
-    # with open(f"{output_path}/extracted_atomic_facts.json", "w") as f:
-    #     json.dump(extracted_atomic_facts, f, indent=4)
-    # return output, extracted_atomic_facts
     return output
 
 def aggregated_description_generation(descs, output_path, num_trials, models):
@@ -78,10 +63,6 @@ def aggregated_description_generation(descs, output_path, num_trials, models):
         dict: Processed results containing various aggregated descriptions
     """
     summary = {}
-    # logger.info(f"Extracting atomic facts")
-    # atomic_facts = extract_atomic_facts(desc_with_atomic_facts)
-    # logger.info(f"Clustering atomic facts and generating variation-aware summary")
-    # change the list of atomic facts to a string
 
     # remove the prompt field in the description
     descs = {k: v for k, v in descs.items() if k != "prompt"}
@@ -103,11 +84,7 @@ def aggregated_description_generation(descs, output_path, num_trials, models):
         # change to json format
         result = json.loads(result)
         return result
-        
-
-    # def process_hide_variation():
-    #     return re.sub(r"\(.*?\)", "", aggregated_output)
-
+    
 
     with ThreadPoolExecutor() as executor:
     #     majority_future = executor.submit(process_aggregated_output)
@@ -161,9 +138,6 @@ def aggregated_description_generation(descs, output_path, num_trials, models):
         return text
 
     summary["model_diff"] = aggregated_output
-    # summary["var_only"] = var_only_output
-    # summary["percentage"] = majority_output
-    # summary["nl"] = natural_language_output
     summary["var_only"] = re.sub(r"\(.*?\)", "", aggregated_output)
     summary["percentage"] = replace_parentheses(aggregated_output)
     summary["nl"] = re.sub(r"\(.*?\)", percentage_to_nl, aggregated_output)
@@ -215,7 +189,3 @@ if __name__ == "__main__":
     end_time = datetime.now().strftime("%Y%m%d_%H%M%S")
     logger.info(f"takes {end_time} - {start_time} = {datetime.strptime(end_time, '%Y%m%d_%H%M%S') - datetime.strptime(start_time, '%Y%m%d_%H%M%S')}")
     logger.info(f"Process completed")
-
-
-    
-    

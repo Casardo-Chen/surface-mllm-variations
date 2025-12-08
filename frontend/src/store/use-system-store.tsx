@@ -50,6 +50,8 @@ interface SystemState {
   setShowVariationAwareDescription: (show: boolean) => void;
   showDescriptionList: boolean;
   setShowDescriptionList: (show: boolean) => void;
+  showColorUncertaintyIndicator: boolean;
+  setShowColorUncertaintyIndicator: (show: boolean) => void;
 
 }
 
@@ -91,7 +93,7 @@ const useSystemStore = create<SystemState>((set) => ({
   setShowModelDifferences: (show) => set({ showModelDifferences: show }),
 
   // Filter states
-  selectedModels: ['GPT-4', 'Claude', 'Gemini', 'LLaVA'],
+  selectedModels: ['gpt', 'claude', 'gemini'],
   setSelectedModels: (models) => set({ selectedModels: models }),
   confidenceThreshold: 0,
   setConfidenceThreshold: (threshold) => set({ confidenceThreshold: threshold }),
@@ -103,6 +105,8 @@ const useSystemStore = create<SystemState>((set) => ({
   setShowVariationAwareDescription: (show) => set({ showVariationAwareDescription: show }),
   showDescriptionList: true,
   setShowDescriptionList: (show) => set({ showDescriptionList: show }),
+  showColorUncertaintyIndicator: true,
+  setShowColorUncertaintyIndicator: (show) => set({ showColorUncertaintyIndicator: show }),
 }));
 
 export default useSystemStore;

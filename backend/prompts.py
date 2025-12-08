@@ -186,34 +186,6 @@ There are two white (3/3 GPT) or beige (3/3 Gemini) chairs on the left and a gre
 
 There are two white(50%) or beige (50%) chairs on the left and a grey sofa on the right. At the center, there is a white coffee table with a marble top (50%) and a gold base. A built-in shelf is on the back wall with decorative items, books (50%) and a television (67%).'''
 
-# deprecated
-filter_description_prompt_confidence = '''Filter out irrelevant or incorrect atomic facts from a description.
-Given the following description, filter out any claims that are below a certain threshold of confidence or are irrelevant to the image content.
-'''
-
-# deprecated
-filter_description_prompt_model = '''Filter out irrelevant or incorrect atomic facts from a description.
-Given the following description, filter out any claims that are below a certain threshold of confidence or are irrelevant to the image content.
-'''
-
-# deprecated
-language_conversion_prompt = '''Edit the description to change the percentage to language indicators using the translation dictionary provided and still keep it a coherent paragraph.
-
-Translation dictionary:
-- 100% certain: absolutely, definitely
-- 75 - 90% certain: likely, almost certainly
-- 60 - 75% certain: probably, most likely, possibly, might
-- 40 - 60% certain: maybe, uncertain, perhaps
-- 25% - 60%: possibly uncertain, potentially
-- Below 25%: doubtful, unlikely
-
-Example input:
-There are two white(90%) chairs on the left and a grey sofa on the right. At the center, there is a white coffee table with a marble top (60%) and a gold base. There is a built-in shelf on the back wall with decorative items, books (90%), and a television (75%).
-
-Example output:
-There are two likely white chairs on the left and a grey sofa on the right. At the center, there is a white coffee table with what might be a marble top and a gold base. There is a built-in shelf on the back wall with decorative items, almost certainly books, and probably a television.
-'''
-
 
 unique_point_prompt = '''You are an expert in summarization and comparative analysis. You are provided with a summary of multiple AI-generated descriptions of the same image from multiple models (e.g., Claude, Gemini, GPT). Your task is to analyze these descriptions and generate a structured summary of similarities, differences, and unique points.
 

@@ -22,7 +22,9 @@ const AppBar = ({gridView, setGridView}) => {
         showVariationAwareDescription,
         setShowVariationAwareDescription,
         showDescriptionList,
-        setShowDescriptionList
+        setShowDescriptionList,
+        showColorUncertaintyIndicator,
+        setShowColorUncertaintyIndicator
     } = useSystemStore();
 
     const availableModels = ['GPT-4', 'Claude', 'Gemini', 'LLaVA'];
@@ -147,6 +149,18 @@ const AppBar = ({gridView, setGridView}) => {
                                     List of Descriptions
                                 </label>
                             </div>
+                        </div>
+                        {/* Color Uncertainty Indicator Toggle */}
+                        <div className="control-group">
+                            <label className="checkbox-label">
+                                <input
+                                    type="checkbox"
+                                    checked={showColorUncertaintyIndicator}
+                                    onChange={(e) => setShowColorUncertaintyIndicator(e.target.checked)}
+                                    style={{ marginRight: "6px" }}
+                                />
+                                Color Uncertainty Indicator
+                            </label>
                         </div>
                     </>
                 )}

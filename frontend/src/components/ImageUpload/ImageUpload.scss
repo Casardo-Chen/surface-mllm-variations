@@ -21,9 +21,10 @@
         cursor: pointer;
         font-size: 14px;
         font-weight: 500;
-        color: #f7f7f7;
+        color: #64748b;
         transition: all 0.2s ease;
         border-bottom: 2px solid transparent;
+        white-space: nowrap;
 
         &:hover {
           background: #eee;
@@ -31,9 +32,10 @@
         }
 
         &.active {
-          color: #8a8a8a;
-          border-bottom-color: #ccc;
+          color: #334155;
+          border-bottom-color: #3b82f6;
           background: white;
+          font-weight: 600;
         }
       }
     }
@@ -269,6 +271,8 @@
         .method-tab {
           padding: 10px 12px;
           font-size: 13px;
+          white-space: nowrap;
+          overflow: visible;
         }
       }
 

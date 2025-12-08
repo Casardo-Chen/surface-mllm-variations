@@ -1,4 +1,5 @@
 import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
 import { useEffect, useState } from 'react'
 
 import './PerceptionTask.scss';
@@ -8,10 +9,9 @@ import {
 } from "@mui/material";
 
 import usePerceptionStore from '../../store/use-perception-store';
-import useUserStudyStore from '../../store/use-user-study-store';
 import useSystemStore from '../../store/use-system-store.tsx';
 
-import { getModelName } from '../../utils/helper';
+import { getModelName, highlightVariations } from '../../utils/helper';
 
 
 function DescriptionTable({ data }) {
@@ -19,7 +19,7 @@ function DescriptionTable({ data }) {
   const prompts = [...new Set(Object.values(data).map((item) => item.prompt))];
   
   // Use global filter states
-  const { selectedModels, setSelectedModels } = useSystemStore();
+  const { selectedModels, setSelectedModels, showColorUncertaintyIndicator } = useSystemStore();
   const [selectedPrompts, setSelectedPrompts] = useState([...prompts]);
 
   const filteredData = Object.entries(data).filter(([id, item]) => {
@@ -95,7 +95,9 @@ function DescriptionTable({ data }) {
                 wordWrap: "break-word"
               }}>
                 <div className="react-markdown">
-                  <ReactMarkdown>{item.description}</ReactMarkdown>
+                  <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                    {showColorUncertaintyIndicator ? highlightVariations(item.description) : item.description}
+                  </ReactMarkdown>
                 </div>
               </td>
               
@@ -108,6 +110,7 @@ function DescriptionTable({ data }) {
 }
 
 function VariationSummary({data}) {
+  const { showColorUncertaintyIndicator } = useSystemStore();
   return (
     <div className="variation-description-container">
       <table style={{ 
@@ -139,8 +142,8 @@ function VariationSummary({data}) {
               wordWrap: "break-word"
             }}>
               <div className="react-markdown">
-                <ReactMarkdown>
-                  {data?.similarity}
+                <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                  {showColorUncertaintyIndicator ? highlightVariations(data?.similarity) : data?.similarity}
                 </ReactMarkdown>
               </div>
             </td>
@@ -157,8 +160,8 @@ function VariationSummary({data}) {
               wordWrap: "break-word"
             }}>
               <div className="react-markdown">
-                <ReactMarkdown>
-                  {data?.disagreement}
+                <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                  {showColorUncertaintyIndicator ? highlightVariations(data?.disagreement) : data?.disagreement}
                 </ReactMarkdown>
               </div>
             </td>
@@ -175,8 +178,8 @@ function VariationSummary({data}) {
               wordWrap: "break-word"
             }} aria-label='model-specific'>
               <div className="react-markdown">
-                <ReactMarkdown>
-                  {data?.uniqueness}
+                <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                  {showColorUncertaintyIndicator ? highlightVariations(data?.uniqueness) : data?.uniqueness}
                 </ReactMarkdown>
               </div>
             </td>
@@ -192,6 +195,7 @@ function VariationAwareDescription({data}) {
     representationType,
     setRepresentationType,
   } = usePerceptionStore();
+  const { showColorUncertaintyIndicator } = useSystemStore();
 
   return (
     <div className="variation-description-container">
@@ -248,12 +252,18 @@ function VariationAwareDescription({data}) {
               wordWrap: "break-word"
             }} aria-label='variation'>
               <div className="react-markdown">
-                <ReactMarkdown>
-                  { representationType === "model" ? data?.model_diff :
+                <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                  {showColorUncertaintyIndicator ? highlightVariations(
+                    representationType === "model" ? data?.model_diff :
                     representationType === "none" ? data?.var_only :
                     representationType === "percentage" ? data?.percentage :
                     representationType === "natural" && data?.nl
-                  }             
+                  ) : (
+                    representationType === "model" ? data?.model_diff :
+                    representationType === "none" ? data?.var_only :
+                    representationType === "percentage" ? data?.percentage :
+                    representationType === "natural" && data?.nl
+                  )}             
                 </ReactMarkdown>
               </div>
             </td>
@@ -286,11 +296,8 @@ function PerceptionTask() {
   return (
       <Box
         sx={{
-          // width: "80vw",
           width: "100%",
-          // position: "fixed",
           top: 0,
-          // left: "20vw",
           left: 0,
           padding: 3,
           overflowY: "auto",

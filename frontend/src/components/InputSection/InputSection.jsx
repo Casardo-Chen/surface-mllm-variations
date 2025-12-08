@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { generateImageDescription } from '../../utils/data-communicator.js';
 import './InputSection.scss';
 import ImageUpload from '../ImageUpload/ImageUpload';
 import { Button } from '@/components/ui/button';
 import useSystemStore from '../../store/use-system-store';
-import useUserStudyStore from '../../store/use-user-study-store';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/base-tabs';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
@@ -23,12 +22,23 @@ function InputSection() {
   const [isLoading, setIsLoading] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [selectedExample, setSelectedExample] = useState('');
+  const promptTextareaRef = useRef(null);
+  
+  // Auto-resize textarea to fit content
+  useEffect(() => {
+    if (promptTextareaRef.current) {
+      promptTextareaRef.current.style.height = 'auto';
+      promptTextareaRef.current.style.height = `${promptTextareaRef.current.scrollHeight}px`;
+    }
+  }, [prompt]);
   
   // List of available examples
   const examples = [
-    'arkansas', 'bottle', 'card', 'dragonfly', 'home', 
-    'map', 'medication', 'outfit', 'screen', 'swiftie', 'wm'
+    'Map', 'Swiftie', 'Washing Machine',
+    'Screen', 'Medication', 'Card', 
+    'Home', 'Outfit', 'Dragonfly',
   ];
+
   const { 
     responses,
     setResponses,
@@ -41,12 +51,12 @@ function InputSection() {
     systemMode, 
     setSystemMode, 
     viewMode, 
-    setViewMode, } = useSystemStore();
+    setViewMode, 
+  } = useSystemStore();
 
   const [imageSource, setImageSource] = useState('url');
   const [base64Image, setBase64Image] = useState('');
   const [selectedModels, setSelectedModels] = useState(['gpt', 'claude', 'gemini']);
-  const { userId } = useUserStudyStore();
 
   const [mode, setMode] = useState('demo');
 
@@ -140,13 +150,16 @@ function InputSection() {
     }
   };
 
-  const handleExampleSelection = (example) => {
+  const handleExampleSelection = async (example) => {
     setSelectedExample(example);
-    // Load example data - you can implement this based on your data structure
-    // For now, we'll set the image link to a placeholder
-    setImageLink(`/examples/${example}.jpg`); // Adjust path as needed
+
+    // get json file from the examples folder
+    const jsonFile = await fetch(`/examples/${example.toLowerCase()}/metadata.json`);
+    const jsonData = await jsonFile.json();
+    console.log('jsonData', jsonData);
+    setImageLink(jsonData.image); 
     setImageSource('url');
-    setPrompt(`Describe this ${example} image`); // Set a default prompt
+    setPrompt(jsonData.prompt);
   };
 
 
@@ -213,8 +226,7 @@ function InputSection() {
             >
               Clear
             </Button>
-      
-                <div className="border border-border rounded-lg overflow-hidden">
+        <div className="border border-border rounded-lg overflow-hidden">
       <Table 
         className="w-full "
       >
@@ -338,13 +350,13 @@ function InputSection() {
             </DropdownMenu>
           {selectedExample && (
             <div className="example-preview">
-              <img src={`https://vizwiz.cs.colorado.edu/VizWiz_visualization_img/VizWiz_val_00004263.jpg`} alt={selectedExample} />
-              <input 
-                type="text" 
-                alt='prompt'
-                disabled={true}
-                className="prompt-input"
-                value={`"Describe this ${selectedExample} image"`}
+              <img src={imageLink} alt={selectedExample} />
+              <textarea 
+                ref={promptTextareaRef}
+                readOnly
+                className="prompt-input prompt-display"
+                value={prompt}
+                rows={1}
               />
 
      

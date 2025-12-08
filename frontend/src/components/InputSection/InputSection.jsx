@@ -59,7 +59,7 @@ function InputSection() {
   const [imageSource, setImageSource] = useState('url');
   const [base64Image, setBase64Image] = useState('');
 
-  const [mode, setMode] = useState('demo');
+  const [mode, setMode] = useState('example');
 
   const handleSubmit = async () => {
     // check if the image is a url or a local file
@@ -219,7 +219,7 @@ function InputSection() {
 
       <div className={`input-section ${sidebarOpen ? 'sidebar-open' : ''}`}>
     <Tabs 
-      defaultValue="demo"
+      defaultValue="example"
       className="w-full"
     >
       <TabsList>

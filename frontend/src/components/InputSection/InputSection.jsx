@@ -52,11 +52,12 @@ function InputSection() {
     setSystemMode, 
     viewMode, 
     setViewMode, 
+    selectedModels,
+    setSelectedModels,
   } = useSystemStore();
 
   const [imageSource, setImageSource] = useState('url');
   const [base64Image, setBase64Image] = useState('');
-  const [selectedModels, setSelectedModels] = useState(['gpt', 'claude', 'gemini']);
 
   const [mode, setMode] = useState('demo');
 
@@ -150,16 +151,52 @@ function InputSection() {
     }
   };
 
+  const examplePathMap = {
+    'Washing Machine': 'wm',
+    'Map': 'map',
+    'Swiftie': 'swiftie',
+    'Screen': 'screen',
+    'Medication': 'medication',
+    'Card': 'card',
+    'Home': 'home',
+    'Outfit': 'outfit',
+    'Dragonfly': 'dragonfly',
+  };
+
   const handleExampleSelection = async (example) => {
     setSelectedExample(example);
+    const exampleKey = examplePathMap[example] || example.toLowerCase();
+    setCurrentImage(exampleKey);
 
-    // get json file from the examples folder
-    const jsonFile = await fetch(`/examples/${example.toLowerCase()}/metadata.json`);
-    const jsonData = await jsonFile.json();
-    console.log('jsonData', jsonData);
-    setImageLink(jsonData.image); 
-    setImageSource('url');
-    setPrompt(jsonData.prompt);
+    try {
+      const [metadataRes, descriptionsRes, summaryRes] = await Promise.all([
+        fetch(`/examples/${exampleKey}/metadata.json`),
+        fetch(`/examples/${exampleKey}/descriptions.json`),
+        fetch(`/examples/${exampleKey}/summary.json`),
+      ]);
+
+      if (metadataRes.ok) {
+        const jsonData = await metadataRes.json();
+        setImageLink(jsonData.image || ''); 
+        setImageSource(jsonData.source || 'url');
+        setPrompt(jsonData.prompt || '');
+        setNumTrials(jsonData.numTrials ?? numTrials);
+        setSelectedModels(jsonData.selectedModels || ['gpt', 'claude', 'gemini']);
+        setPromptVariation(jsonData.promptVariation || 'original');
+      }
+
+      if (descriptionsRes.ok) {
+        const descriptions = await descriptionsRes.json();
+        setResponses(descriptions);
+      }
+
+      if (summaryRes.ok) {
+        const summary = await summaryRes.json();
+        setVariationSummary(summary);
+      }
+    } catch (error) {
+      console.error('Failed to load example data', error);
+    }
   };
 
 
@@ -186,8 +223,8 @@ function InputSection() {
       className="w-full"
     >
       <TabsList>
-        <TabsTrigger value="demo">Demo</TabsTrigger>
         <TabsTrigger value="example">Examples</TabsTrigger>
+        <TabsTrigger value="demo">Try it out!</TabsTrigger>
       </TabsList>
       <TabsContent value="demo">
         <div className="input-controls">

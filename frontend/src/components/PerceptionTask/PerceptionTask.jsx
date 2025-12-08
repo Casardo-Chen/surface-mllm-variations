@@ -275,43 +275,66 @@ function VariationAwareDescription({data}) {
 }
 
 function PerceptionTask() {
-  const [rawDescriptions, setRawDescriptions] = useState({});
-  const [variationDescription, setVariationDescription] = useState({});
-  
   const {
+    responses,
+    setResponses,
+    variationSummary,
+    setVariationSummary,
+    currentImage,
+    setCurrentImage,
     showVariationSummary,
     showVariationAwareDescription,
     showDescriptionList
   } = useSystemStore();
 
-  useEffect( () => {
-    async function fetchData() {
-
-      await fetch(`/data/home/descriptions.json`).then(res => res.json()).then(res => setRawDescriptions(res))
-      await fetch(`/data/home/summary.json`).then(res => res.json()).then(res => setVariationDescription(res))
+  useEffect(() => {
+    const targetImage = currentImage || 'home';
+    if (!currentImage) {
+      setCurrentImage('home');
     }
+
+    async function fetchData() {
+      try {
+        const [descriptionsRes, summaryRes] = await Promise.all([
+          fetch(`/examples/${targetImage}/descriptions.json`),
+          fetch(`/examples/${targetImage}/summary.json`)
+        ]);
+
+        if (descriptionsRes.ok) {
+          const desc = await descriptionsRes.json();
+          setResponses(desc);
+        }
+
+        if (summaryRes.ok) {
+          const summary = await summaryRes.json();
+          setVariationSummary(summary);
+        }
+      } catch (error) {
+        console.error('Failed to load perception data', error);
+      }
+    }
+
     fetchData();
-  }, []);
+  }, [currentImage, setCurrentImage, setResponses, setVariationSummary]);
 
   return (
-      <Box
-        sx={{
-          width: "100%",
-          top: 0,
-          left: 0,
-          padding: 3,
-          overflowY: "auto",
-          height: "100vh",
-          boxSizing: "border-box",
-        }}
-      >
-          <div aria-label='description' style={{ textAlign: "left" }}>
-              {showVariationSummary && <VariationSummary data={variationDescription} />}
-              {showVariationAwareDescription && <VariationAwareDescription data={variationDescription} />}
-              {showDescriptionList && <DescriptionTable data={rawDescriptions} />}
-          </div>
-      </Box>
-
+    <Box
+      sx={{
+        width: "100%",
+        top: 0,
+        left: 0,
+        padding: 3,
+        overflowY: "auto",
+        height: "100vh",
+        boxSizing: "border-box",
+      }}
+    >
+      <div aria-label='description' style={{ textAlign: "left" }}>
+        {showVariationSummary && <VariationSummary data={variationSummary} />}
+        {showVariationAwareDescription && <VariationAwareDescription data={variationSummary} />}
+        {showDescriptionList && <DescriptionTable data={responses} />}
+      </div>
+    </Box>
   );
 }
 

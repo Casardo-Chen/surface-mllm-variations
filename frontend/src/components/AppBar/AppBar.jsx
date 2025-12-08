@@ -27,7 +27,7 @@ const AppBar = ({gridView, setGridView}) => {
         setShowColorUncertaintyIndicator
     } = useSystemStore();
 
-    const availableModels = ['GPT-4', 'Claude', 'Gemini', 'LLaVA'];
+    const availableModels = ['GPT-4', 'Claude', 'Gemini'];
     const representationTypes = [
         { value: 'natural', label: 'Language' },
         { value: 'percentage', label: 'Percentage' },

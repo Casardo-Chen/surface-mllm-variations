@@ -129,7 +129,7 @@ const ImageUpload = ({ onImageChange, currentImage }) => {
             📁 File
           </button>
           <button 
-            className={`method-tab ${uploadMethod === 'url' ? 'active' : ''}`}
+            className={`method-tab ${uploadMethod === 'url' ? 'active' : ''}`} 
             onClick={() => setUploadMethod('url')}
           >
             🔗 URL
@@ -177,13 +177,13 @@ const ImageUpload = ({ onImageChange, currentImage }) => {
                   className="url-input"
                   onKeyPress={(e) => e.key === 'Enter' && handleUrlSubmit()}
                 />
-                <button 
+                <Button 
                   onClick={handleUrlSubmit}
-                  className="url-submit-btn"
+                  variant="mono"
                   disabled={!urlInput.trim()}
                 >
                   Load
-                </button>
+                </Button>
               </div>
             </div>
           )}

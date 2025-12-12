@@ -12,6 +12,7 @@ import usePerceptionStore from '../../store/use-perception-store';
 import useSystemStore from '../../store/use-system-store.tsx';
 
 import { getModelName, highlightVariations } from '../../utils/helper';
+import AppBar from '../AppBar/AppBar.jsx';
 
 
 function DescriptionTable({ data }) {
@@ -21,6 +22,7 @@ function DescriptionTable({ data }) {
   // Use global filter states
   const { selectedModels, setSelectedModels, showColorUncertaintyIndicator } = useSystemStore();
   const [selectedPrompts, setSelectedPrompts] = useState([...prompts]);
+  const [viewMode, setViewMode] = useState("list"); // "list" or "grid"
 
   const filteredData = Object.entries(data).filter(([id, item]) => {
     const modelMatch =
@@ -29,6 +31,191 @@ function DescriptionTable({ data }) {
       selectedPrompts.length === 0 || selectedPrompts.includes(item.prompt);
     return modelMatch && promptMatch;
   });
+
+  // For grid view: organize data by trial number (row) and model (column)
+  const filteredModels = models.filter(model => 
+    selectedModels.length === 0 || selectedModels.includes(model)
+  );
+  
+  // Group entries by model to determine trial numbers
+  // Each model's entries are numbered sequentially (1st, 2nd, 3rd, etc.)
+  const entriesByModel = {};
+  Object.entries(data).forEach(([id, item]) => {
+    if (!entriesByModel[item.model]) {
+      entriesByModel[item.model] = [];
+    }
+    entriesByModel[item.model].push({ id, ...item });
+  });
+
+  // Sort entries within each model by their ID
+  Object.keys(entriesByModel).forEach(model => {
+    entriesByModel[model].sort((a, b) => {
+      const numA = parseInt(a.id) || 0;
+      const numB = parseInt(b.id) || 0;
+      return numA - numB;
+    });
+  });
+
+  // Find the maximum number of trials across all models
+  const maxTrials = Math.max(...Object.values(entriesByModel).map(entries => entries.length));
+
+  // Create a map for quick lookup: trialNumber -> model -> description
+  // Trial numbers are 1-indexed (1, 2, 3, ...)
+  const gridDataMap = {};
+  Object.keys(entriesByModel).forEach(model => {
+    entriesByModel[model].forEach((entry, index) => {
+      const trialNumber = index + 1; // 1-indexed
+      if (!gridDataMap[trialNumber]) {
+        gridDataMap[trialNumber] = {};
+      }
+      gridDataMap[trialNumber][model] = entry;
+    });
+  });
+
+  // Generate array of trial numbers (1, 2, 3, ..., maxTrials)
+  const trialNumbers = Array.from({ length: maxTrials }, (_, i) => i + 1);
+
+  const renderListView = () => (
+    <table style={{ 
+      width: "100%", 
+      borderCollapse: "collapse", 
+      overflow: "hidden",
+      // borderRadius: "8px",
+      // border: "2px solid #ccc"
+    }}>
+      <thead
+        style={{ backgroundColor: "#f4f4f4" }}
+      >
+        <tr>
+          <th style={{ 
+            border: "2px solid #ccc", 
+            padding: "8px",
+            width: "5%"
+          }}>ID</th>
+          <th style={{ 
+            border: "2px solid #ccc", 
+            padding: "8px",
+            width: "10%"
+          }}>Model</th>
+          <th style={{ border: "2px solid #ccc", padding: "8px" }}>
+            Description
+          </th>
+        </tr>
+      </thead>
+      <tbody style={{ fontFamily: "monospace" }}>
+        {filteredData.map(([id, item]) => (
+          <tr key={id}>
+            <td style={{ border: "2px solid #ccc", padding: "8px" }}>{id}</td>
+            <td style={{ border: "2px solid #ccc", padding: "8px" }}>
+              {getModelName(item.model)} 
+            </td>
+            <td style={{ 
+              border: "2px solid #ccc", 
+              padding: "8px",
+              maxHeight: "500px",
+              overflowY: "auto",
+              overflowX: "hidden",
+              wordWrap: "break-word"
+            }}>
+              <div className="react-markdown">
+                <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                  {showColorUncertaintyIndicator ? highlightVariations(item.description) : item.description}
+                </ReactMarkdown>
+              </div>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+
+  const renderGridView = () => (
+    <table style={{ width: "100%", borderCollapse: "collapse", overflow: "hidden" }}>
+      <thead style={{ backgroundColor: "#f4f4f4" }}>
+        <tr>
+          <th style={{ 
+            border: "2px solid #ccc", 
+            padding: "8px",
+            width: "5%"
+          }}>Trial</th>
+          {filteredModels.map((model) => (
+            <th 
+              key={model}
+              style={{ 
+                border: "2px solid #ccc", 
+                padding: "8px",
+                textAlign: "center"
+              }}
+            >
+              {getModelName(model)}
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody style={{ fontFamily: "monospace" }}>
+        {trialNumbers.map((trialNumber) => {
+          // Check if this row has any data matching the filters
+          const rowData = gridDataMap[trialNumber] || {};
+          const hasMatchingData = filteredModels.some(model => {
+            const item = rowData[model];
+            if (!item) return false;
+            const promptMatch = selectedPrompts.length === 0 || selectedPrompts.includes(item.prompt);
+            return promptMatch;
+          });
+          
+          // Only show row if it has matching data or if no filters are applied
+          if (!hasMatchingData && (selectedModels.length > 0 || selectedPrompts.length < prompts.length)) {
+            return null;
+          }
+          
+          return (
+            <tr key={trialNumber}>
+              <td style={{ 
+                border: "2px solid #ccc", 
+                padding: "8px",
+                fontWeight: "bold",
+                textAlign: "center"
+              }}>
+                {trialNumber}
+              </td>
+              {filteredModels.map((model) => {
+                const item = rowData[model];
+                // Check if item matches filters
+                const itemMatches = item && (
+                  (selectedPrompts.length === 0 || selectedPrompts.includes(item.prompt))
+                );
+                
+                return (
+                  <td 
+                    key={model}
+                    style={{ 
+                      border: "2px solid #ccc", 
+                      padding: "8px",
+                      maxHeight: "500px",
+                      overflowY: "auto",
+                      overflowX: "hidden",
+                      wordWrap: "break-word",
+                      verticalAlign: "top"
+                    }}
+                  >
+                    {itemMatches ? (
+                      <div className="react-markdown">
+                        <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                          {showColorUncertaintyIndicator ? highlightVariations(item.description) : item.description}
+                        </ReactMarkdown>
+                      </div>
+                    ) : (
+                      <span style={{ color: "#999", fontStyle: "italic" }}>N/A</span>
+                    )}
+                  </td>
+                );
+              })}
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  );
 
   return (
     <div>
@@ -55,56 +242,26 @@ function DescriptionTable({ data }) {
             ))}
           </div>
         </label>
+        
+        <div style={{ marginTop: "16px" }}>
+          <label style={{ marginRight: "12px", fontWeight: "bold" }}>View Mode:</label>
+          <div className="representation-type-buttons" style={{ width: "auto", display: "inline-flex" }}>
+            <button 
+              className={`representation-btn ${viewMode === "list" ? "active" : ""}`}
+              onClick={() => {setViewMode("list");}}
+            >
+              List View
+            </button>
+            <button 
+              className={`representation-btn ${viewMode === "grid" ? "active" : ""}`}
+              onClick={() => {setViewMode("grid");}}
+            >
+              Grid View
+            </button>
+          </div>
+        </div>
       </div>
-      <table style={{ width: "100%", borderCollapse: "collapse", overflow: "hidden" }}>
-        <thead
-          style={{ backgroundColor: "#f4f4f4" }}
-        >
-          <tr>
-            <th style={{ 
-              border: "2px solid #ccc", 
-              padding: "8px",
-              width: "5%"
-            }}>ID</th>
-            <th style={{ 
-              border: "2px solid #ccc", 
-              padding: "8px",
-              width: "10%"
-            }}>Model</th>
-            <th style={{ border: "2px solid #ccc", padding: "8px" }}>
-              Description
-            </th>
-
-            {/* <th style={{ border: "2px solid #ccc", padding: "8px" }}>Prompt</th> */}
-          </tr>
-        </thead>
-        <tbody style={{ fontFamily: "monospace" }}>
-          {filteredData.map(([id, item]) => (
-            <tr key={id}>
-              
-              <td style={{ border: "2px solid #ccc", padding: "8px" }}>{id}</td>
-              <td style={{ border: "2px solid #ccc", padding: "8px" }}>
-                {getModelName(item.model)} 
-              </td>
-              <td style={{ 
-                border: "2px solid #ccc", 
-                padding: "8px",
-                maxHeight: "500px",
-                overflowY: "auto",
-                overflowX: "hidden",
-                wordWrap: "break-word"
-              }}>
-                <div className="react-markdown">
-                  <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-                    {showColorUncertaintyIndicator ? highlightVariations(item.description) : item.description}
-                  </ReactMarkdown>
-                </div>
-              </td>
-              
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {viewMode === "list" ? renderListView() : renderGridView()}
     </div>
   );
 }
@@ -286,11 +443,12 @@ function PerceptionTask() {
     showVariationAwareDescription,
     showDescriptionList
   } = useSystemStore();
+  const [gridView, setGridView] = useState(true);
 
   useEffect(() => {
-    const targetImage = currentImage || 'home';
+    const targetImage = currentImage || 'map';
     if (!currentImage) {
-      setCurrentImage('home');
+      setCurrentImage('map');
     }
 
     async function fetchData() {
@@ -323,13 +481,32 @@ function PerceptionTask() {
         width: "100%",
         top: 0,
         left: 0,
-        padding: 3,
+        paddingLeft: "12px",
+        paddingRight: "12px",
+        paddingTop: 0,
+        paddingBottom: 3,
+        marginTop: "12px",
         overflowY: "auto",
         height: "100vh",
         boxSizing: "border-box",
+        overflowX: "hidden",
+        position: "relative",
       }}
     >
-      <div aria-label='description' style={{ textAlign: "left" }}>
+      {/* Sticky AppBar */}
+      <Box
+        sx={{
+          position: "sticky",
+          top: 0,
+          zIndex: 1000,
+          backgroundColor: "transparent",
+          paddingTop: 0,
+        }}
+      >
+        <AppBar gridView={gridView} setGridView={setGridView} />
+      </Box>
+      
+      <div aria-label='description' style={{ textAlign: "left", marginTop: "12px" }}>
         {showVariationSummary && <VariationSummary data={variationSummary} />}
         {showVariationAwareDescription && <VariationAwareDescription data={variationSummary} />}
         {showDescriptionList && <DescriptionTable data={responses} />}

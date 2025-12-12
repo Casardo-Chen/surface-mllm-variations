@@ -97,26 +97,6 @@ const AppBar = ({gridView, setGridView}) => {
                 {/* Controls for Variations mode */}
                 {showVariations && (
                     <>
-                        <div className="control-group">
-                            <label className="control-label">Display:</label>
-                            <DropdownMenu>
-                                <DropdownMenuTrigger asChild>
-                                    <button className="dropdown-trigger">
-                                        {representationTypes.find(rt => rt.value === representationType)?.label || 'Models'}
-                                    </button>
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent>
-                                    {representationTypes.map((type) => (
-                                        <DropdownMenuItem
-                                            key={type.value}
-                                            onClick={() => setRepresentationType(type.value)}
-                                        >
-                                            {type.label}
-                                        </DropdownMenuItem>
-                                    ))}
-                                </DropdownMenuContent>
-                            </DropdownMenu>
-                        </div>
                         {/* Display Options Checkboxes */}
                         <div className="control-group">
                             <label className="control-label">Show:</label>

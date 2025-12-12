@@ -40,11 +40,11 @@ export const highlightVariations = (text) => {
   
   const colors = [
     '#faedcb',
-    '#c9e4de',
-    '#c6def1',
-    '#dbcdf0',
-    '#f2c6de',
-    '#f7d9c4'
+    // '#c9e4de',
+    // '#c6def1',
+    // '#dbcdf0',
+    // '#f2c6de',
+    // '#f7d9c4'
   ];
   
   let colorIndex = 0;

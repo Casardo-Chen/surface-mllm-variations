@@ -67,28 +67,26 @@ function DescriptionTable({ data }) {
           </div>
         </label>
       </div>
-      <table style={{ width: "100%", borderCollapse: "collapse", overflow: "hidden" }}>
+      <table className="description-table">
         <thead>
           <tr>
-            <th style={{ border: "2px solid #ccc", padding: "8px" }}>ID</th>
-            <th style={{ border: "2px solid #ccc", padding: "8px" }}>
-              Description
-            </th>
-            <th style={{ border: "2px solid #ccc", padding: "8px" }}>Model</th>
-            <th style={{ border: "2px solid #ccc", padding: "8px" }}>Prompt</th>
+            <th>ID</th>
+            <th>Description</th>
+            <th>Model</th>
+            <th>Prompt</th>
           </tr>
         </thead>
         <tbody>
           {filteredData.map(([id, item]) => (
             <tr key={id}>
-              <td style={{ border: "2px solid #ccc", padding: "8px" }}>{id}</td>
-              <td style={{ border: "2px solid #ccc", padding: "8px", textAlign: "left" }}>
+              <td>{id}</td>
+              <td style={{ textAlign: "left" }}>
                 <ReactMarkdown>{item.description}</ReactMarkdown>
               </td>
-              <td style={{ border: "2px solid #ccc", padding: "8px", textAlign: "left" }}>
+              <td style={{ textAlign: "left" }}>
                 {item.model}
               </td>
-              <td style={{ border: "2px solid #ccc", padding: "8px", textAlign: "left" }}>
+              <td style={{ textAlign: "left" }}>
                 {item.prompt}
               </td>
             </tr>

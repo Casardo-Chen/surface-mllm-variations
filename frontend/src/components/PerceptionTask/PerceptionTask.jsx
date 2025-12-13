@@ -76,42 +76,22 @@ function DescriptionTable({ data }) {
   const trialNumbers = Array.from({ length: maxTrials }, (_, i) => i + 1);
 
   const renderListView = () => (
-    <table style={{ 
-      width: "100%", 
-      borderCollapse: "collapse", 
-      overflow: "hidden",
-      // borderRadius: "8px",
-      // border: "2px solid #ccc"
-    }}>
-      <thead
-        style={{ backgroundColor: "#f4f4f4" }}
-      >
+    <table className="description-table">
+      <thead>
         <tr>
-          <th style={{ 
-            border: "2px solid #ccc", 
-            padding: "8px",
-            width: "5%"
-          }}>ID</th>
-          <th style={{ 
-            border: "2px solid #ccc", 
-            padding: "8px",
-            width: "10%"
-          }}>Model</th>
-          <th style={{ border: "2px solid #ccc", padding: "8px" }}>
-            Description
-          </th>
+          <th style={{ width: "5%" }}>ID</th>
+          <th style={{ width: "10%" }}>Model</th>
+          <th>Description</th>
         </tr>
       </thead>
-      <tbody style={{ fontFamily: "monospace" }}>
+      <tbody>
         {filteredData.map(([id, item]) => (
           <tr key={id}>
-            <td style={{ border: "2px solid #ccc", padding: "8px" }}>{id}</td>
-            <td style={{ border: "2px solid #ccc", padding: "8px" }}>
+            <td>{id}</td>
+            <td>
               {getModelName(item.model)} 
             </td>
             <td style={{ 
-              border: "2px solid #ccc", 
-              padding: "8px",
               maxHeight: "500px",
               overflowY: "auto",
               overflowX: "hidden",
@@ -130,29 +110,21 @@ function DescriptionTable({ data }) {
   );
 
   const renderGridView = () => (
-    <table style={{ width: "100%", borderCollapse: "collapse", overflow: "hidden" }}>
-      <thead style={{ backgroundColor: "#f4f4f4" }}>
+    <table className="description-table">
+      <thead>
         <tr>
-          <th style={{ 
-            border: "2px solid #ccc", 
-            padding: "8px",
-            width: "5%"
-          }}>Trial</th>
+          <th style={{ width: "5%" }}>Trial</th>
           {filteredModels.map((model) => (
             <th 
               key={model}
-              style={{ 
-                border: "2px solid #ccc", 
-                padding: "8px",
-                textAlign: "center"
-              }}
+              style={{ textAlign: "center" }}
             >
               {getModelName(model)}
             </th>
           ))}
         </tr>
       </thead>
-      <tbody style={{ fontFamily: "monospace" }}>
+      <tbody>
         {trialNumbers.map((trialNumber) => {
           // Check if this row has any data matching the filters
           const rowData = gridDataMap[trialNumber] || {};
@@ -171,8 +143,6 @@ function DescriptionTable({ data }) {
           return (
             <tr key={trialNumber}>
               <td style={{ 
-                border: "2px solid #ccc", 
-                padding: "8px",
                 fontWeight: "bold",
                 textAlign: "center"
               }}>
@@ -189,8 +159,6 @@ function DescriptionTable({ data }) {
                   <td 
                     key={model}
                     style={{ 
-                      border: "2px solid #ccc", 
-                      padding: "8px",
                       maxHeight: "500px",
                       overflowY: "auto",
                       overflowX: "hidden",
@@ -270,33 +238,22 @@ function VariationSummary({data}) {
   const { showColorUncertaintyIndicator } = useSystemStore();
   return (
     <div className="variation-description-container">
-      <table style={{ 
-        width: "100%", 
-        borderCollapse: "collapse", 
-        overflow: "hidden",
-        marginBottom: "16px"
-      }}>
-        <thead style={{ backgroundColor: "#f4f4f4" }}>
+      <table className="variation-summary-table" style={{ marginBottom: "16px" }}>
+        <thead>
           <tr>
-            <th style={{ 
-              border: "2px solid #ccc", 
-              padding: "8px",
-              width: "15%"
-            }}>Focus</th>
-            <th style={{ border: "2px solid #ccc", padding: "8px" }}>Variation Summary</th>
+            <th style={{ width: "15%" }}>Focus</th>
+            <th>Variation Summary</th>
           </tr>
         </thead>
-        <tbody style={{ fontFamily: "monospace" }}>
+        <tbody>
           <tr>
-            <td style={{ border: "2px solid #ccc", padding: "8px" }}>Agreements</td>
+            <td>Agreements</td>
             <td style={{ 
-              border: "2px solid #ccc", 
-              padding: "8px", 
               textAlign: "left",
               maxHeight: "300px",
               overflowY: "auto",
               overflowX: "hidden",
-              wordWrap: "break-word"
+              wordWrap: "break-word",
             }}>
               <div className="react-markdown">
                 <ReactMarkdown rehypePlugins={[rehypeRaw]}>
@@ -306,10 +263,8 @@ function VariationSummary({data}) {
             </td>
           </tr>
           <tr>
-            <td style={{ border: "2px solid #ccc", padding: "8px" }}>Disagreements</td>
+            <td>Disagreements</td>
             <td style={{ 
-              border: "2px solid #ccc", 
-              padding: "8px", 
               textAlign: "left",
               maxHeight: "500px",
               overflowY: "auto",
@@ -324,10 +279,8 @@ function VariationSummary({data}) {
             </td>
           </tr>
           <tr>
-            <td style={{ border: "2px solid #ccc", padding: "8px" }}>Unique Points</td>
+            <td>Unique Points</td>
             <td style={{ 
-              border: "2px solid #ccc", 
-              padding: "8px", 
               textAlign: "left",
               maxHeight: "500px",
               overflowY: "auto",
@@ -356,20 +309,16 @@ function VariationAwareDescription({data}) {
 
   return (
     <div className="variation-description-container">
-      <table style={{ width: "100%", borderCollapse: "collapse", overflow: "hidden" }}>
-        <thead style={{ backgroundColor: "#f4f4f4" }}>
+      <table className="variation-aware-table">
+        <thead>
           <tr>
-            <th style={{ border: "2px solid #ccc", padding: "8px" }}>Support Indicator</th>
-            <th style={{ border: "2px solid #ccc", padding: "8px" }}>Variation-aware Description</th>
+            <th>Support Indicator</th>
+            <th>Variation-aware Description</th>
           </tr>
         </thead>
-        <tbody style={{ fontFamily: "monospace" }}>
+        <tbody>
           <tr>
-            <td style={{ 
-              border: "2px solid #ccc", 
-              padding: "8px",
-              width: "15%"
-            }}>
+            <td style={{ width: "15%" }}>
               <div className="detail-summary-header">
                 <div className="representation-type-buttons">
                   <button 
@@ -400,8 +349,6 @@ function VariationAwareDescription({data}) {
               </div>
             </td>
             <td style={{ 
-              border: "2px solid #ccc", 
-              padding: "8px", 
               textAlign: "left",
               maxHeight: "500px",
               overflowY: "auto",
@@ -481,11 +428,10 @@ function PerceptionTask() {
         width: "100%",
         top: 0,
         left: 0,
-        paddingLeft: "12px",
-        paddingRight: "12px",
-        paddingTop: 0,
-        paddingBottom: 3,
-        marginTop: "12px",
+        marginTop: "16px",
+        paddingLeft: "24px",
+        paddingRight: "24px",
+        paddingBottom: "16px",
         overflowY: "auto",
         height: "100vh",
         boxSizing: "border-box",

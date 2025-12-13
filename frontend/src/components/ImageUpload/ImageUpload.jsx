@@ -234,7 +234,7 @@ const ImageUpload = ({ onImageChange, currentImage }) => {
             </button>
           </div>
           <div className="image-preview">
-            <img src={currentImage} alt="Preview" />
+            {currentImage && <img src={currentImage} alt="Preview" />}
           </div>
         </div>
       )}

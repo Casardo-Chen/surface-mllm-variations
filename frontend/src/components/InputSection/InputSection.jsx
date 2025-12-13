@@ -201,7 +201,7 @@ function InputSection() {
 
 
   return (
-    <>
+    <div className="input-section-wrapper">
       {/* Hamburger Menu */}
       <button 
         className="hamburger-menu"
@@ -218,194 +218,194 @@ function InputSection() {
       />
 
       <div className={`input-section ${sidebarOpen ? 'sidebar-open' : ''}`}>
-    <Tabs 
-      defaultValue="example"
-      className="w-full"
-    >
-      <TabsList>
-        <TabsTrigger value="example">Examples</TabsTrigger>
-        <TabsTrigger value="demo">Try it out!</TabsTrigger>
-      </TabsList>
-      <TabsContent value="demo">
-        <div className="input-controls">
-            <ImageUpload 
-              onImageChange={handleImageUpload}
-              currentImage={imageLink}
-            />
-            <input 
-              type="text" 
-              alt='prompt'
-              placeholder="Enter your prompt..."
-              className="prompt-input"
-              onChange={(e) => setPrompt(e.target.value)}
-              value={prompt}
-            />
-            <Button 
-              onClick={handleSubmit}
-              disabled={isLoading}
-              variant="outline"
-            >
-              {isLoading ? 'Generating...' : 'Submit'}
-            </Button>
-            <Button 
-              variant="outline"
-              onClick={() => {
-                setResponses({});
-                setImageLink('');
-                setPrompt('');
-                setNumTrials('');
-                setBase64Image('');
-                setImageSource('url');
-                setSelectedModels(['gpt', 'claude', 'gemini']);
-                setPromptVariation('original');
-              }
-              }
-            >
-              Clear
-            </Button>
-        <div className="border border-border rounded-lg overflow-hidden">
-      <Table 
-        className="w-full "
-      >
-        <TableBody>
-          <TableRow className="*:border-border hover:bg-transparent [&>:not(:last-child)]:border-r">
-            <TableCell className="bg-muted/50 py-2 font-medium">Models</TableCell>
-            <TableCell className="py-2">
-            <div className="checkbox-group">
-              <div className="checkbox-options" style= {{display: 'flex', flexDirection: 'column'}}>
-                <label>
+        <Tabs 
+          defaultValue="example"
+          className="w-full"
+        >
+          <TabsList>
+            <TabsTrigger value="example">Examples</TabsTrigger>
+            <TabsTrigger value="demo">Try it out!</TabsTrigger>
+          </TabsList>
+          <TabsContent value="demo">
+            <div className="input-controls">
+                <ImageUpload 
+                  onImageChange={handleImageUpload}
+                  currentImage={imageLink}
+                />
+                <input 
+                  type="text" 
+                  alt='prompt'
+                  placeholder="Enter your prompt..."
+                  className="prompt-input"
+                  onChange={(e) => setPrompt(e.target.value)}
+                  value={prompt}
+                />
+                <Button 
+                  onClick={handleSubmit}
+                  disabled={isLoading}
+                  variant="outline"
+                >
+                  {isLoading ? 'Generating...' : 'Submit'}
+                </Button>
+                <Button 
+                  variant="outline"
+                  onClick={() => {
+                    setResponses({});
+                    setImageLink('');
+                    setPrompt('');
+                    setNumTrials('');
+                    setBase64Image('');
+                    setImageSource('url');
+                    setSelectedModels(['gpt', 'claude', 'gemini']);
+                    setPromptVariation('original');
+                  }
+                  }
+                >
+                  Clear
+                </Button>
+            <div className="border border-border rounded-lg overflow-hidden">
+          <Table 
+            className="w-full "
+          >
+            <TableBody>
+              <TableRow className="*:border-border hover:bg-transparent [&>:not(:last-child)]:border-r">
+                <TableCell className="bg-muted/50 py-2 font-medium">Models</TableCell>
+                <TableCell className="py-2">
+                <div className="checkbox-group">
+                  <div className="checkbox-options" style= {{display: 'flex', flexDirection: 'column'}}>
+                    <label>
+                      <input 
+                        type="checkbox" 
+                        name="gpt4v" 
+                        checked={selectedModels.includes('gpt')}
+                        onChange={() => handleModelSelection('gpt')}
+                      />
+                      GPT-4o
+                    </label>
+                    <label>
+                      <input 
+                        type="checkbox" 
+                        name="claude3" 
+                        checked={selectedModels.includes('claude')}
+                        onChange={() => handleModelSelection('claude')}
+                      />
+                      Claude 3.7 Sonnet
+                    </label>
+                    <label>
+                      <input 
+                        type="checkbox" 
+                        name="gemini" 
+                        checked={selectedModels.includes('gemini')}
+                        onChange={() => handleModelSelection('gemini')}
+                      />
+                      Gemini 1.5 pro
+                    </label>
+                  </div>
+                </div>
+                </TableCell>
+              </TableRow>
+              <TableRow className="*:border-border hover:bg-transparent [&>:not(:last-child)]:border-r">
+                <TableCell className="bg-muted/50 py-2 font-medium">Trials</TableCell>
+                <TableCell 
+                  className="py-2"
+                  style={{ 
+                    width: '100%',
+                  }}
+                >
                   <input 
-                    type="checkbox" 
-                    name="gpt4v" 
-                    checked={selectedModels.includes('gpt')}
-                    onChange={() => handleModelSelection('gpt')}
+                    type="text" 
+                    alt='target trial number'
+                    placeholder="Enter number of trials..."
+                    width="100%"
+                    onChange={(e) => setNumTrials(e.target.value)}
+                    value={numTrials}
                   />
-                  GPT-4o
-                </label>
-                <label>
-                  <input 
-                    type="checkbox" 
-                    name="claude3" 
-                    checked={selectedModels.includes('claude')}
-                    onChange={() => handleModelSelection('claude')}
-                  />
-                  Claude 3.7 Sonnet
-                </label>
-                <label>
-                  <input 
-                    type="checkbox" 
-                    name="gemini" 
-                    checked={selectedModels.includes('gemini')}
-                    onChange={() => handleModelSelection('gemini')}
-                  />
-                  Gemini 1.5 pro
-                </label>
-              </div>
-            </div>
-            </TableCell>
-          </TableRow>
-          <TableRow className="*:border-border hover:bg-transparent [&>:not(:last-child)]:border-r">
-            <TableCell className="bg-muted/50 py-2 font-medium">Trials</TableCell>
-            <TableCell 
-              className="py-2"
-              style={{ 
-                width: '100%',
-               }}
-            >
-              <input 
-                type="text" 
-                alt='target trial number'
-                placeholder="Enter number of trials..."
-                width="100%"
-                onChange={(e) => setNumTrials(e.target.value)}
-                value={numTrials}
-              />
-            </TableCell>
-          </TableRow>
-          <TableRow className="*:border-border hover:bg-transparent [&>:not(:last-child)]:border-r">
-            <TableCell className="bg-muted/50 py-2 font-medium">Prompts</TableCell>
-            <TableCell className="py-2">
-            <div className="radio-group">
-              <div className="radio-options" style= {{display: 'flex', flexDirection: 'column'}}>
-                <label>
-                  <input 
-                    type="radio"
-                    name="promptVariation"
-                    value="original"
-                    checked={promptVariation === 'original'}
-                    onChange={() => setPromptVariation('original')}
-                  />
-                  Original prompt only
-                </label>
-                <label>
-                  <input 
-                    type="radio"
-                    name="promptVariation"
-                    value="paraphrased"
-                    checked={promptVariation === 'paraphrased'}
-                    onChange={() => setPromptVariation('paraphrased')}
-                  />
-                  Paraphrased prompts
-                </label>
-                <label>
-                  <input 
-                    type="radio"
-                    name="promptVariation"
-                    value="various"
-                    checked={promptVariation === 'various'}
-                    onChange={() => setPromptVariation('various')}
-                  />
-                  Persona
-                </label>
-              </div>
-            </div>
-            </TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </div>
+                </TableCell>
+              </TableRow>
+              <TableRow className="*:border-border hover:bg-transparent [&>:not(:last-child)]:border-r">
+                <TableCell className="bg-muted/50 py-2 font-medium">Prompts</TableCell>
+                <TableCell className="py-2">
+                <div className="radio-group">
+                  <div className="radio-options" style= {{display: 'flex', flexDirection: 'column'}}>
+                    <label>
+                      <input 
+                        type="radio"
+                        name="promptVariation"
+                        value="original"
+                        checked={promptVariation === 'original'}
+                        onChange={() => setPromptVariation('original')}
+                      />
+                      Original prompt only
+                    </label>
+                    <label>
+                      <input 
+                        type="radio"
+                        name="promptVariation"
+                        value="paraphrased"
+                        checked={promptVariation === 'paraphrased'}
+                        onChange={() => setPromptVariation('paraphrased')}
+                      />
+                      Paraphrased prompts
+                    </label>
+                    <label>
+                      <input 
+                        type="radio"
+                        name="promptVariation"
+                        value="various"
+                        checked={promptVariation === 'various'}
+                        onChange={() => setPromptVariation('various')}
+                      />
+                      Persona
+                    </label>
+                  </div>
+                </div>
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
         </div>
-      </TabsContent>
-      <TabsContent value="example">
-        <div className="example-dropdown-container">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className="example-dropdown-trigger">
-                  {selectedExample ? selectedExample.charAt(0).toUpperCase() + selectedExample.slice(1) : 'Choose an example...'}
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                {examples.map((example) => (
-                  <DropdownMenuItem
-                    key={example}
-                    onClick={() => handleExampleSelection(example)}
-                  >
-                    {example.charAt(0).toUpperCase() + example.slice(1)}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          {selectedExample && (
-            <div className="example-preview">
-              <img src={imageLink} alt={selectedExample} />
-              <textarea 
-                ref={promptTextareaRef}
-                readOnly
-                className="prompt-input prompt-display"
-                value={prompt}
-                rows={1}
-              />
-
-     
             </div>
-            
-          )}
-      </div>
+          </TabsContent>
+          <TabsContent value="example">
+            <div className="example-dropdown-container">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button className="example-dropdown-trigger">
+                      {selectedExample ? selectedExample.charAt(0).toUpperCase() + selectedExample.slice(1) : 'Choose an example...'}
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    {examples.map((example) => (
+                      <DropdownMenuItem
+                        key={example}
+                        onClick={() => handleExampleSelection(example)}
+                      >
+                        {example.charAt(0).toUpperCase() + example.slice(1)}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              {selectedExample && (
+                <div className="example-preview">
+                  {imageLink && <img src={imageLink} alt={selectedExample} />}
+                  <textarea 
+                    ref={promptTextareaRef}
+                    readOnly
+                    className="prompt-input prompt-display"
+                    value={prompt}
+                    rows={1}
+                  />
 
-      </TabsContent>
-    </Tabs>
+        
+                </div>
+                
+              )}
+          </div>
+
+          </TabsContent>
+        </Tabs>
+      </div>
     </div>
-    </>
   );
 }
 export default InputSection; 

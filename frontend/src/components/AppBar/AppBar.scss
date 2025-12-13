@@ -14,7 +14,8 @@
     // margin-left: 12px;
     // margin-right: 12px;
     padding: 12px;
-	background-color: rgba(238,240,242, 0.6);
+	// background-color: rgba(238,240,242, 0.6);
+    background-color: #f4f4f4;
     border: 2px solid #ccc;
     backdrop-filter: blur(4px);
     box-shadow:  0px 12px 12px rgba(0, 0, 0, 0.1);
@@ -102,10 +103,10 @@
 
 .dropdown-trigger {
     padding: 6px 12px;
-    border: 1px solid #d1d5db;
+    border: 1px solid #666;
     border-radius: 6px;
     background-color: #ffffff;
-    color: #374151;
+    color: #666;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
@@ -121,8 +122,8 @@
 
 .dropdown-trigger:focus {
     outline: none;
-    border-color: #000000;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    border-color: #666;
+    box-shadow: 0 0 0 3px rgba(102, 102, 102, 0.1);
 }
 
 .app-bar-right button {
@@ -168,4 +169,6 @@
     cursor: pointer;
     width: 16px;
     height: 16px;
+    accent-color: #666;
+    border-color: #666;
 }

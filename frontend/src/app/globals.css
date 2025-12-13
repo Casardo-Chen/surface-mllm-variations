@@ -59,7 +59,7 @@ body {
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: rgb(243, 242, 238);
   --foreground: oklch(0.145 0 0);
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
@@ -228,4 +228,39 @@ html {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Checkbox, Radio, and Selector Styling */
+input[type="checkbox"] {
+  accent-color: #666;
+  border-color: #666;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #666;
+  border-color: #666;
+}
+
+input[type="radio"] {
+  accent-color: #666;
+  border-color: #666;
+}
+
+input[type="radio"]:checked {
+  background-color: #666;
+  border-color: #666;
+}
+
+select,
+.dropdown-trigger,
+.example-dropdown-trigger {
+  color: #666;
+  border-color: #666;
+}
+
+select:focus,
+.dropdown-trigger:focus,
+.example-dropdown-trigger:focus {
+  border-color: #666;
+  outline-color: #666;
 }

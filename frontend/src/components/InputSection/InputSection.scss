@@ -13,6 +13,7 @@
   box-sizing: border-box;
   border-right: 2px solid #ccc;
   background-color: #fff;
+  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   transition: transform 0.3s ease-in-out;
 
@@ -90,9 +91,10 @@
 
 .image-select {
   padding: 0.75rem;
-  border: 2px solid #a3a3a3;
+  border: 2px solid #666;
   border-radius: 4px;
   font-size: 1rem;
+  color: #666;
 }
 
 .line{
@@ -165,10 +167,11 @@
 .example-dropdown-trigger {
   width: 100%;
   padding: 0.75rem;
-  border: 2px solid #ccc;
+  border: 2px solid #666;
   border-radius: 12px;
   font-size: 1rem;
   background-color: #ffffff;
+  color: #666;
   cursor: pointer;
   transition: border-color 0.2s ease;
   text-align: left;
@@ -182,7 +185,7 @@
   }
 
   &:hover {
-    border-color: #999;
+    border-color: #666;
   }
 
   &::after {
@@ -204,4 +207,30 @@
   margin-top: 1rem;
   padding-top: 1rem;
   border-top: 1px solid #eee;
+}
+
+.checkbox-group,
+.checkbox-options {
+  input[type="checkbox"] {
+    accent-color: #666;
+    border-color: #666;
+  }
+  
+  input[type="checkbox"]:checked {
+    background-color: #666;
+    border-color: #666;
+  }
+}
+
+.radio-group,
+.radio-options {
+  input[type="radio"] {
+    accent-color: #666;
+    border-color: #666;
+  }
+  
+  input[type="radio"]:checked {
+    background-color: #666;
+    border-color: #666;
+  }
 }

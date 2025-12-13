@@ -7,7 +7,6 @@ import useSystemStore from '../../store/use-system-store';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/base-tabs';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 
 
 
@@ -263,107 +262,98 @@ function InputSection() {
                 >
                   Clear
                 </Button>
-            <div className="border border-border rounded-lg overflow-hidden">
-          <Table 
-            className="w-full "
-          >
-            <TableBody>
-              <TableRow className="*:border-border hover:bg-transparent [&>:not(:last-child)]:border-r">
-                <TableCell className="bg-muted/50 py-2 font-medium">Models</TableCell>
-                <TableCell className="py-2">
-                <div className="checkbox-group">
-                  <div className="checkbox-options" style= {{display: 'flex', flexDirection: 'column'}}>
-                    <label>
-                      <input 
-                        type="checkbox" 
-                        name="gpt4v" 
-                        checked={selectedModels.includes('gpt')}
-                        onChange={() => handleModelSelection('gpt')}
-                      />
-                      GPT-4o
-                    </label>
-                    <label>
-                      <input 
-                        type="checkbox" 
-                        name="claude3" 
-                        checked={selectedModels.includes('claude')}
-                        onChange={() => handleModelSelection('claude')}
-                      />
-                      Claude 3.7 Sonnet
-                    </label>
-                    <label>
-                      <input 
-                        type="checkbox" 
-                        name="gemini" 
-                        checked={selectedModels.includes('gemini')}
-                        onChange={() => handleModelSelection('gemini')}
-                      />
-                      Gemini 1.5 pro
-                    </label>
-                  </div>
-                </div>
-                </TableCell>
-              </TableRow>
-              <TableRow className="*:border-border hover:bg-transparent [&>:not(:last-child)]:border-r">
-                <TableCell className="bg-muted/50 py-2 font-medium">Trials</TableCell>
-                <TableCell 
-                  className="py-2"
-                  style={{ 
-                    width: '100%',
-                  }}
-                >
-                  <input 
-                    type="text" 
-                    alt='target trial number'
-                    placeholder="Enter number of trials..."
-                    width="100%"
-                    onChange={(e) => setNumTrials(e.target.value)}
-                    value={numTrials}
-                  />
-                </TableCell>
-              </TableRow>
-              <TableRow className="*:border-border hover:bg-transparent [&>:not(:last-child)]:border-r">
-                <TableCell className="bg-muted/50 py-2 font-medium">Prompts</TableCell>
-                <TableCell className="py-2">
-                <div className="radio-group">
-                  <div className="radio-options" style= {{display: 'flex', flexDirection: 'column'}}>
-                    <label>
-                      <input 
-                        type="radio"
-                        name="promptVariation"
-                        value="original"
-                        checked={promptVariation === 'original'}
-                        onChange={() => setPromptVariation('original')}
-                      />
-                      Original prompt only
-                    </label>
-                    <label>
-                      <input 
-                        type="radio"
-                        name="promptVariation"
-                        value="paraphrased"
-                        checked={promptVariation === 'paraphrased'}
-                        onChange={() => setPromptVariation('paraphrased')}
-                      />
-                      Paraphrased prompts
-                    </label>
-                    <label>
-                      <input 
-                        type="radio"
-                        name="promptVariation"
-                        value="various"
-                        checked={promptVariation === 'various'}
-                        onChange={() => setPromptVariation('various')}
-                      />
-                      Persona
-                    </label>
-                  </div>
-                </div>
-                </TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </div>
+            <table className="description-table">
+              <tbody>
+                <tr>
+                  <td style={{ backgroundColor: '#f4f4f4', fontWeight: 600 }}>Models</td>
+                  <td>
+                    <div className="checkbox-group">
+                      <div className="checkbox-options" style={{display: 'flex', flexDirection: 'column'}}>
+                        <label>
+                          <input 
+                            type="checkbox" 
+                            name="gpt4v" 
+                            checked={selectedModels.includes('gpt')}
+                            onChange={() => handleModelSelection('gpt')}
+                          />
+                          GPT-4o
+                        </label>
+                        <label>
+                          <input 
+                            type="checkbox" 
+                            name="claude3" 
+                            checked={selectedModels.includes('claude')}
+                            onChange={() => handleModelSelection('claude')}
+                          />
+                          Claude 3.7 Sonnet
+                        </label>
+                        <label>
+                          <input 
+                            type="checkbox" 
+                            name="gemini" 
+                            checked={selectedModels.includes('gemini')}
+                            onChange={() => handleModelSelection('gemini')}
+                          />
+                          Gemini 1.5 pro
+                        </label>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style={{ backgroundColor: '#f4f4f4', fontWeight: 600 }}>Trials</td>
+                  <td>
+                    <input 
+                      type="text" 
+                      alt='target trial number'
+                      placeholder="Enter number of trials..."
+                      style={{ width: '100%' }}
+                      onChange={(e) => setNumTrials(e.target.value)}
+                      value={numTrials}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td style={{ backgroundColor: '#f4f4f4', fontWeight: 600 }}>Prompts</td>
+                  <td>
+                    <div className="radio-group">
+                      <div className="radio-options" style={{display: 'flex', flexDirection: 'column'}}>
+                        <label>
+                          <input 
+                            type="radio"
+                            name="promptVariation"
+                            value="original"
+                            checked={promptVariation === 'original'}
+                            onChange={() => setPromptVariation('original')}
+                          />
+                          Original prompt only
+                        </label>
+                        <label>
+                          <input 
+                            type="radio"
+                            name="promptVariation"
+                            value="paraphrased"
+                            checked={promptVariation === 'paraphrased'}
+                            onChange={() => setPromptVariation('paraphrased')}
+                          />
+                          Paraphrased prompts
+                        </label>
+                        <label>
+                          <input 
+                            type="radio"
+                            name="promptVariation"
+                            value="various"
+                            checked={promptVariation === 'various'}
+                            onChange={() => setPromptVariation('various')}
+                          />
+                          Persona
+                        </label>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
             </div>
           </TabsContent>
           <TabsContent value="example">
@@ -395,8 +385,6 @@ function InputSection() {
                     value={prompt}
                     rows={1}
                   />
-
-        
                 </div>
                 
               )}

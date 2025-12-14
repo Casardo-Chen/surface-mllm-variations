@@ -75,7 +75,7 @@
 .submit-button {
   width: 100%;
   padding: 0.75rem;
-  background-color: #ffffff;
+  background-color: #fff;
   color: #333333;
   border: none;
   border-radius: 4px;
@@ -85,8 +85,8 @@
 }
 
 .submit-button:hover {
-  background-color: #999999;
-  color: #eeeeee;
+  background-color: #999;
+  color: #eee;
 }
 
 .image-select {
@@ -108,13 +108,13 @@
   top: 20px;
   left: 20px;
   z-index: 1001;
-  background: none;
+  background-color: #fff;
   border: 2px solid #ccc;
   cursor: pointer;
   padding: 8px;
   border-radius: 4px;
-  background-color: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  // background-color: rgba(255, 255, 255, 0.9);
+  // box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
   @media (max-width: 768px) {
     display: block;

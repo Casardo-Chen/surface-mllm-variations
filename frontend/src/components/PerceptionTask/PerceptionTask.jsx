@@ -15,16 +15,16 @@ import { getModelName, highlightVariations } from '../../utils/helper';
 import AppBar from '../AppBar/AppBar.jsx';
 
 
-function DescriptionTable({ data }) {
-  const models = [...new Set(Object.values(data).map((item) => item.model))];
-  const prompts = [...new Set(Object.values(data).map((item) => item.prompt))];
+function DescriptionTable({ data, imageLink }) {
+  const models = [...new Set(Object.values(data || {}).map((item) => item.model))];
+  const prompts = [...new Set(Object.values(data || {}).map((item) => item.prompt))];
   
   // Use global filter states
   const { selectedModels, setSelectedModels, showColorUncertaintyIndicator } = useSystemStore();
   const [selectedPrompts, setSelectedPrompts] = useState([...prompts]);
   const [viewMode, setViewMode] = useState("list"); // "list" or "grid"
 
-  const filteredData = Object.entries(data).filter(([id, item]) => {
+  const filteredData = Object.entries(data || {}).filter(([id, item]) => {
     const modelMatch =
       selectedModels.length === 0 || selectedModels.includes(item.model);
     const promptMatch =
@@ -40,7 +40,7 @@ function DescriptionTable({ data }) {
   // Group entries by model to determine trial numbers
   // Each model's entries are numbered sequentially (1st, 2nd, 3rd, etc.)
   const entriesByModel = {};
-  Object.entries(data).forEach(([id, item]) => {
+  Object.entries(data || {}).forEach(([id, item]) => {
     if (!entriesByModel[item.model]) {
       entriesByModel[item.model] = [];
     }
@@ -57,7 +57,9 @@ function DescriptionTable({ data }) {
   });
 
   // Find the maximum number of trials across all models
-  const maxTrials = Math.max(...Object.values(entriesByModel).map(entries => entries.length));
+  const maxTrials = Object.values(entriesByModel).length > 0 
+    ? Math.max(...Object.values(entriesByModel).map(entries => entries.length))
+    : 0;
 
   // Create a map for quick lookup: trialNumber -> model -> description
   // Trial numbers are 1-indexed (1, 2, 3, ...)
@@ -97,11 +99,13 @@ function DescriptionTable({ data }) {
               overflowX: "hidden",
               wordWrap: "break-word"
             }}>
-              <div className="react-markdown">
-                <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-                  {showColorUncertaintyIndicator ? highlightVariations(item.description) : item.description}
-                </ReactMarkdown>
-              </div>
+              {imageLink ? (
+                <div className="react-markdown">
+                  <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                    {showColorUncertaintyIndicator ? highlightVariations(item.description) : item.description}
+                  </ReactMarkdown>
+                </div>
+              ) : null}
             </td>
           </tr>
         ))}
@@ -167,11 +171,13 @@ function DescriptionTable({ data }) {
                     }}
                   >
                     {itemMatches ? (
-                      <div className="react-markdown">
-                        <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-                          {showColorUncertaintyIndicator ? highlightVariations(item.description) : item.description}
-                        </ReactMarkdown>
-                      </div>
+                      imageLink ? (
+                        <div className="react-markdown">
+                          <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                            {showColorUncertaintyIndicator ? highlightVariations(item.description) : item.description}
+                          </ReactMarkdown>
+                        </div>
+                      ) : null
                     ) : (
                       <span style={{ color: "#999", fontStyle: "italic" }}>N/A</span>
                     )}
@@ -234,7 +240,7 @@ function DescriptionTable({ data }) {
   );
 }
 
-function VariationSummary({data}) {
+function VariationSummary({data, imageLink}) {
   const { showColorUncertaintyIndicator } = useSystemStore();
   return (
     <div className="variation-description-container">
@@ -255,11 +261,13 @@ function VariationSummary({data}) {
               overflowX: "hidden",
               wordWrap: "break-word",
             }}>
-              <div className="react-markdown">
-                <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-                  {showColorUncertaintyIndicator ? highlightVariations(data?.similarity) : data?.similarity}
-                </ReactMarkdown>
-              </div>
+              {imageLink ? (
+                <div className="react-markdown">
+                  <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                    {showColorUncertaintyIndicator ? highlightVariations(data?.similarity) : data?.similarity}
+                  </ReactMarkdown>
+                </div>
+              ) : null}
             </td>
           </tr>
           <tr>
@@ -271,11 +279,13 @@ function VariationSummary({data}) {
               overflowX: "hidden",
               wordWrap: "break-word"
             }}>
-              <div className="react-markdown">
-                <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-                  {showColorUncertaintyIndicator ? highlightVariations(data?.disagreement) : data?.disagreement}
-                </ReactMarkdown>
-              </div>
+              {imageLink ? (
+                <div className="react-markdown">
+                  <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                    {showColorUncertaintyIndicator ? highlightVariations(data?.disagreement) : data?.disagreement}
+                  </ReactMarkdown>
+                </div>
+              ) : null}
             </td>
           </tr>
           <tr>
@@ -287,11 +297,13 @@ function VariationSummary({data}) {
               overflowX: "hidden",
               wordWrap: "break-word"
             }} aria-label='model-specific'>
-              <div className="react-markdown">
-                <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-                  {showColorUncertaintyIndicator ? highlightVariations(data?.uniqueness) : data?.uniqueness}
-                </ReactMarkdown>
-              </div>
+              {imageLink ? (
+                <div className="react-markdown">
+                  <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                    {showColorUncertaintyIndicator ? highlightVariations(data?.uniqueness) : data?.uniqueness}
+                  </ReactMarkdown>
+                </div>
+              ) : null}
             </td>
           </tr>
         </tbody>
@@ -300,7 +312,7 @@ function VariationSummary({data}) {
   );
 }
 
-function VariationAwareDescription({data}) {
+function VariationAwareDescription({data, imageLink}) {
   const {
     representationType,
     setRepresentationType,
@@ -355,21 +367,23 @@ function VariationAwareDescription({data}) {
               overflowX: "hidden",
               wordWrap: "break-word"
             }} aria-label='variation'>
-              <div className="react-markdown">
-                <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-                  {showColorUncertaintyIndicator ? highlightVariations(
-                    representationType === "model" ? data?.model_diff :
-                    representationType === "none" ? data?.var_only :
-                    representationType === "percentage" ? data?.percentage :
-                    representationType === "natural" && data?.nl
-                  ) : (
-                    representationType === "model" ? data?.model_diff :
-                    representationType === "none" ? data?.var_only :
-                    representationType === "percentage" ? data?.percentage :
-                    representationType === "natural" && data?.nl
-                  )}             
-                </ReactMarkdown>
-              </div>
+              {imageLink ? (
+                <div className="react-markdown">
+                  <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                    {showColorUncertaintyIndicator ? highlightVariations(
+                      representationType === "model" ? data?.model_diff :
+                      representationType === "none" ? data?.var_only :
+                      representationType === "percentage" ? data?.percentage :
+                      representationType === "natural" && data?.nl
+                    ) : (
+                      representationType === "model" ? data?.model_diff :
+                      representationType === "none" ? data?.var_only :
+                      representationType === "percentage" ? data?.percentage :
+                      representationType === "natural" && data?.nl
+                    )}             
+                  </ReactMarkdown>
+                </div>
+              ) : null}
             </td>
           </tr>
         </tbody>
@@ -386,6 +400,7 @@ function PerceptionTask() {
     setVariationSummary,
     currentImage,
     setCurrentImage,
+    imageLink,
     showVariationSummary,
     showVariationAwareDescription,
     showDescriptionList
@@ -453,9 +468,9 @@ function PerceptionTask() {
       </Box>
       
       <div aria-label='description' style={{ textAlign: "left", marginTop: "12px" }}>
-        {showVariationSummary && <VariationSummary data={variationSummary} />}
-        {showVariationAwareDescription && <VariationAwareDescription data={variationSummary} />}
-        {showDescriptionList && <DescriptionTable data={responses} />}
+        {showVariationSummary && <VariationSummary data={variationSummary} imageLink={imageLink} />}
+        {showVariationAwareDescription && <VariationAwareDescription data={variationSummary} imageLink={imageLink} />}
+        {imageLink && showDescriptionList && <DescriptionTable data={responses} imageLink={imageLink} />}
       </div>
     </Box>
   );

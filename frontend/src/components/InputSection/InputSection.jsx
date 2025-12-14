@@ -53,12 +53,32 @@ function InputSection() {
     setViewMode, 
     selectedModels,
     setSelectedModels,
+    setPrompt: setStorePrompt,
   } = useSystemStore();
 
   const [imageSource, setImageSource] = useState('url');
   const [base64Image, setBase64Image] = useState('');
 
   const [mode, setMode] = useState('example');
+
+  // Clear all data when switching from examples to demo
+  const handleTabChange = (newValue) => {
+    if (mode === 'example' && newValue === 'demo') {
+      // Clear store state
+      setResponses({});
+      setVariationSummary({});
+      setImageLink('');
+      setCurrentImage('');
+      setStorePrompt('');
+      
+      // Clear local state
+      setPrompt('');
+      setSelectedExample('');
+      setBase64Image('');
+      setImageSource('url');
+    }
+    setMode(newValue);
+  };
 
   const handleSubmit = async () => {
     // check if the image is a url or a local file
@@ -220,6 +240,8 @@ function InputSection() {
         <Tabs 
           defaultValue="example"
           className="w-full"
+          value={mode}
+          onValueChange={handleTabChange}
         >
           <TabsList>
             <TabsTrigger value="example">Examples</TabsTrigger>

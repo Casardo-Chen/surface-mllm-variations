@@ -8,10 +8,8 @@ import os
 
 import argparse
 from prompts import alignment_system_prompt, group_system_prompt
-from data_class import AtomicFact, GroupedResults, GroupedResult
 
 import helper
-import data_class
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 

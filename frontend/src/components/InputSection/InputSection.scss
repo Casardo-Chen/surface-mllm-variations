@@ -17,6 +17,16 @@
   z-index: 1000;
   transition: transform 0.3s ease-in-out;
 
+  // Make tabs stretch to fill the sidebar so the footer can sit at the bottom
+  > [data-slot="tabs"] {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+    min-width: 0;
+  }
+
   @media (max-width: 768px) {
     width: 280px;
     transform: translateX(-100%);
@@ -31,6 +41,40 @@
   }
 }
 
+.input-section [data-slot="tabs-list"] {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex-wrap: wrap;
+  min-width: 0;
+  box-sizing: border-box;
+  
+  // Hide scrollbar but keep functionality
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 2px;
+  }
+}
+
+.input-section [data-slot="tabs-content"] {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
 .image-preview {
   flex: 1;
   width: 100%;
@@ -39,7 +83,6 @@
 
 .image-preview img {
   max-width: 100%;
-  border-radius: 8px;
 }
 
 .input-controls {
@@ -51,12 +94,31 @@
   width: 100%;
 }
 
-.image-input,
-.prompt-input {
+.image-input {
   padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 12px;
+  border: 2px solid #ccc;
+  border-radius: 16px;
   font-size: 1rem;
+}
+
+.prompt-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #ccc;
+  border-radius: 16px;
+  font-size: 0.9rem;
+  background-color: #fff;
+  color: #333;
+  transition: border-color 0.2s ease;
+
+  &:focus {
+    outline: none;
+    border-color: #666;
+  }
+
+  &::placeholder {
+    color: #999;
+  }
 }
 
 .prompt-display {
@@ -87,6 +149,37 @@
 .submit-button:hover {
   background-color: #999;
   color: #eee;
+}
+
+.action-button {
+  border-radius: 12px !important;
+  background-color: #fff !important;
+  color: #333 !important;
+  border: 2px solid #ccc !important;
+  padding: 12px 24px !important;
+  font-size: 14px !important;
+  cursor: pointer;
+  font-weight: 500;
+  
+  &:hover {
+    background-color: #f0f0f0 !important;
+    border-color: #999 !important;
+  }
+  
+  &:active {
+    background-color: #e8e8e8 !important;
+    border-color: #888 !important;
+  }
+  
+  &:disabled {
+    opacity: 0.6 !important;
+    cursor: not-allowed;
+    
+    &:hover {
+      transform: none !important;
+      box-shadow: none !important;
+    }
+  }
 }
 
 .image-select {
@@ -167,11 +260,11 @@
 .example-dropdown-trigger {
   width: 100%;
   padding: 0.75rem;
-  border: 2px solid #666;
-  border-radius: 12px;
+  border: 2px solid #ccc;
+  border-radius: 16px;
   font-size: 1rem;
   background-color: #ffffff;
-  color: #666;
+  // color: #666;
   cursor: pointer;
   transition: border-color 0.2s ease;
   text-align: left;
@@ -181,7 +274,7 @@
 
   &:focus {
     outline: none;
-    border-color: #666;
+    border-color: #ccc;
   }
 
   &:hover {
@@ -191,13 +284,17 @@
   &::after {
     content: '▼';
     font-size: 0.8rem;
-    color: #666;
+    color: #999;
     transition: transform 0.2s ease;
   }
 
   &[data-state="open"]::after {
     transform: rotate(180deg);
   }
+}
+
+.example-dropdown-content {
+  border-radius: 16px !important;
 }
 
 .example-preview {
@@ -207,6 +304,12 @@
   margin-top: 1rem;
   padding-top: 1rem;
   border-top: 1px solid #eee;
+
+  img {
+    max-height: 400px;
+    width: auto;
+    object-fit: contain;
+  }
 }
 
 .checkbox-group,
@@ -270,18 +373,6 @@
     font-family: monospace;
     
     tr {
-      &:first-child {
-        td {
-          &:first-child {
-            border-top-left-radius: 14px;
-          }
-          
-          &:last-child {
-            border-top-right-radius: 14px;
-          }
-        }
-      }
-      
       &:not(:last-child) {
         td {
           border-bottom: 2px solid #ccc;
@@ -314,6 +405,162 @@
       td {
         background-color: #fafafa;
       }
+    }
+  }
+}
+
+.example-tab-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+.instructions-content {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  padding-top: 1rem;
+  margin-top: 0.75rem;
+
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+
+  h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: #333;
+  }
+
+  p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    color: #555;
+  }
+
+  ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    color: #555;
+
+    li {
+      margin-bottom: 0.5rem;
+
+      strong {
+        color: #333;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.api-keys-content {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+
+  p {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    color: #555;
+  }
+
+  .api-key-input-group {
+    margin-bottom: 1.5rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+      color: #333;
+
+      strong {
+        font-weight: 600;
+      }
+
+      .api-key-hint {
+        font-weight: normal;
+        color: #666;
+        font-size: 0.85rem;
+        margin-left: 0.5rem;
+      }
+    }
+
+    .api-key-input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid #ccc;
+      border-radius: 16px;
+      font-size: 0.9rem;
+      font-family: monospace;
+      background-color: #fff;
+      color: #333;
+      transition: border-color 0.2s ease;
+
+      &:focus {
+        outline: none;
+        border-color: #666;
+      }
+
+      &::placeholder {
+        color: #999;
+      }
+    }
+  }
+
+  .api-keys-note {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border-left: 3px solid #666;
+
+    p {
+      margin: 0;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #555;
+
+      strong {
+        color: #333;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.input-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+  font-size: 0.85rem;
+  color: #666;
+  flex-shrink: 0;
+  background-color: #fff;
+
+  a {
+    color: #333;
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+
+    &:hover {
+      color: #000;
     }
   }
 }

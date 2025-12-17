@@ -22,6 +22,7 @@ function InputSection() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [selectedExample, setSelectedExample] = useState('');
   const promptTextareaRef = useRef(null);
+  const dropdownTriggerRef = useRef(null);
   
   // Auto-resize textarea to fit content
   useEffect(() => {
@@ -30,6 +31,22 @@ function InputSection() {
       promptTextareaRef.current.style.height = `${promptTextareaRef.current.scrollHeight}px`;
     }
   }, [prompt]);
+
+  // Match dropdown content width to trigger
+  const updateDropdownWidth = () => {
+    if (dropdownTriggerRef.current) {
+      const triggerWidth = dropdownTriggerRef.current.offsetWidth;
+      // Use setTimeout to ensure the dropdown content is rendered
+      setTimeout(() => {
+        const dropdownContent = document.querySelector('.example-dropdown-content');
+        if (dropdownContent) {
+          dropdownContent.style.width = `${triggerWidth}px`;
+          dropdownContent.style.minWidth = `${triggerWidth}px`;
+          dropdownContent.style.maxWidth = `${triggerWidth}px`;
+        }
+      }, 0);
+    }
+  };
   
   // List of available examples
   const examples = [
@@ -60,6 +77,11 @@ function InputSection() {
   const [base64Image, setBase64Image] = useState('');
 
   const [mode, setMode] = useState('example');
+  
+  // API Keys state
+  const [openaiKey, setOpenaiKey] = useState('');
+  const [geminiKey, setGeminiKey] = useState('');
+  const [claudeKey, setClaudeKey] = useState('');
 
   // Clear all data when switching from examples to demo
   const handleTabChange = (newValue) => {
@@ -246,6 +268,8 @@ function InputSection() {
           <TabsList>
             <TabsTrigger value="example">Examples</TabsTrigger>
             <TabsTrigger value="demo">Try it out!</TabsTrigger>
+            <TabsTrigger value="instructions">Instructions</TabsTrigger>
+            <TabsTrigger value="api-keys">API Keys</TabsTrigger>
           </TabsList>
           <TabsContent value="demo">
             <div className="input-controls">
@@ -265,11 +289,13 @@ function InputSection() {
                   onClick={handleSubmit}
                   disabled={isLoading}
                   variant="outline"
+                  className="action-button"
                 >
                   {isLoading ? 'Generating...' : 'Submit'}
                 </Button>
                 <Button 
                   variant="outline"
+                  className="action-button"
                   onClick={() => {
                     setResponses({});
                     setImageLink('');
@@ -379,41 +405,160 @@ function InputSection() {
             </div>
           </TabsContent>
           <TabsContent value="example">
-            <div className="example-dropdown-container">
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <button className="example-dropdown-trigger">
-                      {selectedExample ? selectedExample.charAt(0).toUpperCase() + selectedExample.slice(1) : 'Choose an example...'}
-                    </button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                    {examples.map((example) => (
-                      <DropdownMenuItem
-                        key={example}
-                        onClick={() => handleExampleSelection(example)}
-                      >
-                        {example.charAt(0).toUpperCase() + example.slice(1)}
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              {selectedExample && (
-                <div className="example-preview">
-                  {imageLink && <img src={imageLink} alt={selectedExample} />}
-                  <textarea 
-                    ref={promptTextareaRef}
-                    readOnly
-                    className="prompt-input prompt-display"
-                    value={prompt}
-                    rows={1}
-                  />
-                </div>
-                
-              )}
-          </div>
+            <div className="example-tab-content">
+              <div className="example-dropdown-container">
+                  <DropdownMenu onOpenChange={(open) => {
+                    if (open) {
+                      updateDropdownWidth();
+                    }
+                  }}>
+                    <DropdownMenuTrigger asChild>
+                      <button ref={dropdownTriggerRef} className="example-dropdown-trigger">
+                        {selectedExample ? selectedExample.charAt(0).toUpperCase() + selectedExample.slice(1) : 'Choose an example...'}
+                      </button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="example-dropdown-content">
+                      {examples.map((example) => (
+                        <DropdownMenuItem
+                          key={example}
+                          onClick={() => handleExampleSelection(example)}
+                        >
+                          {example.charAt(0).toUpperCase() + example.slice(1)}
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                  {selectedExample && (
+                    <div className="example-preview">
+                      <textarea 
+                        ref={promptTextareaRef}
+                        readOnly
+                        className="prompt-input prompt-display"
+                        value={prompt}
+                        rows={1}
+                      />
+                      {imageLink && <img src={imageLink} alt={selectedExample} />}
+                    </div>
+                    
+                  )}
+              </div>
+            </div>
+          </TabsContent>
+          <TabsContent value="instructions">
+            <div className="instructions-content">
+              <p>
+                This is a tool to non-visually assess the uncertainty in MLLM-generated image descriptions by generating and presenting variations in text-based summaries.
+              </p>
+              
+              <h4>Getting Started</h4>
+              <p>
+                <strong>Examples Tab:</strong> Browse pre-loaded examples to see how the system works. Select an example from the dropdown to view its image, prompt, and generated descriptions with variation analysis.
+              </p>
+              
+              <p>
+                <strong>Try it out! Tab:</strong> Upload your own image or provide an image URL, enter a prompt describing what you want to know about the image, and click Submit. The system will generate descriptions from multiple models and present them with variation analysis.
+              </p>
+              
+              <h4>Understanding Variations</h4>
+              <p>
+                The system shows you:
+              </p>
+              <ul>
+                <li><strong>Agreements:</strong> Claims that multiple models agree on (more reliable)</li>
+                <li><strong>Disagreements:</strong> Claims where models differ (less reliable, requires caution)</li>
+                <li><strong>Unique Mentions:</strong> Information mentioned by only one model (may be less reliable)</li>
+              </ul>
+              
+              <h4>Configuration Options</h4>
+              <p>
+                You can customize the analysis by:
+              </p>
+              <ul>
+                <li><strong>Models:</strong> Select which MLLMs to use (GPT-4o, Claude 3.7 Sonnet, Gemini 1.5 Pro)</li>
+                <li><strong>Trials:</strong> Set the number of times to query each model (more trials = more variation data)</li>
+                <li><strong>Prompts:</strong> Choose between original prompt only, paraphrased prompts, or persona-based prompts</li>
+              </ul>
+              
+              <h4>Best Practices</h4>
+              <p>
+                For high-stakes scenarios (like medication identification or diagram reading), pay close attention to inconsistencies between models and trials.
+                <br />
+                For subjective tasks (like fashion outfit analysis or image description generation), use persona generation to check different perspectives.
+              </p>
+            </div>
+          </TabsContent>
+          <TabsContent value="api-keys">
+            <div className="api-keys-content">
+              <h3>API Keys Configuration</h3>
+              <p>
+                Enter your API keys for the multimodal language models. These keys are stored locally in your browser and are not sent to any server except when making API calls to the respective services.
+              </p>
+              
+              <div className="api-key-input-group">
+                <label htmlFor="openai-key">
+                  <strong>OpenAI API Key</strong>
+                  <span className="api-key-hint">(for GPT-4o)</span>
+                </label>
+                <input
+                  id="openai-key"
+                  type="password"
+                  className="api-key-input"
+                  placeholder="sk-..."
+                  value={openaiKey}
+                  onChange={(e) => setOpenaiKey(e.target.value)}
+                />
+              </div>
 
+              <div className="api-key-input-group">
+                <label htmlFor="gemini-key">
+                  <strong>Google Gemini API Key</strong>
+                  <span className="api-key-hint">(for Gemini 1.5 Pro)</span>
+                </label>
+                <input
+                  id="gemini-key"
+                  type="password"
+                  className="api-key-input"
+                  placeholder="AIza..."
+                  value={geminiKey}
+                  onChange={(e) => setGeminiKey(e.target.value)}
+                />
+              </div>
+
+              <div className="api-key-input-group">
+                <label htmlFor="claude-key">
+                  <strong>Anthropic API Key</strong>
+                  <span className="api-key-hint">(for Claude 3.7 Sonnet)</span>
+                </label>
+                <input
+                  id="claude-key"
+                  type="password"
+                  className="api-key-input"
+                  placeholder="sk-ant-..."
+                  value={claudeKey}
+                  onChange={(e) => setClaudeKey(e.target.value)}
+                />
+              </div>
+
+              <div className="api-keys-note">
+                <p>
+                  <strong>Note:</strong> API keys are stored in your browser's local storage. Make sure to keep them secure and never share them publicly.
+                </p>
+              </div>
+            </div>
           </TabsContent>
         </Tabs>
+        {mode !== 'demo' && (
+          <div className="input-footer" aria-label="Project attribution">
+            <span>Developed by UT HCI Lab. </span>
+            <a 
+              href="https://meng-chen.com/image-desc-uncertainty/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              Learn more about the project.
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );

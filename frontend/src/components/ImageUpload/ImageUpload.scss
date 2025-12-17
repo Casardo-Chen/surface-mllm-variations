@@ -81,13 +81,14 @@
       .url-upload-area {
         .url-input-group {
           display: flex;
+          align-items: center;
           gap: 12px;
 
           .url-input {
             flex: 1;
             padding: 8px 12px;
             border: 2px solid #ccc;
-            border-radius: 8px;
+            border-radius: 16px;
             font-size: 14px;
 
             &:focus {
@@ -102,21 +103,21 @@
 
           .url-submit-btn {
             padding: 12px 24px;
-            background: #3b82f6;
+            background: #333;
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 16px;
             font-size: 14px;
             font-weight: 500;
             cursor: pointer;
             transition: background-color 0.2s ease;
 
             &:hover:not(:disabled) {
-              background: #2563eb;
+              background: #000;
             }
 
             &:disabled {
-              background: #9ca3af;
+              background: #ccc;
               cursor: not-allowed;
             }
           }
@@ -136,23 +137,23 @@
           .camera-text {
             font-size: 16px;
             font-weight: 500;
-            color: #334155;
+            color: #666;
             margin-bottom: 24px;
           }
 
           .camera-start-btn {
             padding: 12px 24px;
-            background: #3b82f6;
+            background: #333;
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 16px;
             font-size: 14px;
             font-weight: 500;
             cursor: pointer;
             transition: background-color 0.2s ease;
 
             &:hover {
-              background: #2563eb;
+              background: #000;
             }
           }
         }
@@ -211,15 +212,15 @@
   }
 
   .image-preview-section {
-    border-top: 1px solid #e2e8f0;
-    background: #f8fafc;
+    border-top: 1px solid #ccc;
+    background: #fff;
 
     .preview-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 16px 24px;
-      border-bottom: 1px solid #e2e8f0;
+      border-bottom: 1px solid #ccc;
 
       h4 {
         margin: 0;
@@ -230,28 +231,27 @@
 
       .clear-btn {
         padding: 6px 12px;
-        background: #ef4444;
+        background: #d30000;
         color: white;
         border: none;
-        border-radius: 6px;
+        border-radius: 16px;
         font-size: 12px;
         cursor: pointer;
         transition: background-color 0.2s ease;
 
         &:hover {
-          background: #dc2626;
+          background: #b30000;
         }
       }
     }
 
     .image-preview {
-      padding: 24px;
+      padding: 16px;
       text-align: center;
 
       img {
         max-width: 100%;
-        max-height: 300px;
-        // border-radius: 8px;
+        max-height: 400px;
         // box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         object-fit: contain;
       }

@@ -181,6 +181,7 @@ const ImageUpload = ({ onImageChange, currentImage }) => {
                   onClick={handleUrlSubmit}
                   variant="mono"
                   disabled={!urlInput.trim()}
+                  className="url-submit-btn"
                 >
                   Load
                 </Button>
@@ -194,7 +195,11 @@ const ImageUpload = ({ onImageChange, currentImage }) => {
                 <div className="camera-start">
                   <div className="camera-icon">📷</div>
                   <p className="camera-text">Take a photo with your camera</p>
-                  <Button onClick={startCamera} variant="mono">
+                  <Button 
+                    onClick={startCamera} 
+                    variant="mono"
+                    className="camera-start-btn"
+                  >
                     Open Camera
                   </Button>
                 </div>

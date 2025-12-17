@@ -82,7 +82,7 @@ function DescriptionTable({ data, imageLink }) {
       <thead>
         <tr>
           <th style={{ width: "5%" }}>ID</th>
-          <th style={{ width: "10%" }}>Model</th>
+          <th style={{ width: "15%" }}>Model</th>
           <th>Description</th>
         </tr>
       </thead>
@@ -247,7 +247,7 @@ function VariationSummary({data, imageLink}) {
       <table className="variation-summary-table" style={{ marginBottom: "16px" }}>
         <thead>
           <tr>
-            <th style={{ width: "15%" }}>Focus</th>
+            <th style={{ width: "20%" }}>Focus</th>
             <th>Variation Summary</th>
           </tr>
         </thead>
@@ -325,12 +325,12 @@ function VariationAwareDescription({data, imageLink}) {
         <thead>
           <tr>
             <th>Support Indicator</th>
-            <th>Variation-aware Description</th>
+            <th>Variation-Aware Description</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td style={{ width: "15%" }}>
+            <td style={{ width: "20%" }}>
               <div className="detail-summary-header">
                 <div className="representation-type-buttons">
                   <button 
@@ -443,7 +443,6 @@ function PerceptionTask() {
         width: "100%",
         top: 0,
         left: 0,
-        marginTop: "16px",
         paddingLeft: "24px",
         paddingRight: "24px",
         paddingBottom: "16px",

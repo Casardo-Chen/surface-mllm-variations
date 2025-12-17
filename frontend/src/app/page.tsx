@@ -5,8 +5,6 @@ import './App.css'
 import InputSection from '@/components/InputSection/InputSection.jsx';
 import {  Box, useTheme, useMediaQuery } from "@mui/material";
 import PerceptionTask from '@/components/PerceptionTask/PerceptionTask.jsx';
-
-
 import useSystemStore from '@/store/use-system-store'
 
 export default function Home() {
@@ -21,6 +19,7 @@ export default function Home() {
     <div className="app-container">
       {/* Left Panel: Input Section */}
       <InputSection/>
+      {/* Main Content */}
       <Box sx={{  
         width: isMobile ? "100vw" : "70vw",
         position: "fixed",
@@ -30,8 +29,8 @@ export default function Home() {
         overflowY: "auto", 
         height: "100vh",
         boxSizing: "border-box",
-        }}>
-          {/* Main Content */}
+        marginTop: "1rem",
+      }}>
           <PerceptionTask />
       </Box>
     </div>

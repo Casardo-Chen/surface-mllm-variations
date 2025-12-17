@@ -446,11 +446,10 @@ function InputSection() {
           </TabsContent>
           <TabsContent value="instructions">
             <div className="instructions-content">
+              <h4>Getting Started</h4>
               <p>
                 This is a tool to non-visually assess the uncertainty in MLLM-generated image descriptions by generating and presenting variations in text-based summaries.
               </p>
-              
-              <h4>Getting Started</h4>
               <p>
                 <strong>Examples Tab:</strong> Browse pre-loaded examples to see how the system works. Select an example from the dropdown to view its image, prompt, and generated descriptions with variation analysis.
               </p>

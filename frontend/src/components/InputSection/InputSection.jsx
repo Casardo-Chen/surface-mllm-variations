@@ -12,6 +12,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 
 import { imageInfo } from '../../utils/data';
 import MenuIcon from '@mui/icons-material/Menu';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 
 function InputSection() {
@@ -244,13 +245,15 @@ function InputSection() {
   return (
     <div className="input-section-wrapper">
       {/* Hamburger Menu */}
-      <button 
-        className="hamburger-menu"
-        onClick={() => setSidebarOpen(!sidebarOpen)}
-        aria-label="Toggle sidebar"
-      >
-        <MenuIcon />
-      </button>
+      {!sidebarOpen && (
+        <button 
+          className="hamburger-menu"
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          aria-label="Toggle input sidebar"
+        >
+          <MenuIcon />
+        </button>
+      )}
 
       {/* Overlay */}
       <div 
@@ -414,7 +417,8 @@ function InputSection() {
                   }}>
                     <DropdownMenuTrigger asChild>
                       <button ref={dropdownTriggerRef} className="example-dropdown-trigger">
-                        {selectedExample ? selectedExample.charAt(0).toUpperCase() + selectedExample.slice(1) : 'Choose an example...'}
+                        <span>{selectedExample ? selectedExample.charAt(0).toUpperCase() + selectedExample.slice(1) : 'Choose an example...'}</span>
+                        <KeyboardArrowDownIcon sx={{ fontSize: 16, color: '#999', transition: 'transform 0.2s ease' }} className="dropdown-arrow-icon" />
                       </button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="example-dropdown-content">
@@ -446,26 +450,26 @@ function InputSection() {
           </TabsContent>
           <TabsContent value="instructions">
             <div className="instructions-content">
-              <h4>Getting Started</h4>
+              <h3>Getting Started</h3>
               <p>
                 This is a tool to non-visually assess the uncertainty in MLLM-generated image descriptions by generating and presenting variations in text-based summaries.
               </p>
               <p>
-                <strong>Examples Tab:</strong> Browse pre-loaded examples to see how the system works. Select an example from the dropdown to view its image, prompt, and generated descriptions with variation analysis.
+                <strong>See Examples:</strong> In Examples Tab, you can browse 9 examples with image, prompt, a list of 9 AI generateddescriptions, and variation summary and description.
               </p>
               
               <p>
-                <strong>Try it out! Tab:</strong> Upload your own image or provide an image URL, enter a prompt describing what you want to know about the image, and click Submit. The system will generate descriptions from multiple models and present them with variation analysis.
+                <strong>Try it out:</strong> First, go to API Keys to input your API keys for OpenAI, Google Gemini, and Anthropic.
+                Then, go to Try it out! Tab, upload your own image or provide an image URL or take a photo, enter a prompt describing what you want to know about the image, and click Submit. Then you can read the descriptions and variation summary and description.
               </p>
               
-              <h4>Understanding Variations</h4>
               <p>
-                The system shows you:
+                The variation summary shows you:
               </p>
               <ul>
-                <li><strong>Agreements:</strong> Claims that multiple models agree on (more reliable)</li>
-                <li><strong>Disagreements:</strong> Claims where models differ (less reliable, requires caution)</li>
-                <li><strong>Unique Mentions:</strong> Information mentioned by only one model (may be less reliable)</li>
+                <li><strong>Agreements:</strong> Claims that multiple models agree on</li>
+                <li><strong>Disagreements:</strong> Claims where models differ</li>
+                <li><strong>Unique Mentions:</strong> Information mentioned by only one model</li>
               </ul>
               
               <h4>Configuration Options</h4>
@@ -477,13 +481,6 @@ function InputSection() {
                 <li><strong>Trials:</strong> Set the number of times to query each model (more trials = more variation data)</li>
                 <li><strong>Prompts:</strong> Choose between original prompt only, paraphrased prompts, or persona-based prompts</li>
               </ul>
-              
-              <h4>Best Practices</h4>
-              <p>
-                For high-stakes scenarios (like medication identification or diagram reading), pay close attention to inconsistencies between models and trials.
-                <br />
-                For subjective tasks (like fashion outfit analysis or image description generation), use persona generation to check different perspectives.
-              </p>
             </div>
           </TabsContent>
           <TabsContent value="api-keys">

@@ -117,7 +117,7 @@ const AppBar = ({gridView, setGridView}) => {
                                         onChange={(e) => setShowVariationAwareDescription(e.target.checked)}
                                         style={{ marginRight: "6px" }}
                                     />
-                                    Variation-aware Description
+                                    Variation-Aware Description
                                 </label>
                                 <label className="checkbox-label">
                                     <input

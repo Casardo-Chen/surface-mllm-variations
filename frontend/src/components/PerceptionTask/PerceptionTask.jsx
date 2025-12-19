@@ -94,7 +94,7 @@ function DescriptionTable({ data, imageLink }) {
               {getModelName(item.model)} 
             </td>
             <td style={{ 
-              maxHeight: "500px",
+              maxHeight: "300px",
               overflowY: "auto",
               overflowX: "hidden",
               wordWrap: "break-word"
@@ -163,7 +163,7 @@ function DescriptionTable({ data, imageLink }) {
                   <td 
                     key={model}
                     style={{ 
-                      maxHeight: "500px",
+                      maxHeight: "300px",
                       overflowY: "auto",
                       overflowX: "hidden",
                       wordWrap: "break-word",
@@ -274,7 +274,7 @@ function VariationSummary({data, imageLink}) {
             <td>Disagreements</td>
             <td style={{ 
               textAlign: "left",
-              maxHeight: "500px",
+              maxHeight: "300px",
               overflowY: "auto",
               overflowX: "hidden",
               wordWrap: "break-word"
@@ -292,7 +292,7 @@ function VariationSummary({data, imageLink}) {
             <td>Unique Points</td>
             <td style={{ 
               textAlign: "left",
-              maxHeight: "500px",
+              maxHeight: "300px",
               overflowY: "auto",
               overflowX: "hidden",
               wordWrap: "break-word"
@@ -362,7 +362,7 @@ function VariationAwareDescription({data, imageLink}) {
             </td>
             <td style={{ 
               textAlign: "left",
-              maxHeight: "500px",
+              maxHeight: "300px",
               overflowY: "auto",
               overflowX: "hidden",
               wordWrap: "break-word"

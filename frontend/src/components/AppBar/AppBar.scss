@@ -154,6 +154,7 @@
     flex-direction: row;
     gap: 16px;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .checkbox-label {
@@ -162,7 +163,7 @@
     font-size: 14px;
     color: #374151;
     cursor: pointer;
-    white-space: nowrap;
+    white-space: normal;
 }
 
 .checkbox-label input[type="checkbox"] {

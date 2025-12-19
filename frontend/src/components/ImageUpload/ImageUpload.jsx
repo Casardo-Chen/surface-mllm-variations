@@ -1,6 +1,11 @@
 import React, { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import './ImageUpload.scss';
+import FolderIcon from '@mui/icons-material/Folder';
+import LinkIcon from '@mui/icons-material/Link';
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
+import CloseIcon from '@mui/icons-material/Close';
 
 const ImageUpload = ({ onImageChange, currentImage }) => {
   const [uploadMethod, setUploadMethod] = useState('file'); // 'file', 'url', 'camera'
@@ -126,19 +131,19 @@ const ImageUpload = ({ onImageChange, currentImage }) => {
             className={`method-tab ${uploadMethod === 'file' ? 'active' : ''}`}
             onClick={() => setUploadMethod('file')}
           >
-            📁 File
+            <FolderIcon sx={{ fontSize: 18, marginRight: '4px' }} /> File
           </button>
           <button 
             className={`method-tab ${uploadMethod === 'url' ? 'active' : ''}`} 
             onClick={() => setUploadMethod('url')}
           >
-            🔗 URL
+            <LinkIcon sx={{ fontSize: 18, marginRight: '4px' }} /> URL
           </button>
           <button 
             className={`method-tab ${uploadMethod === 'camera' ? 'active' : ''}`}
             onClick={() => setUploadMethod('camera')}
           >
-            📷 Camera
+            <CameraAltIcon sx={{ fontSize: 18, marginRight: '4px' }} /> Camera
           </button>
         </div>
 
@@ -158,7 +163,7 @@ const ImageUpload = ({ onImageChange, currentImage }) => {
                 onChange={handleFileUpload}
                 style={{ display: 'none' }}
               />
-              <div className="upload-icon">📁</div>
+              <div className="upload-icon"><FolderIcon sx={{ fontSize: 48 }} /></div>
               <p className="upload-text">
                 {isDragOver ? 'Drop image here' : 'Click to upload or drag & drop'}
               </p>
@@ -193,7 +198,7 @@ const ImageUpload = ({ onImageChange, currentImage }) => {
             <div className="camera-upload-area">
               {!showCamera ? (
                 <div className="camera-start">
-                  <div className="camera-icon">📷</div>
+                  <div className="camera-icon"><CameraAltIcon sx={{ fontSize: 48 }} /></div>
                   <p className="camera-text">Take a photo with your camera</p>
                   <Button 
                     onClick={startCamera} 
@@ -217,7 +222,7 @@ const ImageUpload = ({ onImageChange, currentImage }) => {
                   />
                   <div className="camera-controls">
                     <button onClick={capturePhoto} className="capture-btn">
-                      📸 Capture
+                      <PhotoCameraIcon sx={{ fontSize: 18, marginRight: '4px' }} /> Capture
                     </button>
                     <button onClick={stopCamera} className="cancel-btn">
                       Cancel
@@ -235,7 +240,7 @@ const ImageUpload = ({ onImageChange, currentImage }) => {
           <div className="preview-header">
             <h4>Image Preview</h4>
             <button onClick={clearImage} className="clear-btn">
-              ✕ Clear
+              <CloseIcon sx={{ fontSize: 18, marginRight: '4px' }} /> Clear
             </button>
           </div>
           <div className="image-preview">

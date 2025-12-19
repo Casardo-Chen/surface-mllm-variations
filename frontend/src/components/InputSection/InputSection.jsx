@@ -263,16 +263,16 @@ function InputSection() {
 
       <div className={`input-section ${sidebarOpen ? 'sidebar-open' : ''}`}>
         <Tabs 
-          defaultValue="example"
+          defaultValue="instructions"
           className="w-full"
           value={mode}
           onValueChange={handleTabChange}
         >
-          <TabsList>
-            <TabsTrigger value="example">Examples</TabsTrigger>
-            <TabsTrigger value="demo">Try it out!</TabsTrigger>
-            <TabsTrigger value="instructions">Instructions</TabsTrigger>
-            <TabsTrigger value="api-keys">API Keys</TabsTrigger>
+          <TabsList className="input-tabs-list">
+            <TabsTrigger className="input-tab-trigger" value="example">Examples</TabsTrigger>
+            <TabsTrigger className="input-tab-trigger" value="demo">Try it out!</TabsTrigger>
+            <TabsTrigger className="input-tab-trigger" value="instructions">Instructions</TabsTrigger>
+            <TabsTrigger className="input-tab-trigger" value="api-keys">API Keys</TabsTrigger>
           </TabsList>
           <TabsContent value="demo">
             <div className="input-controls">

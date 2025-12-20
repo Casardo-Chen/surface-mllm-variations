@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import './ImageUpload.scss';
 import FolderIcon from '@mui/icons-material/Folder';
@@ -17,6 +17,44 @@ const ImageUpload = ({ onImageChange, currentImage }) => {
   const fileInputRef = useRef(null);
   const cameraVideoRef = useRef(null);
   const cameraCanvasRef = useRef(null);
+
+  const stopCamera = useCallback(() => {
+    if (cameraStream) {
+      cameraStream.getTracks().forEach(track => track.stop());
+      setCameraStream(null);
+    }
+    setShowCamera(false);
+  }, [cameraStream]);
+
+  // Cleanup camera stream on unmount or when switching methods
+  useEffect(() => {
+    return () => {
+      if (cameraStream) {
+        cameraStream.getTracks().forEach(track => track.stop());
+      }
+    };
+  }, [cameraStream]);
+
+  // Stop camera when switching away from camera method
+  useEffect(() => {
+    if (uploadMethod !== 'camera' && cameraStream) {
+      stopCamera();
+    }
+  }, [uploadMethod, cameraStream, stopCamera]);
+
+  // Handle video stream when camera is shown and stream is available
+  useEffect(() => {
+    if (showCamera && cameraStream && cameraVideoRef.current) {
+      const video = cameraVideoRef.current;
+      video.srcObject = cameraStream;
+      
+      // Explicitly play the video
+      video.play().catch(error => {
+        console.error('Error playing video:', error);
+        alert('Unable to play camera feed. Please check permissions.');
+      });
+    }
+  }, [showCamera, cameraStream]);
 
   const handleFileSelect = (file) => {
     if (file && file.type.startsWith('image/')) {
@@ -76,41 +114,52 @@ const ImageUpload = ({ onImageChange, currentImage }) => {
       });
       setCameraStream(stream);
       setShowCamera(true);
-      if (cameraVideoRef.current) {
-        cameraVideoRef.current.srcObject = stream;
-      }
+      // The useEffect will handle setting up the video element
     } catch (error) {
       console.error('Error accessing camera:', error);
       alert('Unable to access camera. Please check permissions.');
     }
   };
 
-  const stopCamera = () => {
-    if (cameraStream) {
-      cameraStream.getTracks().forEach(track => track.stop());
-      setCameraStream(null);
-    }
-    setShowCamera(false);
-  };
-
   const capturePhoto = () => {
     if (cameraVideoRef.current && cameraCanvasRef.current) {
       const video = cameraVideoRef.current;
       const canvas = cameraCanvasRef.current;
+      
+      // Check if video is ready and has valid dimensions
+      if (!video.videoWidth || !video.videoHeight) {
+        console.error('Video not ready for capture');
+        alert('Camera is not ready yet. Please wait a moment and try again.');
+        return;
+      }
+      
       const context = canvas.getContext('2d');
       
+      // Set canvas dimensions to match video
       canvas.width = video.videoWidth;
       canvas.height = video.videoHeight;
-      context.drawImage(video, 0, 0);
       
+      // Draw the current video frame to canvas
+      context.drawImage(video, 0, 0, canvas.width, canvas.height);
+      
+      // Convert to base64
       const base64Image = canvas.toDataURL('image/jpeg', 0.8);
-      onImageChange({
-        source: 'base64',
-        data: base64Image,
-        preview: base64Image
-      });
       
-      stopCamera();
+      if (base64Image && base64Image !== 'data:,') {
+        onImageChange({
+          source: 'base64',
+          data: base64Image,
+          preview: base64Image
+        });
+        
+        stopCamera();
+      } else {
+        console.error('Failed to capture image');
+        alert('Failed to capture photo. Please try again.');
+      }
+    } else {
+      console.error('Camera refs not available');
+      alert('Camera is not available. Please try opening the camera again.');
     }
   };
 
@@ -214,6 +263,7 @@ const ImageUpload = ({ onImageChange, currentImage }) => {
                     ref={cameraVideoRef}
                     autoPlay
                     playsInline
+                    muted
                     className="camera-video"
                   />
                   <canvas

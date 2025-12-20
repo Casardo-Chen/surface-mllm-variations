@@ -75,7 +75,7 @@ function InputSection() {
   const [imageSource, setImageSource] = useState('url');
   const [base64Image, setBase64Image] = useState('');
 
-  const [mode, setMode] = useState('example');
+  const [mode, setMode] = useState('instructions');
   
   // API Keys state - load from localStorage on mount
   const [openaiKey, setOpenaiKey] = useState(() => {
@@ -380,11 +380,45 @@ function InputSection() {
           onValueChange={handleTabChange}
         >
           <TabsList className="input-tabs-list">
+            <TabsTrigger className="input-tab-trigger" value="instructions">Instructions</TabsTrigger>
             <TabsTrigger className="input-tab-trigger" value="example">Examples</TabsTrigger>
             <TabsTrigger className="input-tab-trigger" value="demo">Try it out!</TabsTrigger>
-            <TabsTrigger className="input-tab-trigger" value="instructions">Instructions</TabsTrigger>
             <TabsTrigger className="input-tab-trigger" value="api-keys">API Keys</TabsTrigger>
           </TabsList>
+          <TabsContent value="instructions">
+            <div className="instructions-content">
+              <h3>Getting Started</h3>
+              <p>
+                This is a tool to non-visually assess the uncertainty in MLLM-generated image descriptions by generating and presenting variations in text-based summaries.
+              </p>
+              <p>
+                <strong>See Examples:</strong> In Examples Tab, you can browse 9 examples with image, prompt, a list of 9 AI generateddescriptions, and variation summary and description.
+              </p>
+              
+              <p>
+                <strong>Try it out:</strong> First, go to API Keys to input your API keys for OpenAI, Google Gemini, and Anthropic.
+                Then, go to Try it out! Tab, upload your own image or provide an image URL or take a photo, enter a prompt describing what you want to know about the image, and click Submit. Then you can read the descriptions and variation summary and description.
+              </p>
+              
+              <p>
+                The variation summary shows you:
+              </p>
+              <ul>
+                <li><strong>Agreements:</strong> Claims that multiple models agree on</li>
+                <li><strong>Disagreements:</strong> Claims where models differ</li>
+                <li><strong>Unique Mentions:</strong> Information mentioned by only one model</li>
+              </ul>
+              
+              <p>
+                You can customize varations by:
+              </p>
+              <ul>
+                <li><strong>Models:</strong> Select which MLLMs to use (GPT, Gemini, Claude)</li>
+                <li><strong>Trials:</strong> Set the number of times to query each model (default = 3)</li>
+                <li><strong>Prompts:</strong> Choose between using original prompt only, or using paraphrased prompts, or persona-based prompts (default = original prompt only)</li>
+              </ul>
+            </div>
+          </TabsContent>
           <TabsContent value="demo">
             <div className="input-controls">
                 <ImageUpload 
@@ -560,40 +594,6 @@ function InputSection() {
                     
                   )}
               </div>
-            </div>
-          </TabsContent>
-          <TabsContent value="instructions">
-            <div className="instructions-content">
-              <h3>Getting Started</h3>
-              <p>
-                This is a tool to non-visually assess the uncertainty in MLLM-generated image descriptions by generating and presenting variations in text-based summaries.
-              </p>
-              <p>
-                <strong>See Examples:</strong> In Examples Tab, you can browse 9 examples with image, prompt, a list of 9 AI generateddescriptions, and variation summary and description.
-              </p>
-              
-              <p>
-                <strong>Try it out:</strong> First, go to API Keys to input your API keys for OpenAI, Google Gemini, and Anthropic.
-                Then, go to Try it out! Tab, upload your own image or provide an image URL or take a photo, enter a prompt describing what you want to know about the image, and click Submit. Then you can read the descriptions and variation summary and description.
-              </p>
-              
-              <p>
-                The variation summary shows you:
-              </p>
-              <ul>
-                <li><strong>Agreements:</strong> Claims that multiple models agree on</li>
-                <li><strong>Disagreements:</strong> Claims where models differ</li>
-                <li><strong>Unique Mentions:</strong> Information mentioned by only one model</li>
-              </ul>
-              
-              <p>
-                You can customize varations by:
-              </p>
-              <ul>
-                <li><strong>Models:</strong> Select which MLLMs to use (GPT, Gemini, Claude)</li>
-                <li><strong>Trials:</strong> Set the number of times to query each model (default = 3)</li>
-                <li><strong>Prompts:</strong> Choose between using original prompt only, or using paraphrased prompts, or persona-based prompts (default = original prompt only)</li>
-              </ul>
             </div>
           </TabsContent>
           <TabsContent value="api-keys">

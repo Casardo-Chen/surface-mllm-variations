@@ -90,11 +90,12 @@ def generate_descriptions():
     variation_summary = pipeline.aggregated_description_generation(
         descriptions, None, num_trials, models, api_keys
     )
-    # NOTE: save the quota during trials
-    # variation_summary = {}
   
     # folder_name = helper.uuid_gen()  # Commented out since file storage is disabled
     return jsonify({"descriptions": descriptions, "imageId": None, "variationSummary": variation_summary}), 200
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8000)
+    import os
+    port = int(os.environ.get('PORT', 8000))
+    debug = os.environ.get('FLASK_ENV') == 'development'
+    app.run(debug=debug, host='0.0.0.0', port=port)

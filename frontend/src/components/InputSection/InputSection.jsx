@@ -600,7 +600,7 @@ function InputSection() {
             <div className="api-keys-content">
               <h3>API Keys Configuration</h3>
               <p>
-                Enter your API keys for the multimodal language models. These keys are stored locally in your browser and are not sent to any server except when making API calls to the respective services.
+                Enter your API keys for the multimodal language models.
               </p>
               
               <div className="api-key-input-group">

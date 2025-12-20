@@ -439,17 +439,18 @@ function PerceptionTask() {
   const [gridView, setGridView] = useState(true);
 
   useEffect(() => {
-    const targetImage = currentImage || 'map';
+    // Only load example data if currentImage is set (i.e., we're viewing an example)
+    // Don't load default data when in "Try it out!" mode (when currentImage is empty)
     if (!currentImage) {
-      setCurrentImage('map');
+      return;
     }
 
     async function fetchData() {
       try {
         const [metadataRes, descriptionsRes, summaryRes] = await Promise.all([
-          fetch(`/examples/${targetImage}/metadata.json`),
-          fetch(`/examples/${targetImage}/descriptions.json`),
-          fetch(`/examples/${targetImage}/summary.json`)
+          fetch(`/examples/${currentImage}/metadata.json`),
+          fetch(`/examples/${currentImage}/descriptions.json`),
+          fetch(`/examples/${currentImage}/summary.json`)
         ]);
 
         if (metadataRes.ok) {
@@ -472,7 +473,7 @@ function PerceptionTask() {
     }
 
     fetchData();
-  }, [currentImage, setCurrentImage, setResponses, setVariationSummary, setImageLink]);
+  }, [currentImage, setResponses, setVariationSummary, setImageLink]);
 
   return (
     <Box
@@ -504,9 +505,9 @@ function PerceptionTask() {
       </Box>
       
       <div aria-label='description' style={{ textAlign: "left", marginTop: "12px" }}>
-        {showVariationSummary && <VariationSummary data={variationSummary} imageLink={imageLink} />}
-        {showVariationAwareDescription && <VariationAwareDescription data={variationSummary} imageLink={imageLink} />}
-        {imageLink && showDescriptionList && <DescriptionTable data={responses} imageLink={imageLink} />}
+        {imageLink && variationSummary && showVariationSummary && <VariationSummary data={variationSummary} imageLink={imageLink} />}
+        {imageLink && variationSummary && showVariationAwareDescription && <VariationAwareDescription data={variationSummary} imageLink={imageLink} />}
+        {imageLink && responses && showDescriptionList && <DescriptionTable data={responses} imageLink={imageLink} />}
       </div>
     </Box>
   );

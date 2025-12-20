@@ -131,7 +131,7 @@ const AppBar = ({gridView, setGridView}) => {
                             </div>
                         </div>
                         {/* Color Uncertainty Indicator Toggle */}
-                        <div className="control-group">
+                        {/* <div className="control-group">
                             <label className="checkbox-label">
                                 <input
                                     type="checkbox"
@@ -141,7 +141,7 @@ const AppBar = ({gridView, setGridView}) => {
                                 />
                                 Color Uncertainty Claims
                             </label>
-                        </div>
+                        </div> */}
                     </>
                 )}
             </div>

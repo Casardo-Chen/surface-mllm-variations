@@ -31,7 +31,7 @@ export async function generateImageDescription(image, prompt, numTrials, selecte
                  selectedModels: selectedModels,
                  promptVariation: promptVariation,
                  source: source,
-                 userId: useUserStudyStore.getState().userId,
+                //  userId: useUserStudyStore.getState().userId,
              }),
          });
          const data = await response.json();

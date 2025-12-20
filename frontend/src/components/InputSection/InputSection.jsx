@@ -84,10 +84,11 @@ function InputSection() {
   const [geminiKey, setGeminiKey] = useState('');
   const [claudeKey, setClaudeKey] = useState('');
 
-  // Clear all data when switching from examples to demo
+  // Clear all data when switching from examples to demo (especially when there's an image)
   const handleTabChange = (newValue) => {
     if (mode === 'example' && newValue === 'demo') {
-      // Clear store state
+      // Clear all data when switching to "Try it out!" tab, especially if there's an image
+      // Clear store state (data displayed in tables)
       setResponses({});
       setVariationSummary({});
       setImageLink('');
@@ -99,6 +100,16 @@ function InputSection() {
       setSelectedExample('');
       setBase64Image('');
       setImageSource('url');
+    // } else if (newValue === 'demo') {
+    //   // Also clear when switching to demo from any other tab
+    //   setResponses({});
+    //   setVariationSummary({});
+    //   setImageLink('');
+    //   setCurrentImage('');
+    //   setStorePrompt('');
+    //   setPrompt('');
+    //   setBase64Image('');
+    //   setImageSource('url');
     }
     setMode(newValue);
   };
@@ -116,11 +127,47 @@ function InputSection() {
 
     // generate image descriptions
     setIsLoading(true);
+    
+    // Ensure images are sent as base64 or valid URL (not blob URLs)
+    let imageToSend;
+    let actualSource = imageSource;
+    
     if (imageSource === 'base64') {
-      responses = await generateImageDescription(base64Image, prompt, numTrials, selectedModels, promptVariation, imageSource);
+      // Use base64 image if available
+      if (base64Image) {
+        imageToSend = base64Image;
+      } else if (imageLink && imageLink.startsWith('data:')) {
+        // If imageLink is already base64 data URL, use it
+        imageToSend = imageLink;
+      } else {
+        // If we have a blob URL but no base64, we need to convert it
+        console.error('Base64 image not available');
+        setIsLoading(false);
+        return;
+      }
     } else {
-      responses = await generateImageDescription(imageLink, prompt, numTrials, selectedModels, promptVariation, imageSource);
+      // For URL source, ensure it's a valid URL (not a blob URL)
+      if (imageLink && imageLink.startsWith('blob:')) {
+        // If it's a blob URL, we should have base64 instead
+        if (base64Image) {
+          imageToSend = base64Image;
+          actualSource = 'base64'; // Update source to base64 since we're sending base64
+        } else {
+          console.error('Blob URL detected but no base64 available. Cannot send to backend.');
+          setIsLoading(false);
+          return;
+        }
+      } else if (imageLink && (imageLink.startsWith('http://') || imageLink.startsWith('https://') || imageLink.startsWith('data:'))) {
+        // Valid URL or data URL
+        imageToSend = imageLink;
+      } else {
+        console.error('Invalid image URL');
+        setIsLoading(false);
+        return;
+      }
     }
+    
+    responses = await generateImageDescription(imageToSend, prompt, numTrials, selectedModels, promptVariation, actualSource);
 
     if (!responses.descriptions) {
       setIsLoading(false);
@@ -301,13 +348,16 @@ function InputSection() {
                   className="action-button"
                   onClick={() => {
                     setResponses({});
+                    setVariationSummary({});
                     setImageLink('');
+                    setCurrentImage('');
                     setPrompt('');
                     setNumTrials('');
                     setBase64Image('');
                     setImageSource('url');
                     setSelectedModels(['gpt', 'claude', 'gemini']);
                     setPromptVariation('original');
+                    setIsLoading(false);
                   }
                   }
                 >

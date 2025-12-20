@@ -16,8 +16,6 @@ from datetime import datetime
 import helper
 import prompts
 from generation import get_all_descriptions
-from breakdown import break_down_all_descriptions, break_down_all_atomic_facts
-from extraction import extract_atomic_facts, generate_summary, generate_majority, generate_natural_language, hide_variation
 import extraction
 from concurrent.futures import ThreadPoolExecutor
 

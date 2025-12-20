@@ -1,10 +1,6 @@
 # generative AI
 from openai import OpenAI
-import prompts
-import time
 import base64
-
-import extraction
 
 # sys
 import requests

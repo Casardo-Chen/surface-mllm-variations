@@ -1,10 +1,10 @@
 anthropic
-Deprecated
 google-genai
 flask
-flask_cors
+flask-cors
 nltk
 numpy
 openai
 python-dotenv
 requests
+torch

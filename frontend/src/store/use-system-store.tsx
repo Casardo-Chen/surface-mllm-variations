@@ -83,7 +83,7 @@ const useSystemStore = create<SystemState>((set) => ({
   detailLevel: "response",
   setDetailLevel: (newDetailLevel) => set({ detailLevel: newDetailLevel }),
 
-  representationType: "model",
+  representationType: "none",
   setRepresentationType: (newType) => set({ representationType: newType }),
 
   showVariations: true,
@@ -105,7 +105,7 @@ const useSystemStore = create<SystemState>((set) => ({
   setShowVariationAwareDescription: (show) => set({ showVariationAwareDescription: show }),
   showDescriptionList: true,
   setShowDescriptionList: (show) => set({ showDescriptionList: show }),
-  showColorUncertaintyIndicator: true,
+  showColorUncertaintyIndicator: false,
   setShowColorUncertaintyIndicator: (show) => set({ showColorUncertaintyIndicator: show }),
 }));
 

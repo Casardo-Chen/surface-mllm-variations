@@ -8,7 +8,6 @@ import {
   Box,
 } from "@mui/material";
 
-import usePerceptionStore from '../../store/use-perception-store';
 import useSystemStore from '../../store/use-system-store.tsx';
 
 import { getModelName, highlightVariations } from '../../utils/helper';
@@ -346,8 +345,8 @@ function VariationAwareDescription({data, imageLink}) {
   const {
     representationType,
     setRepresentationType,
-  } = usePerceptionStore();
-  const { showColorUncertaintyIndicator } = useSystemStore();
+    showColorUncertaintyIndicator
+  } = useSystemStore();
 
   return (
     <div className="variation-description-container">

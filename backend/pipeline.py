@@ -7,7 +7,6 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 logging.getLogger("httpx").setLevel(logging.WARNING)
 
-import requests
 import re
 import argparse
 import os

@@ -1,12 +1,8 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
-import base64
-import json, re
 
 from dotenv import load_dotenv
 load_dotenv()
-
-import os
 
 import pipeline
 
@@ -24,8 +20,8 @@ CORS(app)
 app.config["CORS_HEADERS"] = "Content-Type"
 
 # File paths macro
-DATA_DIR = "data/"
-USER_STUDY_DIR = "user_study/"
+# DATA_DIR = "data/"
+# USER_STUDY_DIR = "user_study/"
 
 curr_data_name =[]
 
@@ -96,7 +92,6 @@ def generate_descriptions():
     )
     # NOTE: save the quota during trials
     # variation_summary = {}
-
   
     # folder_name = helper.uuid_gen()  # Commented out since file storage is disabled
     return jsonify({"descriptions": descriptions, "imageId": None, "variationSummary": variation_summary}), 200

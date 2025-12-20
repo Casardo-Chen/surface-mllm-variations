@@ -437,6 +437,21 @@ function PerceptionTask() {
   } = useSystemStore();
   const [gridView, setGridView] = useState(true);
 
+  // Helper function to check if variationSummary has meaningful content
+  const hasVariationSummaryContent = (summary) => {
+    if (!summary || typeof summary !== 'object') return false;
+    const hasSimilarity = summary.similarity && summary.similarity.trim() !== '';
+    const hasDisagreement = summary.disagreement && summary.disagreement.trim() !== '';
+    const hasUniqueness = summary.uniqueness && summary.uniqueness.trim() !== '';
+    return hasSimilarity || hasDisagreement || hasUniqueness;
+  };
+
+  // Helper function to check if responses has meaningful content
+  const hasResponsesContent = (responses) => {
+    if (!responses || typeof responses !== 'object') return false;
+    return Object.keys(responses).length > 0;
+  };
+
   useEffect(() => {
     // Only load example data if currentImage is set (i.e., we're viewing an example)
     // Don't load default data when in "Try it out!" mode (when currentImage is empty)
@@ -504,9 +519,9 @@ function PerceptionTask() {
       </Box>
       
       <div aria-label='description' style={{ textAlign: "left", marginTop: "12px" }}>
-        {imageLink && variationSummary && showVariationSummary && <VariationSummary data={variationSummary} imageLink={imageLink} />}
-        {imageLink && variationSummary && showVariationAwareDescription && <VariationAwareDescription data={variationSummary} imageLink={imageLink} />}
-        {imageLink && responses && showDescriptionList && <DescriptionTable data={responses} imageLink={imageLink} />}
+        {imageLink && variationSummary && hasVariationSummaryContent(variationSummary) && showVariationSummary && <VariationSummary data={variationSummary} imageLink={imageLink} />}
+        {imageLink && variationSummary && hasVariationSummaryContent(variationSummary) && showVariationAwareDescription && <VariationAwareDescription data={variationSummary} imageLink={imageLink} />}
+        {imageLink && responses && hasResponsesContent(responses) && showDescriptionList && <DescriptionTable data={responses} imageLink={imageLink} />}
       </div>
     </Box>
   );

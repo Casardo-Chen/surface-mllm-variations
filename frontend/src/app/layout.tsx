@@ -32,6 +32,7 @@ export default function RootLayout({
       <body
         // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         className={cn('text-base antialiased', inter.className)}
+        suppressHydrationWarning
       >
         <div className="isolate">{children}</div>
       </body>

@@ -20,7 +20,14 @@ function DescriptionTable({ data, imageLink }) {
   const prompts = [...new Set(Object.values(data || {}).map((item) => item.prompt))];
   
   // Use global filter states
-  const { selectedModels, setSelectedModels, showColorUncertaintyIndicator } = useSystemStore();
+  const { 
+    selectedModels, 
+    setSelectedModels, 
+    showColorUncertaintyIndicator,
+    setShowColorUncertaintyIndicator,
+    showDescriptionList,
+    setShowDescriptionList
+  } = useSystemStore();
   const [selectedPrompts, setSelectedPrompts] = useState([...prompts]);
   const [viewMode, setViewMode] = useState("list"); // "list" or "grid"
 
@@ -76,6 +83,70 @@ function DescriptionTable({ data, imageLink }) {
 
   // Generate array of trial numbers (1, 2, 3, ..., maxTrials)
   const trialNumbers = Array.from({ length: maxTrials }, (_, i) => i + 1);
+
+  const renderControlTable = () => (
+    <table className="description-table" aria-label="description-table-controls">
+      <tbody>
+        <tr>
+          <td style={{ backgroundColor: '#f4f4f4', fontWeight: 600, width: '15%' }}>Filter Models</td>
+          <td>
+            <div style={{ display: "flex", gap: "16px", alignItems: "center", flexWrap: "wrap" }}>
+              {models.map((model) => (
+                <label key={model} style={{ display: "flex", alignItems: "center", gap: "6px", cursor: "pointer" }}>
+                  <input
+                    type="checkbox"
+                    value={model}
+                    checked={selectedModels.includes(model)}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setSelectedModels([...selectedModels, model]);
+                      } else {
+                        setSelectedModels(selectedModels.filter((m) => m !== model));
+                      }
+                    }}
+                    style={{ cursor: "pointer" }}
+                  />
+                  <span>{getModelName(model)}</span>
+                </label>
+              ))}
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td style={{ backgroundColor: '#f4f4f4', fontWeight: 600, width: '20%' }}>View Mode</td>
+          <td>
+            <div 
+              style={{ display: "flex", gap: "16px", alignItems: "center", flexWrap: "wrap" }}
+              className="view-mode-buttons"
+            >
+              <label style={{ display: "flex", alignItems: "center", gap: "6px", cursor: "pointer" }}>
+                <input
+                  type="radio"
+                  name="viewMode"
+                  value="list"
+                  checked={viewMode === "list"}
+                  onChange={(e) => setViewMode(e.target.value)}
+                  style={{ cursor: "pointer" }}
+                />
+                <span>List View</span>
+              </label>
+              <label style={{ display: "flex", alignItems: "center", gap: "6px", cursor: "pointer" }}>
+                <input
+                  type="radio"
+                  name="viewMode"
+                  value="grid"
+                  checked={viewMode === "grid"}
+                  onChange={(e) => setViewMode(e.target.value)}
+                  style={{ cursor: "pointer" }}
+                />
+                <span>Grid View</span>
+              </label>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  );
 
   const renderListView = () => (
     <table className="description-table">
@@ -193,48 +264,7 @@ function DescriptionTable({ data, imageLink }) {
 
   return (
     <div>
-      <div style={{ marginBottom: "16px" }}>
-        <label>
-          Filter by Model:
-          <div>
-            {models.map((model) => (
-              <label key={model} style={{ marginTop: "8px", marginRight: "8px" }}>
-                <input
-                  type="checkbox"
-                  value={model}
-                  checked={selectedModels.includes(model)}
-                  onChange={(e) => {
-                    if (e.target.checked) {
-                      setSelectedModels([...selectedModels, model]);
-                    } else {
-                      setSelectedModels(selectedModels.filter((m) => m !== model));
-                    }
-                  }}
-                />
-                {getModelName(model)}
-              </label>
-            ))}
-          </div>
-        </label>
-        
-        <div style={{ marginTop: "16px" }}>
-          <label style={{ marginRight: "12px", fontWeight: "bold" }}>View Mode:</label>
-          <div className="representation-type-buttons" style={{ width: "auto", display: "inline-flex" }}>
-            <button 
-              className={`representation-btn ${viewMode === "list" ? "active" : ""}`}
-              onClick={() => {setViewMode("list");}}
-            >
-              List View
-            </button>
-            <button 
-              className={`representation-btn ${viewMode === "grid" ? "active" : ""}`}
-              onClick={() => {setViewMode("grid");}}
-            >
-              Grid View
-            </button>
-          </div>
-        </div>
-      </div>
+      {renderControlTable()}
       {viewMode === "list" ? renderListView() : renderGridView()}
     </div>
   );
@@ -401,6 +431,7 @@ function PerceptionTask() {
     currentImage,
     setCurrentImage,
     imageLink,
+    setImageLink,
     showVariationSummary,
     showVariationAwareDescription,
     showDescriptionList
@@ -415,10 +446,16 @@ function PerceptionTask() {
 
     async function fetchData() {
       try {
-        const [descriptionsRes, summaryRes] = await Promise.all([
+        const [metadataRes, descriptionsRes, summaryRes] = await Promise.all([
+          fetch(`/examples/${targetImage}/metadata.json`),
           fetch(`/examples/${targetImage}/descriptions.json`),
           fetch(`/examples/${targetImage}/summary.json`)
         ]);
+
+        if (metadataRes.ok) {
+          const jsonData = await metadataRes.json();
+          setImageLink(jsonData.image || '');
+        }
 
         if (descriptionsRes.ok) {
           const desc = await descriptionsRes.json();
@@ -435,7 +472,7 @@ function PerceptionTask() {
     }
 
     fetchData();
-  }, [currentImage, setCurrentImage, setResponses, setVariationSummary]);
+  }, [currentImage, setCurrentImage, setResponses, setVariationSummary, setImageLink]);
 
   return (
     <Box

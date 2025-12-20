@@ -139,7 +139,7 @@ const AppBar = ({gridView, setGridView}) => {
                                     onChange={(e) => setShowColorUncertaintyIndicator(e.target.checked)}
                                     style={{ marginRight: "6px" }}
                                 />
-                                Color Uncertainty Indicator
+                                Color Uncertainty Claims
                             </label>
                         </div>
                     </>

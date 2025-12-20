@@ -472,14 +472,13 @@ function InputSection() {
                 <li><strong>Unique Mentions:</strong> Information mentioned by only one model</li>
               </ul>
               
-              <h4>Configuration Options</h4>
               <p>
-                You can customize the analysis by:
+                You can customize varations by:
               </p>
               <ul>
-                <li><strong>Models:</strong> Select which MLLMs to use (GPT-4o, Claude 3.7 Sonnet, Gemini 1.5 Pro)</li>
-                <li><strong>Trials:</strong> Set the number of times to query each model (more trials = more variation data)</li>
-                <li><strong>Prompts:</strong> Choose between original prompt only, paraphrased prompts, or persona-based prompts</li>
+                <li><strong>Models:</strong> Select which MLLMs to use (GPT, Gemini, Claude)</li>
+                <li><strong>Trials:</strong> Set the number of times to query each model (default = 3)</li>
+                <li><strong>Prompts:</strong> Choose between using original prompt only, or using paraphrased prompts, or persona-based prompts (default = original prompt only)</li>
               </ul>
             </div>
           </TabsContent>
@@ -493,7 +492,6 @@ function InputSection() {
               <div className="api-key-input-group">
                 <label htmlFor="openai-key">
                   <strong>OpenAI API Key</strong>
-                  <span className="api-key-hint">(for GPT-4o)</span>
                 </label>
                 <input
                   id="openai-key"
@@ -508,7 +506,6 @@ function InputSection() {
               <div className="api-key-input-group">
                 <label htmlFor="gemini-key">
                   <strong>Google Gemini API Key</strong>
-                  <span className="api-key-hint">(for Gemini 1.5 Pro)</span>
                 </label>
                 <input
                   id="gemini-key"
@@ -523,7 +520,6 @@ function InputSection() {
               <div className="api-key-input-group">
                 <label htmlFor="claude-key">
                   <strong>Anthropic API Key</strong>
-                  <span className="api-key-hint">(for Claude 3.7 Sonnet)</span>
                 </label>
                 <input
                   id="claude-key"

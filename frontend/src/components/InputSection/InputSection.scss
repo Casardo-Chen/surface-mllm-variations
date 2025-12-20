@@ -28,7 +28,7 @@
 
   .input-tabs-list {
     border-radius: 24px;
-    background-color: #f0f0f0;
+    background-color: #eee;
     align-items: center;
     justify-content: center;
     padding-top: 6px;
@@ -37,10 +37,23 @@
 
     .input-tab-trigger {
       border-radius: 16px;
+      transition: all 0.05s ease-in-out !important;
   
       &[data-selected] {
-        background-color: #999 !important;
-        color: #fff !important;
+        background-color: #fff !important;
+        color: #666 !important;
+        box-shadow: none !important;
+      }
+
+      &:active {
+        background-color: #ddd !important;
+        color: #333 !important;
+        box-shadow: none !important;
+      }
+
+      &:hover {
+        background-color: #ddd !important;
+        color: #333 !important;
         box-shadow: none !important;
       }
     }

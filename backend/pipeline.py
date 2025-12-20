@@ -8,10 +8,7 @@ logger = logging.getLogger(__name__)
 logging.getLogger("httpx").setLevel(logging.WARNING)
 
 import re
-import argparse
-import os
 import json
-from datetime import datetime
 import helper
 import prompts
 from generation import get_all_descriptions
@@ -144,38 +141,3 @@ def aggregated_description_generation(descs, output_path, num_trials, models, ap
     #     json.dump(summary, f, indent=4)
     # logger.info(f"Output saved to {output_path}/summary.json")
     return summary
-
-
-if __name__ == "__main__":
-    DATA_FOLDER = "./data/"
-
-    start_time = datetime.now().strftime("%Y%m%d_%H%M%S")
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-u', "--image_url", type=str, required=True)
-    parser.add_argument('-p', "--prompt", type=str, required=False, default="Describe the image in detail.")
-    parser.add_argument('-o', "--name", type=str, required=False, default="data/" + datetime.now().strftime("%Y%m%d_%H%M%S"))
-    args = parser.parse_args()
-
-    image_url = args.image_url
-    prompt = args.prompt
-    folder_name = args.name
-    output_path = f"{DATA_FOLDER}{folder_name}"
-
-    '''
-    descriptions generation + sentences breakdown + atomic facts breakdown
-    '''
-    # if the path does not exist, create it
-    # if not os.path.exists(os.path.dirname(output_path+"/")):
-    #     os.makedirs(os.path.dirname(output_path + "/"))
-    #     logger.info(f"Created folder {output_path}")
-    desc_with_atomic_facts = variation_generation(image_url, prompt, output_path)
-
-    '''
-    atomic fact extraction, aggregation, and summary generation
-    '''
-    aggregated_description_generation(desc_with_atomic_facts, output_path)
-
-    end_time = datetime.now().strftime("%Y%m%d_%H%M%S")
-    logger.info(f"takes {end_time} - {start_time} = {datetime.strptime(end_time, '%Y%m%d_%H%M%S') - datetime.strptime(start_time, '%Y%m%d_%H%M%S')}")
-    logger.info(f"Process completed")

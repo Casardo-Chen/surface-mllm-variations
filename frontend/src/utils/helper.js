@@ -4,9 +4,9 @@ export const uuid = () => {
 }
 
 const modelNames = {
-    "gpt": "GPT-4o",
-    "gemini": "Gemini 1.5 Pro",
-    "claude": "Claude 3.7 Sonnet",
+    "gpt": "GPT",
+    "gemini": "Gemini",
+    "claude": "Claude",
 };
 
 export const getModelName = (model) => {

@@ -40,15 +40,15 @@ def variation_generation(image, num_trials, models, variation_type, prompt=None,
     output = get_all_descriptions(image, prompt, num_trials, models, variation_type, source, api_keys)
 
     # Save the result to a json file
-    if output_path is None:
-        folder_name = helper.uuid_gen()
-        output_path = f"./user_study/{folder_name}"
-        if not os.path.exists(os.path.dirname(output_path+"/")):
-            os.makedirs(os.path.dirname(output_path + "/"))
-            logger.info(f"Created folder {output_path}")
+    # if output_path is None:
+    #     folder_name = helper.uuid_gen()
+    #     output_path = f"./user_study/{folder_name}"
+    #     if not os.path.exists(os.path.dirname(output_path+"/")):
+    #         os.makedirs(os.path.dirname(output_path + "/"))
+    #         logger.info(f"Created folder {output_path}")
     
-    with open(f"{output_path}/descriptions.json", "w") as f:
-        json.dump(output, f, indent=4)
+    # with open(f"{output_path}/descriptions.json", "w") as f:
+    #     json.dump(output, f, indent=4)
     return output
 
 def aggregated_description_generation(descs, output_path, num_trials, models, api_keys=None):
@@ -90,15 +90,7 @@ def aggregated_description_generation(descs, output_path, num_trials, models, ap
     
 
     with ThreadPoolExecutor() as executor:
-    #     majority_future = executor.submit(process_aggregated_output)
-    #     hide_variation_future = executor.submit(process_hide_variation)
         execute_uniqueness_future = executor.submit(process_uniqueness_output)
-
-    #     majority_output = majority_future.result()
-    #     natural_language_future = executor.submit(process_majority_output, majority_output)
-
-    #     natural_language_output = natural_language_future.result()
-    #     var_only_output = hide_variation_future.result()
         uniqueness_output = execute_uniqueness_future.result()
     
     def convert_percentage(text):
@@ -130,12 +122,12 @@ def aggregated_description_generation(descs, output_path, num_trials, models, ap
         num = re.findall(r'\d+', text)
         if num:
             num = int(num[0])
-            if num > 85:
+            if num >= 75:
                 return "(well-supported)"
-            elif num >= 60:
+            elif num >= 50:
                 return "(moderately supported)"
             elif num >= 25:
-                return "(poorly supported)"
+                return "(weakly supported)"
             else:
                 return "(very little support)"
         return text
@@ -148,9 +140,9 @@ def aggregated_description_generation(descs, output_path, num_trials, models, ap
     summary["uniqueness"] = uniqueness_output["uniqueness"]
     summary["disagreement"] = uniqueness_output["disagreement"]
 
-    with open(f"{output_path}/summary.json", "w") as f:
-        json.dump(summary, f, indent=4)
-    logger.info(f"Output saved to {output_path}/summary.json")
+    # with open(f"{output_path}/summary.json", "w") as f:
+    #     json.dump(summary, f, indent=4)
+    # logger.info(f"Output saved to {output_path}/summary.json")
     return summary
 
 
@@ -165,11 +157,6 @@ if __name__ == "__main__":
     parser.add_argument('-o', "--name", type=str, required=False, default="data/" + datetime.now().strftime("%Y%m%d_%H%M%S"))
     args = parser.parse_args()
 
-    ''' Test pipeline '''
-    # image_url = "https://media.istockphoto.com/id/117146077/photo/beauty-in-nature.jpg?s=612x612&w=0&k=20&c=vbuBIGb71hqFpMJOTThvx4mFw_JA18ORzxkV4IsBe9c="
-    # prompt = "Describe the image in detail."
-    # folder_name = "./"
-
     image_url = args.image_url
     prompt = args.prompt
     folder_name = args.name
@@ -179,9 +166,9 @@ if __name__ == "__main__":
     descriptions generation + sentences breakdown + atomic facts breakdown
     '''
     # if the path does not exist, create it
-    if not os.path.exists(os.path.dirname(output_path+"/")):
-        os.makedirs(os.path.dirname(output_path + "/"))
-        logger.info(f"Created folder {output_path}")
+    # if not os.path.exists(os.path.dirname(output_path+"/")):
+    #     os.makedirs(os.path.dirname(output_path + "/"))
+    #     logger.info(f"Created folder {output_path}")
     desc_with_atomic_facts = variation_generation(image_url, prompt, output_path)
 
     '''

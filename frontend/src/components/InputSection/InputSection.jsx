@@ -233,7 +233,7 @@ function InputSection() {
     setIsLoading(false);
     setResponses(responses.descriptions);
     setVariationSummary(responses.variationSummary);
-    setCurrentImage(responses.imageId);
+    // setCurrentImage(responses.imageId);
 
     // use tts to notify the user that the image description has been generated
     const utterance = new SpeechSynthesisUtterance("Image descriptions have been generated successfully.");
@@ -441,7 +441,7 @@ function InputSection() {
                             checked={selectedModels.includes('gpt')}
                             onChange={() => handleModelSelection('gpt')}
                           />
-                          GPT-4o
+                          GPT
                         </label>
                         <label>
                           <input 
@@ -450,7 +450,7 @@ function InputSection() {
                             checked={selectedModels.includes('claude')}
                             onChange={() => handleModelSelection('claude')}
                           />
-                          Claude 3.7 Sonnet
+                          Claude
                         </label>
                         <label>
                           <input 
@@ -459,7 +459,7 @@ function InputSection() {
                             checked={selectedModels.includes('gemini')}
                             onChange={() => handleModelSelection('gemini')}
                           />
-                          Gemini 1.5 pro
+                          Gemini
                         </label>
                       </div>
                     </div>

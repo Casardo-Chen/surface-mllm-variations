@@ -1,10 +1,7 @@
 from openai import OpenAI
-import google.generativeai as Gemini
 import os, sys
 import base64
-import csv
 import uuid
-import prompts 
 import numpy as np
 import torch
 
@@ -12,14 +9,6 @@ from openai import OpenAI
 from dotenv import load_dotenv
 
 load_dotenv()
-
-OUTPUT_DIR = "./output/"
-INPUT_DIR = "./img/"
-
-# Note: Clients are now created per-function to support user-provided API keys
-# Default configuration for when API keys are not provided
-Gemini.configure(api_key=os.environ.get("GEMINI_API_KEY", ""))
-gemini_model = Gemini.GenerativeModel('gemini-1.5-flash') if os.environ.get("GEMINI_API_KEY") else None
 
 # avoid segmentation fault
 os.environ["OMP_NUM_THREADS"] = "1" 

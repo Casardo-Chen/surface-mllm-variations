@@ -105,9 +105,9 @@ if __name__ == "__main__":
             aggregated_result += "\n\nInference:" +  " ".join(inference_sentences)
             final_result = helper.gpt4o_wrapper(system_prompt=add_inference_prompt, user_prompt=aggregated_result, system_role=True)
             output_json[response_idx] = {"aggregated": final_result}
-    with open(f"{path}/aggregated.json", "w") as f:
-        json.dump(output_json, f, indent=4)
-    print("Aggregated results saved to: ", f"{path}/aggregated.json")
+    # with open(f"{path}/aggregated.json", "w") as f:
+    #     json.dump(output_json, f, indent=4)
+    # print("Aggregated results saved to: ", f"{path}/aggregated.json")
 
 
 

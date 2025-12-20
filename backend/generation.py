@@ -296,6 +296,62 @@ def prompt_paraphrase(prompt, n=2, api_key=None):
     # change to list 
     return list(prompts)
 
+def prompt_persona_variation(prompt, n=2, api_key=None):
+    """
+    Generate persona-based variations of a given prompt
+    Args:
+        prompt (str): The input prompt to create persona variations for
+        n (int): The number of persona variations to generate
+        api_key (str, optional): OpenAI API key. If not provided, uses env var.
+    Returns:
+        list: A list of n prompts with different personas applied
+    """
+    n = max(1, n)
+    key = api_key or os.getenv("OPENAI_API_KEY")
+    client = OpenAI(api_key=key)
+    persona_prompt = f'''Generate {n} different persona-based variations of the following image description prompt. Each variation should maintain the core instruction but adapt it to a different persona or perspective (e.g., casual observer, accessibility advocate, art critic, etc.). Each persona should naturally influence how the description is framed while keeping the essential task the same.
+
+Original prompt: {prompt}
+
+Please return in the following JSON format:
+{{
+    "1": "prompt variation 1 with persona context",
+    "2": "prompt variation 2 with persona context",
+    ...
+}}
+
+Each variation should:
+- Maintain the core instruction from the original prompt
+- Incorporate a distinct persona that would naturally describe images differently
+- Be clear and actionable
+- Vary in style, focus, or perspective based on the persona
+
+Example Input: "Describe this image in detail"
+
+Example Output:
+{{
+    "1": "As a casual observer, describe this image in detail for someone who cannot see it, focusing on what you naturally notice first.",
+    "2": "As an accessibility advocate, describe this image in detail for someone who cannot see it, emphasizing functional elements and navigation cues.",
+    "3": "As an art critic, describe this image in detail for someone who cannot see it, highlighting composition, style, and aesthetic qualities."
+}}
+'''
+    response = client.chat.completions.create(
+        model="gpt-4o",
+        messages=[
+            {
+                "role": "user",
+                "content": [
+                    {"type": "text", "text": persona_prompt},
+                ],
+            }
+        ],
+        response_format={"type": "json_object"}        
+    )
+    # change the response to json then get the value as a list
+    prompts = json.loads(response.choices[0].message.content).values()
+    # change to list 
+    return list(prompts)
+
 
 def get_all_descriptions(image, prompt, num_descriptions=3, models=["gemini", "gpt", "claude"], variation_type="original", source="url", api_keys=None):
     """
@@ -326,8 +382,10 @@ def get_all_descriptions(image, prompt, num_descriptions=3, models=["gemini", "g
         openai_key = api_keys.get("openai") if api_keys else None
         paraphrased = prompt_paraphrase(prompt, max(1, num_descriptions-1), openai_key)
         prompts = [prompt] + paraphrased
-    elif variation_type == "various": # user self defined prompt/ diff perspective TODO: need to think more about what exactly this means
-        prompts = [prompt] * num_descriptions
+    elif variation_type == "various": # persona variation
+        openai_key = api_keys.get("openai") if api_keys else None
+        persona_variations = prompt_persona_variation(prompt, max(1, num_descriptions-1), openai_key)
+        prompts = [prompt] + persona_variations
 
     
     def fetch_description(p, func, *args):

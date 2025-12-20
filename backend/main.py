@@ -12,16 +12,16 @@ import pipeline
 
 
 app = Flask(__name__)
-CORS(app, resources={
-    r"/*": {
-        "origins": "http://surface-uncertainty.netlify.app",
-        "methods": ["POST", "OPTIONS"],
-        "allow_headers": ["Content-Type"]
-    }
-})
+# CORS(app, resources={
+#     r"/*": {
+#         "origins": "http://surface-uncertainty.netlify.app",
+#         "methods": ["POST", "OPTIONS"],
+#         "allow_headers": ["Content-Type"]
+#     }
+# })
 
-# CORS(app)
-# app.config["CORS_HEADERS"] = "Content-Type"
+CORS(app)
+app.config["CORS_HEADERS"] = "Content-Type"
 
 # File paths macro
 DATA_DIR = "data/"
@@ -30,23 +30,23 @@ USER_STUDY_DIR = "user_study/"
 curr_data_name =[]
 
 # create a directory specific for the user
-@app.route('/create_user', methods=['POST',])
-def create_directory():
-    data = request.json
-    try:
-        user_id = data.get("userId")
-    except Exception as e:
-        return jsonify({"error": str(e)}), 400
+# @app.route('/create_user', methods=['POST',])
+# def create_directory():
+    # data = request.json
+    # try:
+    #     user_id = data.get("userId")
+    # except Exception as e:
+    #     return jsonify({"error": str(e)}), 400
     
-    user_dir = os.path.join(USER_STUDY_DIR, user_id)
-    print(user_dir)
-    if not os.path.exists(user_dir):
-        os.makedirs(os.path.dirname(user_dir + "/"))
+    # user_dir = os.path.join(USER_STUDY_DIR, user_id)
+    # print(user_dir)
+    # # if not os.path.exists(user_dir):
+    # #     os.makedirs(os.path.dirname(user_dir + "/"))
 
-    else:
-        return jsonify({"error": "Directory already exists"}), 400
+    # # else:
+    # #     return jsonify({"error": "Directory already exists"}), 400
 
-    return jsonify({"message": "Directory created"}), 200
+    # return jsonify({"message": "Directory created"}), 200
 
 @app.route('/generate', methods=['POST',])
 def generate_descriptions():
@@ -63,7 +63,7 @@ def generate_descriptions():
         models = data.get("selectedModels")
         variation_type = data.get("promptVariation")
         source = data.get("source")
-        user_id = data.get("userId")
+        # user_id = data.get("userId")
         
         # Get API keys from request (user-provided keys)
         # These are optional - if not provided, backend will use env vars
@@ -88,95 +88,18 @@ def generate_descriptions():
 
 
     descriptions = pipeline.variation_generation(
-        image, num_trials, models, variation_type, prompt, output_path=None, source, api_keys
+        image, num_trials, models, variation_type, prompt, output_path=None, source=source, api_keys=api_keys
     )
 
     variation_summary = pipeline.aggregated_description_generation(
-        descriptions, output_path, num_trials, models, api_keys
+        descriptions, None, num_trials, models, api_keys
     )
     # NOTE: save the quota during trials
     # variation_summary = {}
 
   
-    return jsonify({"descriptions": descriptions, "imageId": folder_name, "variationSummary": variation_summary}), 200
-
-
-# @app.route('/upload_image', methods=['POST'])
-# def upload_image():
-#     """
-#     API endpoint to upload an image to the server
-#     Note: API keys are accepted from the request but are never logged or stored.
-#     """
-#     data = request.json
-#     try:
-#         image = data.get("image")
-#         # Get API keys from request (user-provided keys)
-#         api_keys = {
-#             "openai": data.get("openaiKey"),
-#             "gemini": data.get("geminiKey"),
-#             "claude": data.get("claudeKey")
-#         }
-#     except Exception as e:
-#         return jsonify({"error": str(e)}), 400
-#     # run a claude model to generate the description
-#     claude_key = api_keys.get("claude") if api_keys else None
-#     # Use the unified function with base64 flag
-#     description = generation.get_claude_description(image, "describe image", claude_key, is_base64=True)
-#     print(description)
-
-
-#     return jsonify({"description": description}), 200
-
-# # get the descriptions.json file based on the image name
-# @app.route('/get_descriptions', methods=['POST'])
-# def get_descriptions():
-#     data = request.json
-#     try:
-#         image_name = data.get("imageName")
-#     except Exception as e:
-#         return jsonify({"error": str(e)}), 400
-        
-#     descriptions_file_path = os.path.join(DATA_DIR, image_name, "descriptions.json")
-#     variation_file_path = os.path.join(DATA_DIR, image_name, "summary.json")
-#     metadata_file_path = os.path.join(DATA_DIR, image_name, "metadata.json")
-
-#     if not os.path.exists(descriptions_file_path) or not os.path.exists(variation_file_path) or not os.path.exists(metadata_file_path):
-#         return jsonify({"error": "Descriptions file not found"}), 404
-
-#     with open(descriptions_file_path, "r", encoding="utf-8") as f:
-#         descriptions = json.load(f)
-
-#     with open(variation_file_path, "r", encoding="utf-8") as f:
-#         variation = json.load(f)
-
-#     with open(metadata_file_path, "r", encoding="utf-8") as f:
-#         metadata = json.load(f)
-    
-#     return jsonify({"descriptions": descriptions, "variation": variation, "metadata": metadata}), 200
-
-
-# @app.route('/get_variation', methods=['POST',])
-# def get_variation():
-#     data = request.json
-#     try:
-#         image_name = data.get("imageName")
-#         mode = data.get("mode")
-#         print(image_name)
-#         print(mode)
-
-#     except Exception as e:
-#         return jsonify({"error": str(e)}), 400
-
-#     data_path = os.path.join(DATA_DIR, image_name, "summary.json")
-
-#     if not os.path.exists(data_path):
-#         return jsonify({"error": "Variation file not found"}), 404
-
-#     with open(data_path, "r", encoding="utf-8") as f:
-#         aggregated_data = json.load(f)
-    
-#     return aggregated_data, 200
-
+    # folder_name = helper.uuid_gen()  # Commented out since file storage is disabled
+    return jsonify({"descriptions": descriptions, "imageId": None, "variationSummary": variation_summary}), 200
 
 if __name__ == '__main__':
     app.run(debug=True, port=8000)

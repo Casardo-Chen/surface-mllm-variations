@@ -321,36 +321,12 @@ def filter_description(data):
 
 
 if __name__ == "__main__":
-    # path = './data/landscape'
-    # with open(f"{path}/descriptions.json", "r") as f:
-    #     descriptions_data = json.load(f)
-    # atomic_facts = extract_atomic_facts(descriptions_data)
-    # with open(f"{path}/extracted_atomic_facts.json", "w") as f:
-    #     json.dump(atomic_facts, f, indent=4)
-    # # change the list of atomic facts to a string
-    # atomic_facts_str = json.dumps(atomic_facts, indent=4)
-    # aggregated_output = generate_summary(atomic_facts_str)
-    # summary = {}
-    # summary['model_diff'] = aggregated_output
-    # with open(f"{path}/summary.json", "w") as f:
-    #     json.dump(summary, f, indent=4)
     path = './data/art'
     with open(f"{path}/descriptions.json", "r") as f:
         descriptions_data = json.load(f)
     atomic_facts = extract_atomic_facts(descriptions_data)
     with open(f"{path}/extracted_atomic_facts.json", "w") as f:
         json.dump(atomic_facts, f, indent=4)
-    
-
-        
-    # with open(f"{path}/summary.json", "r") as f:
-    #     summary = json.load(f)
-    # majority_output = generate_majority(summary["model_diff"])
-    # natural_language_output = generate_natural_language(majority_output)
-    # summary["percentage"] = majority_output
-    # summary["nl"] = natural_language_output
-    # with open(f"{path}/summary.json", "w") as f:
-    #     json.dump(summary, f, indent=4)
 
     
 

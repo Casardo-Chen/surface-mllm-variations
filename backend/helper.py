@@ -16,9 +16,10 @@ load_dotenv()
 OUTPUT_DIR = "./output/"
 INPUT_DIR = "./img/"
 
-openai_client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
-Gemini.configure(api_key=os.environ["GEMINI_API_KEY"])
-gemini_model = Gemini.GenerativeModel('gemini-1.5-flash')
+# Note: Clients are now created per-function to support user-provided API keys
+# Default configuration for when API keys are not provided
+Gemini.configure(api_key=os.environ.get("GEMINI_API_KEY", ""))
+gemini_model = Gemini.GenerativeModel('gemini-1.5-flash') if os.environ.get("GEMINI_API_KEY") else None
 
 # avoid segmentation fault
 os.environ["OMP_NUM_THREADS"] = "1" 
@@ -33,7 +34,22 @@ def encode_image(image_path):
   with open(image_path, "rb") as image_file:
     return base64.b64encode(image_file.read()).decode('utf-8')
 
-def gpt4o_wrapper(system_prompt, user_prompt, structure=None, system_role=False, structured=False, json_format=False):
+def gpt4o_wrapper(system_prompt, user_prompt, structure=None, system_role=False, structured=False, json_format=False, api_key=None):
+    """
+    Wrapper for GPT-4o API calls
+    
+    Args:
+        system_prompt (str): System prompt
+        user_prompt (str): User prompt
+        structure: Structure for structured output
+        system_role (bool): Whether to use system role
+        structured (bool): Whether to use structured output
+        json_format (bool): Whether to use JSON format
+        api_key (str, optional): OpenAI API key. If not provided, uses env var.
+    """
+    key = api_key or os.getenv('OPENAI_API_KEY')
+    client = OpenAI(api_key=key)
+    
     if system_role:
         message = [
             {"role": "system", "content": f"{system_prompt}"},
@@ -45,7 +61,7 @@ def gpt4o_wrapper(system_prompt, user_prompt, structure=None, system_role=False,
         ] 
     if structured:
         try:
-            response = openai_client.beta.chat.completions.parse(
+            response = client.beta.chat.completions.parse(
                 model="gpt-4o",
                 messages=message,
                 response_format = structure
@@ -54,17 +70,16 @@ def gpt4o_wrapper(system_prompt, user_prompt, structure=None, system_role=False,
         except Exception as e:
             print(e)
     elif json_format:
-        response = openai_client.chat.completions.create(
+        response = client.chat.completions.create(
             model="gpt-4o",
             messages=message,
             response_format = { "type": "json_object" }
         )
         return response.choices[0].message.content
     else:
-        response = openai_client.chat.completions.create(
+        response = client.chat.completions.create(
             model="gpt-4o",
             messages=message,
-
         )
         return response.choices[0].message.content
 

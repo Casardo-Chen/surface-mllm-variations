@@ -8,9 +8,6 @@ import useSystemStore from '../../store/use-system-store';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/base-tabs';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 
-
-
-import { imageInfo } from '../../utils/data';
 import MenuIcon from '@mui/icons-material/Menu';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
@@ -79,10 +76,56 @@ function InputSection() {
 
   const [mode, setMode] = useState('example');
   
-  // API Keys state
-  const [openaiKey, setOpenaiKey] = useState('');
-  const [geminiKey, setGeminiKey] = useState('');
-  const [claudeKey, setClaudeKey] = useState('');
+  // API Keys state - load from localStorage on mount
+  const [openaiKey, setOpenaiKey] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('openai_api_key') || '';
+    }
+    return '';
+  });
+  const [geminiKey, setGeminiKey] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('gemini_api_key') || '';
+    }
+    return '';
+  });
+  const [claudeKey, setClaudeKey] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('claude_api_key') || '';
+    }
+    return '';
+  });
+
+  // Save API keys to localStorage when they change
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (openaiKey) {
+        localStorage.setItem('openai_api_key', openaiKey);
+      } else {
+        localStorage.removeItem('openai_api_key');
+      }
+    }
+  }, [openaiKey]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (geminiKey) {
+        localStorage.setItem('gemini_api_key', geminiKey);
+      } else {
+        localStorage.removeItem('gemini_api_key');
+      }
+    }
+  }, [geminiKey]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (claudeKey) {
+        localStorage.setItem('claude_api_key', claudeKey);
+      } else {
+        localStorage.removeItem('claude_api_key');
+      }
+    }
+  }, [claudeKey]);
 
   // Clear all data when switching from examples to demo (especially when there's an image)
   const handleTabChange = (newValue) => {
@@ -167,7 +210,17 @@ function InputSection() {
       }
     }
     
-    responses = await generateImageDescription(imageToSend, prompt, numTrials, selectedModels, promptVariation, actualSource);
+    responses = await generateImageDescription(
+      imageToSend, 
+      prompt, 
+      numTrials, 
+      selectedModels, 
+      promptVariation, 
+      actualSource,
+      openaiKey,
+      geminiKey,
+      claudeKey
+    );
 
     if (!responses.descriptions) {
       setIsLoading(false);
@@ -209,36 +262,36 @@ function InputSection() {
     }
   };
 
-  const handleFileUpload = (event) => {
-    const file = event.target.files[0];
+  // const handleFileUpload = (event) => {
+  //   const file = event.target.files[0];
   
-    // if the file is an image, send it to backend
-    if (file.type.includes('image')) {
-      const reader = new FileReader();
-      reader.onload = async (e) => {
-        const base64Image = e.target.result;
-        // call the upload function
-      //   const response = await fetch('http://127.0.0.1:5000/upload_image', {
-      //     method: 'POST',
-      //     headers: {
-      //         'Content-Type': 'application/json',
-      //     },
-      //     body: JSON.stringify({ 
-      //         image: base64Image,
-      //     }),
-      // });
-      // const data = await response.json();
-      // console.log('Image description:', data); 
+  //   // if the file is an image, send it to backend
+  //   if (file.type.includes('image')) {
+  //     const reader = new FileReader();
+  //     reader.onload = async (e) => {
+  //       const base64Image = e.target.result;
+  //       // call the upload function
+  //     //   const response = await fetch('http://127.0.0.1:5000/upload_image', {
+  //     //     method: 'POST',
+  //     //     headers: {
+  //     //         'Content-Type': 'application/json',
+  //     //     },
+  //     //     body: JSON.stringify({ 
+  //     //         image: base64Image,
+  //     //     }),
+  //     // });
+  //     // const data = await response.json();
+  //     // console.log('Image description:', data); 
 
-        setBase64Image(base64Image);
-      };
-      reader.readAsDataURL(file);
-      setImageLink(URL.createObjectURL(file));
-      setImageSource('base64');
-    } else {
-      alert('Please upload an image file');
-    }
-  };
+  //       setBase64Image(base64Image);
+  //     };
+  //     reader.readAsDataURL(file);
+  //     setImageLink(URL.createObjectURL(file));
+  //     setImageSource('base64');
+  //   } else {
+  //     alert('Please upload an image file');
+  //   }
+  // };
 
   const examplePathMap = {
     'Washing Machine': 'wm',
@@ -352,7 +405,7 @@ function InputSection() {
                     setImageLink('');
                     setCurrentImage('');
                     setPrompt('');
-                    setNumTrials('');
+                    setNumTrials('3');
                     setBase64Image('');
                     setImageSource('url');
                     setSelectedModels(['gpt', 'claude', 'gemini']);

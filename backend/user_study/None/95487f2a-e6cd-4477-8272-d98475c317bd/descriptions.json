@@ -1,0 +1,56 @@
+{
+    "1": {
+        "id": 1,
+        "model": "gpt",
+        "description": "The image shows a beautiful beach scene at sunset. The sun is setting on the horizon over the ocean, casting a warm glow in the sky with shades of orange, pink, and blue. The waves gently lap the sandy shore, reflecting the colors of the sunset in the water. The overall atmosphere is calm and serene.",
+        "prompt": "what are in the picture"
+    },
+    "2": {
+        "id": 2,
+        "model": "claude",
+        "description": "The image shows a beautiful sunset over the ocean. The sun is setting on the horizon, creating a stunning display of colors in the sky - vibrant oranges, yellows, and pinks blending with deep blues. The ocean waves are gently washing onto a sandy beach, with white foam creating a lacy pattern where the water meets the shore. The water reflects the golden light from the sunset, giving it a shimmering, almost metallic appearance. It's a peaceful, picturesque seascape capturing the tranquil moment when day transitions to evening.",
+        "prompt": "what are in the picture"
+    },
+    "3": {
+        "id": 3,
+        "model": "gemini",
+        "description": "E",
+        "prompt": "r"
+    },
+    "4": {
+        "id": 4,
+        "model": "gpt",
+        "description": "The picture depicts a beautiful seascape at sunset. The sun is setting on the horizon, casting vivid colors across the sky, including shades of orange, pink, and purple. The ocean waves gently lap against a sandy beach, with white foamy water at the shoreline. The overall scene is tranquil and picturesque.",
+        "prompt": "what are in the picture"
+    },
+    "5": {
+        "id": 5,
+        "model": "claude",
+        "description": "The image shows a stunning beach sunset. The sun is setting on the horizon where it meets the ocean, creating a brilliant display of colors in the sky - vibrant oranges, yellows, pinks, and deep blues. The ocean waves are gently washing up onto the sandy shore, creating a delicate white foam pattern where the water meets the beach. The water reflects the golden light from the sunset, giving it a shimmering appearance. It's a peaceful coastal scene capturing one of nature's most beautiful daily occurrences - a sunset over the ocean.",
+        "prompt": "what are in the picture"
+    },
+    "6": {
+        "id": 6,
+        "model": "gemini",
+        "description": "E",
+        "prompt": "r"
+    },
+    "7": {
+        "id": 7,
+        "model": "gpt",
+        "description": "The picture shows a beautiful sunset over the ocean. The sun is setting on the horizon, casting vibrant colors of orange, pink, and purple across the sky. The ocean waves gently lap onto the sandy beach, reflecting the warm colors of the sunset. Fluffy clouds are illuminated by the sun, adding depth to the sky.",
+        "prompt": "what are in the picture"
+    },
+    "8": {
+        "id": 8,
+        "model": "claude",
+        "description": "The image shows a stunning beach sunset. The sun is setting on the horizon where the ocean meets the sky, creating a brilliant display of colors - vibrant oranges, yellows, pinks, and deep blues spread across the clouds. The ocean waves are gently washing up onto the sandy shore, creating a lacy white foam pattern as the water reaches the beach. The water reflects the colorful sunset, giving it a golden-orange glow. It's a peaceful coastal scene that captures the natural beauty of a seaside sunset.",
+        "prompt": "what are in the picture"
+    },
+    "9": {
+        "id": 9,
+        "model": "gemini",
+        "description": "E",
+        "prompt": "r"
+    }
+}

@@ -15,16 +15,16 @@ import helper
 
 
 app = Flask(__name__)
-# CORS(app, resources={
-#     r"/*": {
-#         "origins": "http://localhost:5173",
-#         "methods": ["POST", "OPTIONS"],
-#         "allow_headers": ["Content-Type"]
-#     }
-# })
+CORS(app, resources={
+    r"/*": {
+        "origins": "http://surface-uncertainty.netlify.app",
+        "methods": ["POST", "OPTIONS"],
+        "allow_headers": ["Content-Type"]
+    }
+})
 
-CORS(app)
-app.config["CORS_HEADERS"] = "Content-Type"
+# CORS(app)
+# app.config["CORS_HEADERS"] = "Content-Type"
 
 # File paths macro
 DATA_DIR = "data/"
@@ -51,61 +51,12 @@ def create_directory():
 
     return jsonify({"message": "Directory created"}), 200
 
-# get the descriptions.json file based on the image name
-@app.route('/get_descriptions', methods=['POST'])
-def get_descriptions():
-    data = request.json
-    try:
-        image_name = data.get("imageName")
-    except Exception as e:
-        return jsonify({"error": str(e)}), 400
-        
-    descriptions_file_path = os.path.join(DATA_DIR, image_name, "descriptions.json")
-    variation_file_path = os.path.join(DATA_DIR, image_name, "summary.json")
-    metadata_file_path = os.path.join(DATA_DIR, image_name, "metadata.json")
-
-    if not os.path.exists(descriptions_file_path) or not os.path.exists(variation_file_path) or not os.path.exists(metadata_file_path):
-        return jsonify({"error": "Descriptions file not found"}), 404
-
-    with open(descriptions_file_path, "r", encoding="utf-8") as f:
-        descriptions = json.load(f)
-
-    with open(variation_file_path, "r", encoding="utf-8") as f:
-        variation = json.load(f)
-
-    with open(metadata_file_path, "r", encoding="utf-8") as f:
-        metadata = json.load(f)
-    
-    return jsonify({"descriptions": descriptions, "variation": variation, "metadata": metadata}), 200
-
-
-@app.route('/get_variation', methods=['POST',])
-def get_variation():
-    data = request.json
-    try:
-        image_name = data.get("imageName")
-        mode = data.get("mode")
-        print(image_name)
-        print(mode)
-
-    except Exception as e:
-        return jsonify({"error": str(e)}), 400
-
-    data_path = os.path.join(DATA_DIR, image_name, "summary.json")
-
-    if not os.path.exists(data_path):
-        return jsonify({"error": "Variation file not found"}), 404
-
-    with open(data_path, "r", encoding="utf-8") as f:
-        aggregated_data = json.load(f)
-    
-    return aggregated_data, 200
-
-
 @app.route('/generate', methods=['POST',])
 def generate_descriptions():
     """
     API endpoint to generate descriptions from different models
+    Note: API keys are accepted from the request but are never logged or stored.
+    They are only used for the API calls and then discarded.
     """
     data = request.json
     try:
@@ -116,23 +67,36 @@ def generate_descriptions():
         variation_type = data.get("promptVariation")
         source = data.get("source")
         user_id = data.get("userId")
+        
+        # Get API keys from request (user-provided keys)
+        # These are optional - if not provided, backend will use env vars
+        api_keys = {
+            "openai": data.get("openaiKey"),
+            "gemini": data.get("geminiKey"),
+            "claude": data.get("claudeKey")
+        }
     except Exception as e:
         return jsonify({"error": str(e)}), 400
     
 
-    folder_name = helper.uuid_gen()
-    output_path = f"./user_study/{user_id}/{folder_name}"
-    if not os.path.exists(os.path.dirname(output_path+"/")):
-        os.makedirs(os.path.dirname(output_path + "/"))
+    # folder_name = helper.uuid_gen()
+    # output_path = f"./user_study/{user_id}/{folder_name}"
+    # if not os.path.exists(os.path.dirname(output_path+"/")):
+    #     os.makedirs(os.path.dirname(output_path + "/"))
 
-    # save the metadata to the output path
-    with open(f"{output_path}/metadata.json", "w") as f:
-        json.dump(data, f, indent=4)
+    # save the metadata to the output path (but exclude API keys for security)
+    # metadata_safe = {k: v for k, v in data.items() if not k.endswith("Key")}
+    # with open(f"{output_path}/metadata.json", "w") as f:
+    #     json.dump(metadata_safe, f, indent=4)
 
 
-    descriptions = pipeline.variation_generation(image, num_trials, models, variation_type, prompt, output_path, source)
+    descriptions = pipeline.variation_generation(
+        image, num_trials, models, variation_type, prompt, output_path, source, api_keys
+    )
 
-    variation_summary = pipeline.aggregated_description_generation(descriptions, output_path, num_trials, models)
+    variation_summary = pipeline.aggregated_description_generation(
+        descriptions, output_path, num_trials, models, api_keys
+    )
     # NOTE: save the quota during trials
     # variation_summary = {}
 
@@ -140,24 +104,81 @@ def generate_descriptions():
     return jsonify({"descriptions": descriptions, "imageId": folder_name, "variationSummary": variation_summary}), 200
 
 
-@app.route('/upload_image', methods=['POST'])
-def upload_image():
-    """
-    API endpoint to upload an image to the server
-    """
-    data = request.json
-    try:
-        image = data.get("image")
-    except Exception as e:
-        return jsonify({"error": str(e)}), 400
-    base64_str = re.sub('^data:image/.+;base64,', '', image)
+# @app.route('/upload_image', methods=['POST'])
+# def upload_image():
+#     """
+#     API endpoint to upload an image to the server
+#     Note: API keys are accepted from the request but are never logged or stored.
+#     """
+#     data = request.json
+#     try:
+#         image = data.get("image")
+#         # Get API keys from request (user-provided keys)
+#         api_keys = {
+#             "openai": data.get("openaiKey"),
+#             "gemini": data.get("geminiKey"),
+#             "claude": data.get("claudeKey")
+#         }
+#     except Exception as e:
+#         return jsonify({"error": str(e)}), 400
+#     # run a claude model to generate the description
+#     claude_key = api_keys.get("claude") if api_keys else None
+#     # Use the unified function with base64 flag
+#     description = generation.get_claude_description(image, "describe image", claude_key, is_base64=True)
+#     print(description)
+
+
+#     return jsonify({"description": description}), 200
+
+# # get the descriptions.json file based on the image name
+# @app.route('/get_descriptions', methods=['POST'])
+# def get_descriptions():
+#     data = request.json
+#     try:
+#         image_name = data.get("imageName")
+#     except Exception as e:
+#         return jsonify({"error": str(e)}), 400
+        
+#     descriptions_file_path = os.path.join(DATA_DIR, image_name, "descriptions.json")
+#     variation_file_path = os.path.join(DATA_DIR, image_name, "summary.json")
+#     metadata_file_path = os.path.join(DATA_DIR, image_name, "metadata.json")
+
+#     if not os.path.exists(descriptions_file_path) or not os.path.exists(variation_file_path) or not os.path.exists(metadata_file_path):
+#         return jsonify({"error": "Descriptions file not found"}), 404
+
+#     with open(descriptions_file_path, "r", encoding="utf-8") as f:
+#         descriptions = json.load(f)
+
+#     with open(variation_file_path, "r", encoding="utf-8") as f:
+#         variation = json.load(f)
+
+#     with open(metadata_file_path, "r", encoding="utf-8") as f:
+#         metadata = json.load(f)
     
-    # run a gemini model to generate the description
-    description = generation.get_claude_description_base64(base64_str, "describe image")
-    print(description)
+#     return jsonify({"descriptions": descriptions, "variation": variation, "metadata": metadata}), 200
 
 
-    return jsonify({"description": description}), 200
+# @app.route('/get_variation', methods=['POST',])
+# def get_variation():
+#     data = request.json
+#     try:
+#         image_name = data.get("imageName")
+#         mode = data.get("mode")
+#         print(image_name)
+#         print(mode)
+
+#     except Exception as e:
+#         return jsonify({"error": str(e)}), 400
+
+#     data_path = os.path.join(DATA_DIR, image_name, "summary.json")
+
+#     if not os.path.exists(data_path):
+#         return jsonify({"error": "Variation file not found"}), 404
+
+#     with open(data_path, "r", encoding="utf-8") as f:
+#         aggregated_data = json.load(f)
+    
+#     return aggregated_data, 200
 
 
 if __name__ == '__main__':

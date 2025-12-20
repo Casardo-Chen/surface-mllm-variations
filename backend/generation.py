@@ -46,7 +46,7 @@ def get_gemini_description(image_input, prompt, api_key=None, is_base64=False):
     try:
         # Try using OpenAI SDK format (Gemini compatibility layer)
         response = client.chat.completions.create(
-            model="gemini-1.5-pro",
+            model="gemini-3-flash-preview",
             messages=[
                 {
                     "role": "user",

@@ -75,11 +75,6 @@ def aggregated_description_generation(descs, output_path, num_trials, models, ap
     aggregated_output = extraction.gemini_thinking(desc_str, num_trials, models, api_keys)
     logger.info(f"Calculating diff summary")
 
-    # def process_aggregated_output():
-    #     return generate_majority(aggregated_output)
-
-    # def process_majority_output(majority_output):
-    #     return generate_natural_language(majority_output)
     
     def process_uniqueness_output():
         result =  helper.gpt4o_wrapper(

@@ -10,6 +10,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 
 import MenuIcon from '@mui/icons-material/Menu';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import CloseIcon from '@mui/icons-material/Close';
 
 
 function InputSection() {
@@ -362,6 +363,16 @@ function InputSection() {
       />
 
       <div className={`input-section ${sidebarOpen ? 'sidebar-open' : ''}`}>
+        {/* Hide Sidebar Button - visible on narrow screens when sidebar is open */}
+        <button 
+          className="hide-sidebar-button"
+          onClick={() => setSidebarOpen(false)}
+          aria-label="Hide input sidebar"
+        >
+          <CloseIcon />
+          <span>Hide input sidebar</span>
+        </button>
+        
         <Tabs 
           defaultValue="instructions"
           className="w-full"

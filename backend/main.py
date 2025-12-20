@@ -6,12 +6,9 @@ import json, re
 from dotenv import load_dotenv
 load_dotenv()
 
-import requests
 import os
 
-import generation
 import pipeline
-import helper
 
 
 app = Flask(__name__)
@@ -91,7 +88,7 @@ def generate_descriptions():
 
 
     descriptions = pipeline.variation_generation(
-        image, num_trials, models, variation_type, prompt, output_path, source, api_keys
+        image, num_trials, models, variation_type, prompt, output_path=None, source, api_keys
     )
 
     variation_summary = pipeline.aggregated_description_generation(

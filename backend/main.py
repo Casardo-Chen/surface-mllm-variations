@@ -10,7 +10,6 @@ import requests
 import os
 
 import generation
-from verification import cross_model_atomic_fact_verification
 import pipeline
 import helper
 
@@ -101,27 +100,6 @@ def get_variation():
         aggregated_data = json.load(f)
     
     return aggregated_data, 200
-
-
-# use other models to verify the atomic facts
-@app.route('/verify', methods=['POST', ])
-def verify_atomic_facts():
-    """
-    API endpoint to verify atomic facts
-    """
-    data = request.json
-    try:
-        atomic_fact = data.get("atomicFact")
-        image_url = data.get("imageUrl")
-        current_model = data.get("currentModel")
-    except Exception as e:
-        return jsonify({"error": str(e)}), 400
-    
-    # verify the atomic fact
-    verifications = cross_model_atomic_fact_verification(image_url, atomic_fact, current_model)
-    print(verifications)
-
-    return jsonify({"verifications": verifications}), 200
 
 
 @app.route('/generate', methods=['POST',])

@@ -6,6 +6,7 @@ flask_cors
 nltk
 numpy
 openai
+python-dotenv
 requests
 scikit-learn
 torch

@@ -68,7 +68,6 @@ def get_gpt_description(image_url, prompt):
     )
     return response.choices[0].message.content
 
-
 def get_claude_description(image_url, prompt):
     """
     Args:
@@ -135,7 +134,6 @@ def get_claude_description_base64(base64_image, prompt):
         ],
     )
     return response.content[0].text
-
 
 def prompt_paraphrase(prompt, n=2):
     """

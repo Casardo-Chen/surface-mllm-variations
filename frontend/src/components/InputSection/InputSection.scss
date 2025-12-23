@@ -231,15 +231,17 @@
 .hamburger-menu {
   display: none;
   position: fixed;
-  top: 20px;
-  left: 20px;
+  top: 16px;
+  left: 24px;
   z-index: 1001;
-  background-color: #fff;
+  width: 48px;
+  height: 48px;
   border: 2px solid #ccc;
   cursor: pointer;
   padding: 8px;
   border-radius: 16px;
-  // background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
   @media (max-width: 768px) {
@@ -263,7 +265,8 @@
   }
 
   &:hover {
-    background-color: rgba(255, 255, 255, 1);
+    background-color: #eee;
+    transition: all 0.2s ease-in-out;
   }
 }
 

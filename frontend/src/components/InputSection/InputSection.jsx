@@ -653,18 +653,16 @@ function InputSection() {
             </div>
           </TabsContent>
         </Tabs>
-        {mode !== 'demo' && (
-          <div className="input-footer" aria-label="Project attribution">
-            <span>Developed by UT HCI Lab. </span>
-            <a 
-              href="https://meng-chen.com/image-desc-uncertainty/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-            >
-              Learn more about the project.
-            </a>
-          </div>
-        )}
+        <div className="input-footer" aria-label="Project attribution">
+          <span>Developed by UT HCI Lab. </span>
+          <a 
+            href="https://meng-chen.com/image-desc-uncertainty/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            Learn more about the project.
+          </a>
+        </div>
       </div>
     </div>
   );

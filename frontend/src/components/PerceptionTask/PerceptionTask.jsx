@@ -503,6 +503,7 @@ function PerceptionTask() {
         boxSizing: "border-box",
         overflowX: "hidden",
         position: "relative",
+        borderRadius: "16px",
       }}
     >
       {/* Sticky AppBar */}
@@ -518,7 +519,7 @@ function PerceptionTask() {
         <AppBar gridView={gridView} setGridView={setGridView} />
       </Box>
       
-      <div aria-label='description' style={{ textAlign: "left", marginTop: "12px" }}>
+      <div aria-label='descriptions' style={{ textAlign: "left", marginTop: "12px"}}>
         {imageLink && variationSummary && hasVariationSummaryContent(variationSummary) && showVariationSummary && <VariationSummary data={variationSummary} imageLink={imageLink} />}
         {imageLink && variationSummary && hasVariationSummaryContent(variationSummary) && showVariationAwareDescription && <VariationAwareDescription data={variationSummary} imageLink={imageLink} />}
         {imageLink && responses && hasResponsesContent(responses) && showDescriptionList && <DescriptionTable data={responses} imageLink={imageLink} />}
